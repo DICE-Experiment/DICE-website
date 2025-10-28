@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dice-experiment.github.io/DICE-website/sitemap.xml
