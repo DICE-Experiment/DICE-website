@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DICE — Normas & honestidad en 34 países</title>
+  <meta name="description" content="DICE: experimento multicountry en aula sobre normas sociales, honestidad y cumplimiento; protocolo común, datos abiertos y pre‑registros." />
+  <link rel="canonical" href="https://dice-project.example.org/" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0b1225" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="DICE — Normas & honestidad en 34 países" />
+  <meta property="og:description" content="Experimento en aula coordinado en 34 países con protocolo común, preregistros y datos abiertos." />
+  <meta property="og:image" content="https://dice-project.example.org/og.png" />
+  <meta property="og:url" content="https://dice-project.example.org/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Project",
+    "name":"DICE — Normas y honestidad",
+    "url":"https://dice-project.example.org/",
+    "description":"Experimento en aula coordinado en 34 países para estudiar normas sociales y honestidad.",
+    "creator": {"@type":"Organization","name":"DICE Collaboration"}
+  }
+  </script>
+
+  <!-- Fonts (with preconnect and swap) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1225; --surface:#0f172a; --card:#0e162d; --muted:#94a3b8; --text:#e5e7eb;
+      --line:#1f2937; --brand:#60a5fa; --accent:#34d399; --warn:#fbbf24; --chip:#111827;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; background:var(--bg); color:var(--text); font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+    a:focus-visible, button:focus-visible{outline:2px solid var(--brand); outline-offset:2px}
+    .skip{position:absolute; left:-9999px}
+    .skip:focus{left:12px; top:12px; background:#000; color:#fff; padding:8px 10px; border-radius:8px; z-index:50}
+    img{max-width:100%; height:auto}
+    .container{max-width:1200px; margin:0 auto; padding:0 20px}
+    .nav{position:sticky; top:0; z-index:20; background:rgba(10,15,30,.75); backdrop-filter: blur(8px); border-bottom:1px solid var(--line)}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800}
+    .logo{width:36px; height:36px; border-radius:10px; background:
+          radial-gradient(110px 70px at 30% 30%, var(--brand), transparent 60%),
+          radial-gradient(110px 70px at 75% 70%, var(--accent), transparent 60%),
+          radial-gradient(110px 70px at 50% 50%, var(--warn), transparent 60%); box-shadow:var(--shadow)}
+    .tabs{display:flex; gap:10px; flex-wrap:wrap}
+    .tabs a{padding:8px 12px; background:var(--chip); border:1px solid var(--line); border-radius:10px; font-size:14px}
+    .tabs a:hover{border-color:var(--brand); transform:translateY(-1px)}
+    .hero{padding:80px 0 40px; position:relative; overflow:hidden}
+    .glow{position:absolute; inset:-30% -10% auto -10%; height:420px;
+          background:radial-gradient(550px 300px at 20% 20%, rgba(96,165,250,.2), transparent 60%),
+                     radial-gradient(500px 260px at 80% 30%, rgba(251,191,36,.12), transparent 60%),
+                     radial-gradient(600px 300px at 50% 100%, rgba(52,211,153,.12), transparent 60%); filter:blur(40px); z-index:-1}
+    h1{font-size:42px; margin:10px 0 8px}
+    .sub{color:var(--muted); font-size:18px; max-width:900px}
+    .chips{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .chip{background:var(--chip); border:1px solid var(--line); padding:8px 12px; border-radius:999px; font-size:13px}
+    .kpis{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:28px}
+    .kpi{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:var(--shadow)}
+    .kpi .n{font-size:34px; font-weight:800}
+    .kpi .t{color:var(--muted); font-size:13px}
+    section{padding:50px 0; border-top:1px solid var(--line)}
+    h2{font-size:28px; margin:0 0 16px}
+    h3{margin-top:0}
+    .two-col{display:grid; grid-template-columns:1.15fr .85fr; gap:22px}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px; box-shadow:var(--shadow)}
+    .list{display:grid; gap:10px}
+    .list .item{display:flex; gap:12px; align-items:flex-start; background:var(--surface); border:1px solid var(--line); padding:12px 14px; border-radius:12px}
+    .bullet{width:8px; height:8px; border-radius:50%; background:var(--brand); margin-top:8px}
+    .grid{display:grid; gap:16px}
+    .cols-2{grid-template-columns:repeat(2,1fr)}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+    .cols-4{grid-template-columns:repeat(4,1fr)}
+    @media (max-width:980px){ .kpis{grid-template-columns:1fr 1fr} .two-col{grid-template-columns:1fr} .cols-3{grid-template-columns:repeat(2,1fr)} .cols-4{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:640px){ .kpis{grid-template-columns:1fr} .cols-3,.cols-4{grid-template-columns:1fr} h1{font-size:34px} }
+    .proj{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:18px}
+    .proj h4{margin:0 0 6px}
+    .tag{display:inline-block; padding:6px 10px; background:var(--chip); border:1px solid var(--line); border-radius:999px; font-size:12px; margin-right:6px}
+    .gallery{display:grid; grid-template-columns:repeat(6,1fr); gap:8px}
+    .gallery img{width:100%; height:120px; object-fit:cover; border-radius:10px; border:1px solid var(--line)}
+    @media (max-width:980px){ .gallery{grid-template-columns:repeat(3,1fr)} }
+    @media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr)} }
+    footer{padding:40px 0; color:var(--muted)}
+    .small{font-size:12px; color:var(--muted)}
+    .btn{display:inline-block; padding:10px 14px; border-radius:10px; background:var(--brand); color:#04101f; font-weight:700; border:1px solid transparent}
+    .btn.secondary{background:transparent; border:1px solid var(--brand); color:var(--brand)}
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){ .tabs a:hover{transform:none} }
+  </style>
+</head>
+<body>
+<a href="#main" class="skip">Saltar al contenido</a>
+
+<!-- NAV -->
+<div class="nav" role="navigation" aria-label="principal">
+  <div class="container nav-inner">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>DICE — <span class="small">Experimento multicultural en aula</span></div>
+    </div>
+    <nav class="tabs">
+      <a href="#bienvenida">Bienvenida</a>
+      <a href="#implementacion">Implementación</a>
+      <a href="#colaboradores">Colaboradores</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#fotos">Fotos</a>
+      <a href="#cuestionario">Cuestionario</a>
+      <a href="#prereg">Pre‑registros</a>
+    </nav>
+  </div>
+</div>
+
+<!-- HERO -->
+<header id="bienvenida" class="hero">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="container">
+    <h1>Proyecto DICE</h1>
+    <p class="sub">
+      Un experimento en aula, coordinado y armonizado, realizado en <strong>34 países</strong> para estudiar normas sociales y honestidad.
+      La base de datos común alimenta <strong>14 proyectos</strong> que analizan mecanismos complementarios (capital cívico, confianza institucional, preferencias sociales y cumplimiento).
+    </p>
+    <div class="chips" aria-label="características">
+      <span class="chip">En aula</span>
+      <span class="chip">34 países</span>
+      <span class="chip">Protocolo común</span>
+      <span class="chip">Materiales abiertos</span>
+    </div>
+    <div class="kpis" aria-label="indicadores">
+      <div class="kpi" role="group" aria-label="Países"><div class="n">34</div><div class="t">Países</div></div>
+      <div class="kpi" role="group" aria-label="Proyectos"><div class="n">14</div><div class="t">Proyectos vinculados</div></div>
+      <div class="kpi" role="group" aria-label="Dataset"><div class="n">1</div><div class="t">Dataset & protocolo</div></div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- IMPLEMENTACIÓN -->
+  <section id="implementacion">
+    <div class="container two-col">
+      <div class="card">
+        <h2>Resumen de implementación</h2>
+        <div class="list">
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><strong>Diseño:</strong> Tarea del dado en aula con instrucciones armonizadas, supervisión y tiempos estandarizados.</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><strong>Muestra:</strong> Clases universitarias; N objetivo por país según protocolo (sustituir con tus cifras).</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><strong>Medidas clave:</strong> Reporte de resultados, proxies de honestidad, normas sociales, confianza, conductas cívicas y demografía.</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><strong>Calidad:</strong> Pre‑registro, checklist de proctor, marcas de tiempo y validación centralizada.</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><strong>Datos:</strong> Liberaciones por etapas (piloto → v1.0 → replicación) con guía de licencia y citación.</div></div>
+        </div>
+      </div>
+      <aside class="card" aria-labelledby="accesos-rapidos">
+        <h3 id="accesos-rapidos">Accesos rápidos</h3>
+        <div class="list">
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#cuestionario">Vista previa del cuestionario</a></div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#prereg">Registro de pre‑análisis</a></div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#proyectos">Listado de proyectos</a></div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#">Paquete de replicación (placeholder)</a></div></div>
+        </div>
+        <p class="small" style="margin-top:8px">Sustituye los <em>placeholders</em> por enlaces a OSF/AEA/Dataverse/GitHub.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- COLABORADORES -->
+  <section id="colaboradores">
+    <div class="container">
+      <h2>Colaboradores</h2>
+      <p class="sub">Red global de investigadores/as, docentes y asistentes. Añade logotipos, nombres, roles e instituciones.</p>
+      <div class="grid cols-4" style="margin-top:16px">
+        <div class="card">
+          <h3>Coordinación</h3>
+          <p>Investigador principal: <strong>Filippos Exadaktylos</strong> (ejemplo)</p>
+          <p class="small">Añade co‑IPs, gestión de proyecto y contactos.</p>
+        </div>
+        <div class="card">
+          <h3>Equipos por país</h3>
+          <p>Una tarjeta por país con institución, PI(s), ciudad, nivel educativo y tamaño muestral.</p>
+          <span class="tag">Argentina</span>
+          <span class="tag">Chile</span>
+          <span class="tag">Colombia</span>
+        </div>
+        <div class="card">
+          <h3>Métodos & QA</h3>
+          <p>Autores del protocolo, arquitectura de encuesta y equipo de auditoría de datos.</p>
+          <span class="tag">Protocolo</span>
+          <span class="tag">Encuesta</span>
+          <span class="tag">Auditoría</span>
+        </div>
+        <div class="card">
+          <h3>Socios & financiadores</h3>
+          <p>Incluye números de beca, patrocinadores y alianzas institucionales.</p>
+          <span class="tag">Grant #</span>
+          <span class="tag">Partner</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="proyectos">
+    <div class="container">
+      <h2>Proyectos (14)</h2>
+      <p class="sub">Cada proyecto aprovecha una parte distinta del dataset común. A continuación, resúmenes breves y enlaces clave.</p>
+      <div class="grid cols-3" style="margin-top:16px">
+        <div class="proj"><h4>1. Normas sociales & reporte</h4><p class="small">Relación entre normas percibidas/metacreencias y conducta en la tarea del dado.</p><div><span class="tag">Plan de análisis</span><span class="tag">Materiales</span><span class="tag">Código</span></div></div>
+        <div class="proj"><h4>2. Capital cívico & confianza</h4><p class="small">Conductas cívicas, confianza institucional y honestidad entre culturas.</p><div><span class="tag">Pre‑reg</span><span class="tag">Diapositivas</span></div></div>
+        <div class="proj"><h4>3. Cumplimiento & política</h4><p class="small">Aceptación de reglas y correlatos de cumplimiento.</p><div><span class="tag">Diseño</span><span class="tag">Resultados</span></div></div>
+        <div class="proj"><h4>4. Dimensiones culturales</h4><p class="small">Individualismo, universalismo y seguimiento de normas.</p><div><span class="tag">Pre‑reg</span></div></div>
+        <div class="proj"><h4>5. Instituciones & honestidad</h4><p class="small">Calidad institucional e interacciones con proxies de honestidad.</p><div><span class="tag">Código</span></div></div>
+        <div class="proj"><h4>6. Desigualdad & justicia</h4><p class="small">Preferencias distributivas y cumplimiento de reglas.</p><div><span class="tag">Materiales</span></div></div>
+        <div class="proj"><h4>7. Educación & cohortes</h4><p class="small">Diferencias por edad y nivel educativo.</p><div><span class="tag">Diapositivas</span></div></div>
+        <div class="proj"><h4>8. Urbano vs. regional</h4><p class="small">Geografía, tipo de centro y normas.</p><div><span class="tag">Pre‑reg</span></div></div>
+        <div class="proj"><h4>9. Género & normas</h4><p class="small">Expectativas de género y honestidad.</p><div><span class="tag">Resultados</span></div></div>
+        <div class="proj"><h4>10. Replicación & métodos</h4><p class="small">Potencia, identificación y robustez entre países.</p><div><span class="tag">Código</span></div></div>
+        <div class="proj"><h4>11. Mensajes & creencias</h4><p class="small">Tratamientos informativos y actualización de normas.</p><div><span class="tag">Pre‑reg</span></div></div>
+        <div class="proj"><h4>12. Redes & spillovers</h4><p class="small">Efectos de pares en el aula.</p><div><span class="tag">Diseño</span></div></div>
+        <div class="proj"><h4>13. Ética & consentimiento</h4><p class="small">Aprobaciones éticas y lenguaje de consentimiento.</p><div><span class="tag">Materiales</span></div></div>
+        <div class="proj"><h4>14. Curación de datos</h4><p class="small">Estandarización documental y versionado.</p><div><span class="tag">Guía</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOTOS -->
+  <section id="fotos">
+    <div class="container">
+      <h2>Fotos</h2>
+      <p class="sub">Sustituye con imágenes de aulas, talleres y equipos. (Marcadores de Picsum).</p>
+      <div class="gallery" style="margin-top:12px">
+        <img src="https://picsum.photos/id/1011/600/400" alt="Aula universitaria 1" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1025/600/400" alt="Actividad en clase 2" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1035/600/400" alt="Vista de campus 3" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1044/600/400" alt="Estudiantes 4" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1050/600/400" alt="Taller 5" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1062/600/400" alt="Seminario 6" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1074/600/400" alt="Equipo de investigación 7" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1084/600/400" alt="Encuentro 8" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1080/600/400" alt="Participantes 9" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1015/600/400" alt="Aula universitaria 10" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1016/600/400" alt="Aula universitaria 11" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1019/600/400" alt="Aula universitaria 12" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CUESTIONARIO -->
+  <section id="cuestionario">
+    <div class="container two-col">
+      <div class="card">
+        <h2>Cuestionario (vista previa)</h2>
+        <p>Estructura sugerida; puedes incrustar Qualtrics o enlazar PDF.</p>
+        <ol>
+          <li><strong>Módulo tarea del dado</strong> — Instrucciones, práctica, reporte</li>
+          <li><strong>Normas sociales</strong> — Descriptivas/injuntivas y metacreencias</li>
+          <li><strong>Confianza & instituciones</strong> — Interpersonal, institucional, conductas cívicas</li>
+          <li><strong>Demografía</strong> — Edad, género, estudios, región</li>
+          <li><strong>País</strong> — IRB, traducciones, tiempos</li>
+        </ol>
+        <p class="small">Versionado recomendado: <code>DICE‑Q v1.2 (2025‑06‑10)</code></p>
+        <p class="small">
+          <a class="btn" href="#" rel="noopener">Abrir Qualtrics (placeholder)</a>
+          <a class="btn secondary" href="#" rel="noopener">Descargar PDF (placeholder)</a>
+        </p>
+      </div>
+      <aside class="card">
+        <h3>Documentación</h3>
+        <div class="list">
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div>EN master (v1.2)</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div>ES (v1.2)</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div>FR (v1.1)</div></div>
+        </div>
+        <p class="small">Incluye archivos por idioma y registro de cambios.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- PREREG -->
+  <section id="prereg">
+    <div class="container">
+      <h2>Pre‑registros</h2>
+      <p class="sub">Enlaza OSF/AEA para cada proyecto. Tabla índice y correspondencia con versiones de datos.</p>
+      <div class="card">
+        <div class="grid cols-3">
+          <div>
+            <h3>Índice</h3>
+            <ul>
+              <li>Proyecto 1 — OSF: <a href="#" rel="noopener">enlace</a></li>
+              <li>Proyecto 2 — AEA: <a href="#" rel="noopener">enlace</a></li>
+              <li>Proyecto 3 — OSF: <a href="#" rel="noopener">enlace</a></li>
+              <li>…</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Versionado</h3>
+            <p class="small">Vincula IDs de registro con versiones del dataset y carpetas de réplica.</p>
+            <table class="small" aria-label="mapeo preregistros-datos">
+              <thead><tr><th>Prereg</th><th>DOI</th><th>Dataset</th></tr></thead>
+              <tbody>
+                <tr><td>PX-001</td><td>10.5281/zenodo.XXXX</td><td>DICE v1.0</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <h3>Ética</h3>
+            <p class="small">Aprobaciones por país y plantillas de consentimiento.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="grid cols-3">
+      <div>
+        <strong>DICE</strong><br/><span class="small">Normas & honestidad en 34 países</span>
+      </div>
+      <div>
+        <span class="small">Contacto</span><br/>
+        <a href="mailto:dice-project@example.org" class="small">dice‑project@example.org</a>
+      </div>
+      <div>
+        <span class="small">Estado del sitio</span><br/>
+        <span class="small">Última actualización: <time id="last-updated" aria-live="polite"></time></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Last updated stamp
+  document.getElementById('last-updated').textContent = new Date().toISOString().slice(0,10);
+</script>
+</body>
+</html>
