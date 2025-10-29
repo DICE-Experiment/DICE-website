@@ -53,7 +53,7 @@
     .skip:focus{left:12px; top:12px; background:#000; color:#fff; padding:8px 10px; border-radius:8px; z-index:50}
     img{max-width:100%; height:auto}
     .container{max-width:1200px; margin:0 auto; padding:0 20px}
-    .nav{position:sticky; top:0; z-index:20; background:rgba(10,15,30,.75); backdrop-filter: blur(8px); border-bottom:1px solid var(--line)}
+    .nav{position:sticky; top:0; z-index:1200; background:rgba(10,15,30,.75); backdrop-filter: blur(8px); border-bottom:1px solid var(--line)}
     .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
     .brand{display:flex; align-items:center; gap:12px; font-weight:800}
     .logo{font-size:32px; line-height:1; display:flex; align-items:center; justify-content:center;}
@@ -108,7 +108,8 @@
     .legend-item{display:flex; align-items:center; gap:8px}
     .legend-dot{width:12px; height:12px; border-radius:50%; background:var(--brand); border:2px solid var(--accent)}
     .leaflet-container{background:var(--surface); font-family:Inter,sans-serif}
-    .leaflet-tile-pane{filter:hue-rotate(190deg) saturate(1.2) brightness(0.85)}
+    /* Remove tile tint to avoid over-darkening */
+    .leaflet-tile-pane{filter:none}
     .leaflet-container a.leaflet-popup-close-button{color:var(--text)}
     .leaflet-popup-content-wrapper{background:var(--card); color:var(--text); border-radius:8px}
     .leaflet-popup-tip{background:var(--card)}
@@ -943,7 +944,7 @@
       console.log('GeoJSON loaded, features:', data.features.length);
       console.log('First feature properties:', data.features[0].properties);
 
-      L.geoJSON(data, {
+      const countriesLayer = L.geoJSON(data, {
         style: function(feature) {
           const props = feature && feature.properties ? feature.properties : {};
           const countryName = props.name || props.ADMIN || props.admin || '';
@@ -956,11 +957,11 @@
           }
 
           return {
-            fillColor: isParticipating ? '#3b82f6' : '#0b1225',
-            weight: 0.6,
+            fillColor: isParticipating ? '#2563eb' : '#0f172a',
+            weight: 0.8,
             opacity: 1,
             color: isParticipating ? '#60a5fa' : '#1f2937',
-            fillOpacity: isParticipating ? 0.65 : 0.5
+            fillOpacity: isParticipating ? 0.7 : 0.3
           };
         },
         onEachFeature: function(feature, layer) {
@@ -1002,19 +1003,11 @@
             // Add hover effect and cursor pointer
             layer.on({
               mouseover: function(e) {
-                const layer = e.target;
-                layer.setStyle({
-                  fillOpacity: 0.8,
-                  fillColor: '#5a8fc7',
-                  cursor: 'pointer'
-                });
+                const l = e.target;
+                l.setStyle({ fillOpacity: 0.85, fillColor: '#93c5fd', cursor: 'pointer' });
               },
               mouseout: function(e) {
-                const layer = e.target;
-                layer.setStyle({
-                  fillOpacity: 0.6,
-                  fillColor: '#4a7ba7'
-                });
+                countriesLayer.resetStyle(e.target);
               }
             });
           }
