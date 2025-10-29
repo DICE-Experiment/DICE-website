@@ -1,0 +1,16 @@
+country,participant_id,dice_roll,reported_value,session_date,age,gender,trust_score
+Argentina,ARG001,3,5,2024-03-15,22,F,7.2
+Argentina,ARG002,6,6,2024-03-15,24,M,8.1
+Argentina,ARG003,2,4,2024-03-15,21,F,6.5
+Chile,CHL001,4,5,2024-03-18,23,M,7.8
+Chile,CHL002,1,3,2024-03-18,25,F,6.9
+Chile,CHL003,5,5,2024-03-18,22,M,7.4
+Colombia,COL001,2,2,2024-03-20,21,F,8.2
+Colombia,COL002,6,6,2024-03-20,26,M,7.6
+Colombia,COL003,3,4,2024-03-20,23,F,6.8
+Spain,ESP001,1,1,2024-03-22,24,M,8.5
+Spain,ESP002,4,6,2024-03-22,22,F,7.1
+Spain,ESP003,5,5,2024-03-22,25,M,7.9
+Mexico,MEX001,3,5,2024-03-25,23,F,6.7
+Mexico,MEX002,2,4,2024-03-25,21,M,7.3
+Mexico,MEX003,6,6,2024-03-25,24,F,8.0

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DICE — Normas & honestidad en 34 países</title>
   <meta name="description" content="DICE: experimento multicountry en aula sobre normas sociales, honestidad y cumplimiento; protocolo común, datos abiertos y pre‑registros." />
-  <link rel="canonical" href="https://dice-project.example.org/" />
+  <link rel="canonical" href="https://dice-experiment.github.io/DICE-website/" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#0b1225" />
@@ -14,8 +14,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="DICE — Normas & honestidad en 34 países" />
   <meta property="og:description" content="Experimento en aula coordinado en 34 países con protocolo común, preregistros y datos abiertos." />
-  <meta property="og:image" content="https://dice-project.example.org/og.png" />
-  <meta property="og:url" content="https://dice-project.example.org/" />
+  <meta property="og:image" content="https://dice-experiment.github.io/DICE-website/og.png" />
+  <meta property="og:url" content="https://dice-experiment.github.io/DICE-website/" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- JSON-LD -->
@@ -24,7 +24,7 @@
     "@context":"https://schema.org",
     "@type":"Project",
     "name":"DICE — Normas y honestidad",
-    "url":"https://dice-project.example.org/",
+    "url":"https://dice-experiment.github.io/DICE-website/",
     "description":"Experimento en aula coordinado en 34 países para estudiar normas sociales y honestidad.",
     "creator": {"@type":"Organization","name":"DICE Collaboration"}
   }
@@ -34,6 +34,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
   <style>
     :root{
@@ -53,10 +56,7 @@
     .nav{position:sticky; top:0; z-index:20; background:rgba(10,15,30,.75); backdrop-filter: blur(8px); border-bottom:1px solid var(--line)}
     .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
     .brand{display:flex; align-items:center; gap:12px; font-weight:800}
-    .logo{width:36px; height:36px; border-radius:10px; background:
-          radial-gradient(110px 70px at 30% 30%, var(--brand), transparent 60%),
-          radial-gradient(110px 70px at 75% 70%, var(--accent), transparent 60%),
-          radial-gradient(110px 70px at 50% 50%, var(--warn), transparent 60%); box-shadow:var(--shadow)}
+    .logo{font-size:32px; line-height:1; display:flex; align-items:center; justify-content:center;}
     .tabs{display:flex; gap:10px; flex-wrap:wrap}
     .tabs a{padding:8px 12px; background:var(--chip); border:1px solid var(--line); border-radius:10px; font-size:14px}
     .tabs a:hover{border-color:var(--brand); transform:translateY(-1px)}
@@ -67,17 +67,18 @@
                      radial-gradient(600px 300px at 50% 100%, rgba(52,211,153,.12), transparent 60%); filter:blur(40px); z-index:-1}
     h1{font-size:42px; margin:10px 0 8px}
     .sub{color:var(--muted); font-size:18px; max-width:900px}
-    .chips{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
-    .chip{background:var(--chip); border:1px solid var(--line); padding:8px 12px; border-radius:999px; font-size:13px}
-    .kpis{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:28px}
-    .kpi{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:var(--shadow)}
-    .kpi .n{font-size:34px; font-weight:800}
-    .kpi .t{color:var(--muted); font-size:13px}
+    .chips{display:flex; gap:12px; flex-wrap:wrap; margin-top:20px}
+    .chip{background:var(--chip); border:1px solid var(--line); padding:10px 16px; border-radius:999px; font-size:15px; font-weight:500; transition:all .2s}
+    a.chip{color:var(--text); text-decoration:none}
+    a.chip:hover{border-color:var(--brand); transform:translateY(-2px); box-shadow:0 4px 12px rgba(96,165,250,.3)}
     section{padding:50px 0; border-top:1px solid var(--line)}
     h2{font-size:28px; margin:0 0 16px}
     h3{margin-top:0}
     .two-col{display:grid; grid-template-columns:1.15fr .85fr; gap:22px}
+    .two-col.equal{grid-template-columns:1fr 1fr}
     .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px; box-shadow:var(--shadow)}
+    a.card-link{text-decoration:none; color:var(--text); display:block; transition:all .2s; cursor:pointer}
+    a.card-link:hover{transform:translateY(-2px); border-color:var(--brand); box-shadow:0 8px 24px rgba(96,165,250,.2)}
     .list{display:grid; gap:10px}
     .list .item{display:flex; gap:12px; align-items:flex-start; background:var(--surface); border:1px solid var(--line); padding:12px 14px; border-radius:12px}
     .bullet{width:8px; height:8px; border-radius:50%; background:var(--brand); margin-top:8px}
@@ -85,8 +86,8 @@
     .cols-2{grid-template-columns:repeat(2,1fr)}
     .cols-3{grid-template-columns:repeat(3,1fr)}
     .cols-4{grid-template-columns:repeat(4,1fr)}
-    @media (max-width:980px){ .kpis{grid-template-columns:1fr 1fr} .two-col{grid-template-columns:1fr} .cols-3{grid-template-columns:repeat(2,1fr)} .cols-4{grid-template-columns:repeat(2,1fr)} }
-    @media (max-width:640px){ .kpis{grid-template-columns:1fr} .cols-3,.cols-4{grid-template-columns:1fr} h1{font-size:34px} }
+    @media (max-width:980px){ .two-col{grid-template-columns:1fr} .two-col.equal{grid-template-columns:1fr} .cols-3{grid-template-columns:repeat(2,1fr)} .cols-4{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:640px){ .cols-3,.cols-4{grid-template-columns:1fr} h1{font-size:34px} }
     .proj{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:18px}
     .proj h4{margin:0 0 6px}
     .tag{display:inline-block; padding:6px 10px; background:var(--chip); border:1px solid var(--line); border-radius:999px; font-size:12px; margin-right:6px}
@@ -98,9 +99,27 @@
     .small{font-size:12px; color:var(--muted)}
     .btn{display:inline-block; padding:10px 14px; border-radius:10px; background:var(--brand); color:#04101f; font-weight:700; border:1px solid transparent}
     .btn.secondary{background:transparent; border:1px solid var(--brand); color:var(--brand)}
+    .lang-btn{display:flex; gap:2px; padding:6px 8px; background:var(--chip); border:1px solid var(--line); border-radius:10px; cursor:pointer; font-size:13px; font-weight:600; transition:border-color .2s}
+    .lang-btn:hover{border-color:var(--brand)}
+    .lang-option{padding:4px 8px; border-radius:6px; color:var(--muted); transition:all .2s}
+    .lang-option.active{background:var(--brand); color:#04101f}
+    #map{width:100%; height:500px; border-radius:12px; overflow:hidden}
+    .map-legend{display:flex; justify-content:center; margin-top:20px; gap:20px}
+    .legend-item{display:flex; align-items:center; gap:8px}
+    .legend-dot{width:12px; height:12px; border-radius:50%; background:var(--brand); border:2px solid var(--accent)}
+    .leaflet-container{background:var(--surface); font-family:Inter,sans-serif}
+    .leaflet-container a.leaflet-popup-close-button{color:var(--text)}
+    .leaflet-popup-content-wrapper{background:var(--card); color:var(--text); border-radius:8px}
+    .leaflet-popup-tip{background:var(--card)}
+    .leaflet-tooltip.country-tooltip{background:var(--card); color:var(--text); border:2px solid var(--brand); border-radius:12px; padding:12px 14px; font-size:13px; box-shadow:0 8px 24px rgba(0,0,0,0.4); max-width:350px; line-height:1.4}
+    .leaflet-tooltip.country-tooltip::before{border-top-color:var(--brand) !important}
 
     /* Reduced motion */
-    @media (prefers-reduced-motion: reduce){ .tabs a:hover{transform:none} }
+    @media (prefers-reduced-motion: reduce){ .tabs a:hover, a.chip:hover{transform:none} }
+
+    /* Toast notifications */
+    .toast{position:fixed; top:50%; left:50%; background:#10b981; color:#04101f; padding:12px 16px; border-radius:12px; box-shadow:var(--shadow); font-weight:700; z-index:1000; opacity:0; transform:translate(-50%, -12px); transition:opacity .2s, transform .2s}
+    .toast.show{opacity:1; transform:translate(-50%, 0)}
   </style>
 </head>
 <body>
@@ -110,17 +129,20 @@
 <div class="nav" role="navigation" aria-label="principal">
   <div class="container nav-inner">
     <div class="brand">
-      <div class="logo" aria-hidden="true"></div>
-      <div>DICE — <span class="small">Experimento multicultural en aula</span></div>
+      <div class="logo" aria-hidden="true">🎲</div>
+      <div>DICE — <span class="small" data-i18n="nav.subtitle">Experimento multicultural en aula</span></div>
     </div>
     <nav class="tabs">
-      <a href="#bienvenida">Bienvenida</a>
-      <a href="#implementacion">Implementación</a>
-      <a href="#colaboradores">Colaboradores</a>
-      <a href="#proyectos">Proyectos</a>
-      <a href="#fotos">Fotos</a>
-      <a href="#cuestionario">Cuestionario</a>
-      <a href="#prereg">Pre‑registros</a>
+      <a href="#implementacion" data-i18n-nav="implementation">Implementación</a>
+      <a href="#colaboradores" data-i18n-nav="collaborators">Colaboradores</a>
+      <a href="#proyectos" data-i18n-nav="projects">Proyectos</a>
+      <a href="#datos" data-i18n-nav="data">Datos</a>
+      <a href="#cuestionario" data-i18n-nav="prereg">Pre‑registros</a>
+      <a href="#fotos" data-i18n-nav="photos">Fotos</a>
+      <button id="lang-toggle" class="lang-btn" aria-label="Change language">
+        <span class="lang-option" data-lang="en">EN</span>
+        <span class="lang-option active" data-lang="es">ES</span>
+      </button>
     </nav>
   </div>
 </div>
@@ -129,48 +151,63 @@
 <header id="bienvenida" class="hero">
   <div class="glow" aria-hidden="true"></div>
   <div class="container">
-    <h1>Proyecto DICE</h1>
-    <p class="sub">
+    <h1 data-i18n="hero.title">Proyecto DICE</h1>
+    <p class="sub" data-i18n="hero.subtitle">
       Un experimento en aula, coordinado y armonizado, realizado en <strong>34 países</strong> para estudiar normas sociales y honestidad.
       La base de datos común alimenta <strong>14 proyectos</strong> que analizan mecanismos complementarios (capital cívico, confianza institucional, preferencias sociales y cumplimiento).
     </p>
     <div class="chips" aria-label="características">
-      <span class="chip">En aula</span>
-      <span class="chip">34 países</span>
-      <span class="chip">Protocolo común</span>
-      <span class="chip">Materiales abiertos</span>
-    </div>
-    <div class="kpis" aria-label="indicadores">
-      <div class="kpi" role="group" aria-label="Países"><div class="n">34</div><div class="t">Países</div></div>
-      <div class="kpi" role="group" aria-label="Proyectos"><div class="n">14</div><div class="t">Proyectos vinculados</div></div>
-      <div class="kpi" role="group" aria-label="Dataset"><div class="n">1</div><div class="t">Dataset & protocolo</div></div>
+      <a href="#paises" class="chip" data-i18n="hero.chip2">34 países</a>
+      <a href="#proyectos" class="chip" data-i18n="hero.chip5">14 proyectos vinculados</a>
+      <a href="#implementacion" class="chip" data-i18n="hero.chip3">Protocolo común</a>
+      <a href="#datos" class="chip" data-i18n="hero.chip4">Materiales abiertos</a>
     </div>
   </div>
 </header>
 
 <main id="main">
+  <!-- PAÍSES -->
+  <section id="paises">
+    <div class="container">
+      <h2 data-i18n="countries.title">34 Países participantes</h2>
+      <p class="sub" data-i18n="countries.subtitle">Red global de investigación con representación en 5 continentes.</p>
+      <div class="card" style="margin-top:20px; background:var(--surface); padding:30px">
+        <div id="map"></div>
+        <div class="map-legend">
+          <div class="legend-item">
+            <span class="legend-dot"></span>
+            <span class="small" data-i18n="countries.legend">Países participantes (34)</span>
+          </div>
+        </div>
+        <p class="small" style="margin-top:16px; text-align:center" data-i18n="countries.note">
+          Cobertura en América, Europa, Asia, África y Oceanía
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- IMPLEMENTACIÓN -->
   <section id="implementacion">
     <div class="container two-col">
       <div class="card">
-        <h2>Resumen de implementación</h2>
+        <h2 data-i18n="implementation.title">Resumen de implementación</h2>
         <div class="list">
-          <div class="item"><div class="bullet" aria-hidden="true"></div><div><strong>Diseño:</strong> Tarea del dado en aula con instrucciones armonizadas, supervisión y tiempos estandarizados.</div></div>
-          <div class="item"><div class="bullet" aria-hidden="true"></div><div><strong>Muestra:</strong> Clases universitarias; N objetivo por país según protocolo (sustituir con tus cifras).</div></div>
-          <div class="item"><div class="bullet" aria-hidden="true"></div><div><strong>Medidas clave:</strong> Reporte de resultados, proxies de honestidad, normas sociales, confianza, conductas cívicas y demografía.</div></div>
-          <div class="item"><div class="bullet" aria-hidden="true"></div><div><strong>Calidad:</strong> Pre‑registro, checklist de proctor, marcas de tiempo y validación centralizada.</div></div>
-          <div class="item"><div class="bullet" aria-hidden="true"></div><div><strong>Datos:</strong> Liberaciones por etapas (piloto → v1.0 → replicación) con guía de licencia y citación.</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div data-i18n="implementation.item1"><strong>Diseño:</strong> Tarea del dado en aula con instrucciones armonizadas, supervisión y tiempos estandarizados.</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div data-i18n="implementation.item2"><strong>Muestra:</strong> Clases universitarias; N objetivo por país según protocolo (sustituir con tus cifras).</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div data-i18n="implementation.item3"><strong>Medidas clave:</strong> Reporte de resultados, proxies de honestidad, normas sociales, confianza, conductas cívicas y demografía.</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div data-i18n="implementation.item4"><strong>Calidad:</strong> Pre‑registro, checklist de proctor, marcas de tiempo y validación centralizada.</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div data-i18n="implementation.item5"><strong>Datos:</strong> Liberaciones por etapas (piloto → v1.0 → replicación) con guía de licencia y citación.</div></div>
         </div>
       </div>
       <aside class="card" aria-labelledby="accesos-rapidos">
-        <h3 id="accesos-rapidos">Accesos rápidos</h3>
+        <h3 id="accesos-rapidos" data-i18n="implementation.quickLinks">Accesos rápidos</h3>
         <div class="list">
-          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#cuestionario">Vista previa del cuestionario</a></div></div>
-          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#prereg">Registro de pre‑análisis</a></div></div>
-          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#proyectos">Listado de proyectos</a></div></div>
-          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#">Paquete de replicación (placeholder)</a></div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#cuestionario" data-i18n="implementation.link1">Vista previa del cuestionario</a></div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#cuestionario" data-i18n="implementation.link2">Registro de pre‑análisis</a></div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#proyectos" data-i18n="implementation.link3">Listado de proyectos</a></div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#" data-i18n="implementation.link4">Paquete de replicación (placeholder)</a></div></div>
         </div>
-        <p class="small" style="margin-top:8px">Sustituye los <em>placeholders</em> por enlaces a OSF/AEA/Dataverse/GitHub.</p>
+        <p class="small" style="margin-top:8px" data-i18n="implementation.note">Sustituye los <em>placeholders</em> por enlaces a OSF/AEA/Dataverse/GitHub.</p>
       </aside>
     </div>
   </section>
@@ -178,31 +215,29 @@
   <!-- COLABORADORES -->
   <section id="colaboradores">
     <div class="container">
-      <h2>Colaboradores</h2>
-      <p class="sub">Red global de investigadores/as, docentes y asistentes. Añade logotipos, nombres, roles e instituciones.</p>
+      <h2 data-i18n="collaborators.title">Colaboradores</h2>
+      <p class="sub" data-i18n="collaborators.subtitle">Red global de investigadores/as, docentes y asistentes. Añade logotipos, nombres, roles e instituciones.</p>
       <div class="grid cols-4" style="margin-top:16px">
         <div class="card">
-          <h3>Coordinación</h3>
-          <p>Investigador principal: <strong>Filippos Exadaktylos</strong> (ejemplo)</p>
-          <p class="small">Añade co‑IPs, gestión de proyecto y contactos.</p>
+          <h3 data-i18n="collaborators.card1.title">Coordinación</h3>
+          <p data-i18n="collaborators.card1.text">Investigador principal: <strong><a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:inherit; text-decoration:none">Filippos Exadaktylos</a></strong> (ejemplo)</p>
+          <p class="small" data-i18n="collaborators.card1.note">Añade co‑IPs, gestión de proyecto y contactos.</p>
+        </div>
+        <a href="countries.html" class="card card-link">
+          <h3 data-i18n="collaborators.card2.title">Equipos por país</h3>
+          <p data-i18n="collaborators.card2.text">Una tarjeta por país con institución, PI(s), ciudad, nivel educativo y tamaño muestral.</p>
+          <p class="small" style="margin-top:12px; color:var(--brand)" data-i18n="collaborators.card2.viewall">→ Ver todos los 34 países</p>
+        </a>
+        <div class="card">
+          <h3 data-i18n="collaborators.card3.title">Métodos & QA</h3>
+          <p data-i18n="collaborators.card3.text">Autores del protocolo, arquitectura de encuesta y equipo de auditoría de datos.</p>
+          <span class="tag" data-i18n="collaborators.card3.tag1">Protocolo</span>
+          <span class="tag" data-i18n="collaborators.card3.tag2">Encuesta</span>
+          <span class="tag" data-i18n="collaborators.card3.tag3">Auditoría</span>
         </div>
         <div class="card">
-          <h3>Equipos por país</h3>
-          <p>Una tarjeta por país con institución, PI(s), ciudad, nivel educativo y tamaño muestral.</p>
-          <span class="tag">Argentina</span>
-          <span class="tag">Chile</span>
-          <span class="tag">Colombia</span>
-        </div>
-        <div class="card">
-          <h3>Métodos & QA</h3>
-          <p>Autores del protocolo, arquitectura de encuesta y equipo de auditoría de datos.</p>
-          <span class="tag">Protocolo</span>
-          <span class="tag">Encuesta</span>
-          <span class="tag">Auditoría</span>
-        </div>
-        <div class="card">
-          <h3>Socios & financiadores</h3>
-          <p>Incluye números de beca, patrocinadores y alianzas institucionales.</p>
+          <h3 data-i18n="collaborators.card4.title">Socios & financiadores</h3>
+          <p data-i18n="collaborators.card4.text">Incluye números de beca, patrocinadores y alianzas institucionales.</p>
           <span class="tag">Grant #</span>
           <span class="tag">Partner</span>
         </div>
@@ -213,32 +248,146 @@
   <!-- PROYECTOS -->
   <section id="proyectos">
     <div class="container">
-      <h2>Proyectos (14)</h2>
-      <p class="sub">Cada proyecto aprovecha una parte distinta del dataset común. A continuación, resúmenes breves y enlaces clave.</p>
+      <h2 data-i18n="projects.title">Proyectos (14)</h2>
+      <p class="sub" data-i18n="projects.subtitle">Cada proyecto aprovecha una parte distinta del dataset común. A continuación, resúmenes breves y enlaces clave.</p>
       <div class="grid cols-3" style="margin-top:16px">
-        <div class="proj"><h4>1. Normas sociales & reporte</h4><p class="small">Relación entre normas percibidas/metacreencias y conducta en la tarea del dado.</p><div><span class="tag">Plan de análisis</span><span class="tag">Materiales</span><span class="tag">Código</span></div></div>
-        <div class="proj"><h4>2. Capital cívico & confianza</h4><p class="small">Conductas cívicas, confianza institucional y honestidad entre culturas.</p><div><span class="tag">Pre‑reg</span><span class="tag">Diapositivas</span></div></div>
-        <div class="proj"><h4>3. Cumplimiento & política</h4><p class="small">Aceptación de reglas y correlatos de cumplimiento.</p><div><span class="tag">Diseño</span><span class="tag">Resultados</span></div></div>
-        <div class="proj"><h4>4. Dimensiones culturales</h4><p class="small">Individualismo, universalismo y seguimiento de normas.</p><div><span class="tag">Pre‑reg</span></div></div>
-        <div class="proj"><h4>5. Instituciones & honestidad</h4><p class="small">Calidad institucional e interacciones con proxies de honestidad.</p><div><span class="tag">Código</span></div></div>
-        <div class="proj"><h4>6. Desigualdad & justicia</h4><p class="small">Preferencias distributivas y cumplimiento de reglas.</p><div><span class="tag">Materiales</span></div></div>
-        <div class="proj"><h4>7. Educación & cohortes</h4><p class="small">Diferencias por edad y nivel educativo.</p><div><span class="tag">Diapositivas</span></div></div>
-        <div class="proj"><h4>8. Urbano vs. regional</h4><p class="small">Geografía, tipo de centro y normas.</p><div><span class="tag">Pre‑reg</span></div></div>
-        <div class="proj"><h4>9. Género & normas</h4><p class="small">Expectativas de género y honestidad.</p><div><span class="tag">Resultados</span></div></div>
-        <div class="proj"><h4>10. Replicación & métodos</h4><p class="small">Potencia, identificación y robustez entre países.</p><div><span class="tag">Código</span></div></div>
-        <div class="proj"><h4>11. Mensajes & creencias</h4><p class="small">Tratamientos informativos y actualización de normas.</p><div><span class="tag">Pre‑reg</span></div></div>
-        <div class="proj"><h4>12. Redes & spillovers</h4><p class="small">Efectos de pares en el aula.</p><div><span class="tag">Diseño</span></div></div>
-        <div class="proj"><h4>13. Ética & consentimiento</h4><p class="small">Aprobaciones éticas y lenguaje de consentimiento.</p><div><span class="tag">Materiales</span></div></div>
-        <div class="proj"><h4>14. Curación de datos</h4><p class="small">Estandarización documental y versionado.</p><div><span class="tag">Guía</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p1.title">1. Normas sociales & reporte</h4><p class="small" data-i18n="projects.p1.desc">Relación entre normas percibidas/metacreencias y conducta en la tarea del dado.</p><div><span class="tag" data-i18n="projects.tag.analysis">Plan de análisis</span><span class="tag" data-i18n="projects.tag.materials">Materiales</span><span class="tag" data-i18n="projects.tag.code">Código</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p2.title">2. Capital cívico & confianza</h4><p class="small" data-i18n="projects.p2.desc">Conductas cívicas, confianza institucional y honestidad entre culturas.</p><div><span class="tag" data-i18n="projects.tag.prereg">Pre‑reg</span><span class="tag" data-i18n="projects.tag.slides">Diapositivas</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p3.title">3. Cumplimiento & política</h4><p class="small" data-i18n="projects.p3.desc">Aceptación de reglas y correlatos de cumplimiento.</p><div><span class="tag" data-i18n="projects.tag.design">Diseño</span><span class="tag" data-i18n="projects.tag.results">Resultados</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p4.title">4. Dimensiones culturales</h4><p class="small" data-i18n="projects.p4.desc">Individualismo, universalismo y seguimiento de normas.</p><div><span class="tag" data-i18n="projects.tag.prereg">Pre‑reg</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p5.title">5. Instituciones & honestidad</h4><p class="small" data-i18n="projects.p5.desc">Calidad institucional e interacciones con proxies de honestidad.</p><div><span class="tag" data-i18n="projects.tag.code">Código</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p6.title">6. Desigualdad & justicia</h4><p class="small" data-i18n="projects.p6.desc">Preferencias distributivas y cumplimiento de reglas.</p><div><span class="tag" data-i18n="projects.tag.materials">Materiales</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p7.title">7. Educación & cohortes</h4><p class="small" data-i18n="projects.p7.desc">Diferencias por edad y nivel educativo.</p><div><span class="tag" data-i18n="projects.tag.slides">Diapositivas</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p8.title">8. Urbano vs. regional</h4><p class="small" data-i18n="projects.p8.desc">Geografía, tipo de centro y normas.</p><div><span class="tag" data-i18n="projects.tag.prereg">Pre‑reg</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p9.title">9. Género & normas</h4><p class="small" data-i18n="projects.p9.desc">Expectativas de género y honestidad.</p><div><span class="tag" data-i18n="projects.tag.results">Resultados</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p10.title">10. Replicación & métodos</h4><p class="small" data-i18n="projects.p10.desc">Potencia, identificación y robustez entre países.</p><div><span class="tag" data-i18n="projects.tag.code">Código</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p11.title">11. Mensajes & creencias</h4><p class="small" data-i18n="projects.p11.desc">Tratamientos informativos y actualización de normas.</p><div><span class="tag" data-i18n="projects.tag.prereg">Pre‑reg</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p12.title">12. Redes & spillovers</h4><p class="small" data-i18n="projects.p12.desc">Efectos de pares en el aula.</p><div><span class="tag" data-i18n="projects.tag.design">Diseño</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p13.title">13. Ética & consentimiento</h4><p class="small" data-i18n="projects.p13.desc">Aprobaciones éticas y lenguaje de consentimiento.</p><div><span class="tag" data-i18n="projects.tag.materials">Materiales</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p14.title">14. Curación de datos</h4><p class="small" data-i18n="projects.p14.desc">Estandarización documental y versionado.</p><div><span class="tag" data-i18n="projects.tag.guide">Guía</span></div></div>
       </div>
     </div>
   </section>
 
+  <!-- DATOS -->
+  <section id="datos">
+    <div class="container">
+      <h2 data-i18n="data.title">Datos</h2>
+      <p class="sub" data-i18n="data.subtitle">Accede a nuestros datos de muestra del experimento DICE. Datos completos disponibles tras publicación.</p>
+      <div class="grid cols-2" style="margin-top:16px">
+        <div class="card">
+          <h3 data-i18n="data.card1.title">Datos de muestra</h3>
+          <p data-i18n="data.card1.desc">Dataset de ejemplo con 15 participantes de 5 países. Incluye resultados del dado, datos demográficos y puntuaciones de confianza.</p>
+          <p class="small" style="margin-top:12px">
+            <strong data-i18n="data.card1.format">Formato:</strong> CSV<br/>
+            <strong data-i18n="data.card1.size">Tamaño:</strong> ~1 KB<br/>
+            <strong data-i18n="data.card1.updated">Actualizado:</strong> 2024-03-25
+          </p>
+          <p style="margin-top:16px">
+            <a class="btn" href="data/general/sample-full-data.csv" download data-i18n="data.card1.btn">Descargar datos de muestra</a>
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="data.card2.title">Estructura de datos</h3>
+          <p data-i18n="data.card2.desc">El dataset incluye las siguientes variables:</p>
+          <ul style="margin-top:8px">
+            <li><code>country</code> — <span data-i18n="data.card2.var1">País del participante</span></li>
+            <li><code>participant_id</code> — <span data-i18n="data.card2.var2">ID único</span></li>
+            <li><code>dice_roll</code> — <span data-i18n="data.card2.var3">Resultado real del dado</span></li>
+            <li><code>reported_value</code> — <span data-i18n="data.card2.var4">Valor reportado</span></li>
+            <li><code>session_date</code> — <span data-i18n="data.card2.var5">Fecha de sesión</span></li>
+            <li><code>age</code> — <span data-i18n="data.card2.var6">Edad</span></li>
+            <li><code>gender</code> — <span data-i18n="data.card2.var7">Género</span></li>
+            <li><code>trust_score</code> — <span data-i18n="data.card2.var8">Puntuación de confianza (1-10)</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h3 data-i18n="data.card3.title">Acceso al dataset completo</h3>
+        <p data-i18n="data.card3.text">El dataset completo con datos de los 34 países estará disponible tras la publicación de los artículos principales. Se alojará en repositorios abiertos con DOI y licencia Creative Commons.</p>
+        <p class="small" style="margin-top:8px" data-i18n="data.card3.note">Para acceso anticipado o colaboraciones, contacta al <a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:#60a5fa; text-decoration:none">equipo de coordinación</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUESTIONARIO -->
+  <section id="cuestionario">
+    <div class="container two-col equal">
+      <aside id="questionaries-box" class="card">
+        <h3 data-i18n="questionnaire.docsTitle">Questionaries</h3>
+        <p class="small">
+          <a id="open-qualtrics-btn" class="btn" href="#" rel="noopener" data-i18n="questionnaire.btn1">Abrir Qualtrics (placeholder)</a>
+          <a id="download-all-questionnaires" class="btn secondary" href="#" rel="noopener" data-i18n="questionnaire.btn2">Descargar PDF (placeholder)</a>
+        </p>
+        <div style="max-height: 400px; overflow-y: auto; margin: 16px 0; padding-right: 8px;">
+          <a href="data/countries/argentina/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇦🇷 Argentina</a>
+          <a href="data/countries/austria/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇦🇹 Austria</a>
+          <a href="data/countries/chile/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇨🇱 Chile</a>
+          <a href="data/countries/china/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇨🇳 China</a>
+          <a href="data/countries/cotedivoire/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇨🇮 Côte d'Ivoire</a>
+          <a href="data/countries/congo/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇨🇩 D.R. Congo</a>
+          <a href="data/countries/colombia/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇨🇴 Colombia</a>
+          <a href="data/countries/czechia/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇨🇿 Czech Republic</a>
+          <a href="data/countries/germany/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇩🇪 Germany</a>
+          <a href="data/countries/egypt/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇪🇬 Egypt</a>
+          <a href="data/countries/spain/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇪🇸 Spain</a>
+          <a href="data/countries/france/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇫🇷 France</a>
+          <a href="data/countries/uk/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇬🇧 United Kingdom</a>
+          <a href="data/countries/greece/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇬🇷 Greece</a>
+          <a href="data/countries/hongkong/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇭🇰 Hong Kong</a>
+          <a href="data/countries/hungary/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇭🇺 Hungary</a>
+          <a href="data/countries/italy/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇮🇹 Italy</a>
+          <a href="data/countries/japan/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇯🇵 Japan</a>
+          <a href="data/countries/kazakhstan/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇰🇿 Kazakhstan</a>
+          <a href="data/countries/korea/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇰🇷 South Korea</a>
+          <a href="data/countries/madagascar/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇲🇬 Madagascar</a>
+          <a href="data/countries/pakistan/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇵🇰 Pakistan</a>
+          <a href="data/countries/peru/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇵🇪 Peru</a>
+          <a href="data/countries/philippines/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇵🇭 Philippines</a>
+          <a href="data/countries/poland/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇵🇱 Poland</a>
+          <a href="data/countries/portugal/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇵🇹 Portugal</a>
+          <a href="data/countries/qatar/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇶🇦 Qatar</a>
+          <a href="data/countries/russia/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇷🇺 Russia</a>
+          <a href="data/countries/saudi/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇸🇦 Saudi Arabia</a>
+          <a href="data/countries/singapore/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇸🇬 Singapore</a>
+          <a href="data/countries/turkey/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇹🇷 Turkey</a>
+          <a href="data/countries/taiwan/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇹🇼 Taiwan</a>
+          <a href="data/countries/uruguay/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇺🇾 Uruguay</a>
+          <a href="data/countries/usa/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇺🇸 United States</a>
+        </div>
+        <p class="small" data-i18n="questionnaire.docsNote">Descarga cuestionarios por país.</p>
+      </aside>
+      <div id="prereg-box" class="card">
+        <h3 data-i18n="prereg.title">Pre‑registros</h3>
+        <p class="small" style="margin-bottom:12px">
+          <a id="download-all-prereg" class="btn secondary" href="#" data-i18n="prereg.btnAll">Download all preregistrations</a>
+        </p>
+        <div style="max-height: 400px; overflow-y: auto; margin: 16px 0; padding-right: 8px;">
+          <a href="data/projects/project-01/preregistration.pdf" download class="btn secondary" style="display:block; margin-bottom:8px; font-size:13px; padding:8px 12px;">Project 01</a>
+          <a href="data/projects/project-02/preregistration.pdf" download class="btn secondary" style="display:block; margin-bottom:8px; font-size:13px; padding:8px 12px;">Project 02</a>
+          <a href="data/projects/project-03/preregistration.pdf" download class="btn secondary" style="display:block; margin-bottom:8px; font-size:13px; padding:8px 12px;">Project 03</a>
+          <a href="data/projects/project-04/preregistration.pdf" download class="btn secondary" style="display:block; margin-bottom:8px; font-size:13px; padding:8px 12px;">Project 04</a>
+          <a href="data/projects/project-05/preregistration.pdf" download class="btn secondary" style="display:block; margin-bottom:8px; font-size:13px; padding:8px 12px;">Project 05</a>
+          <a href="data/projects/project-06/preregistration.pdf" download class="btn secondary" style="display:block; margin-bottom:8px; font-size:13px; padding:8px 12px;">Project 06</a>
+          <a href="data/projects/project-07/preregistration.pdf" download class="btn secondary" style="display:block; margin-bottom:8px; font-size:13px; padding:8px 12px;">Project 07</a>
+          <a href="data/projects/project-08/preregistration.pdf" download class="btn secondary" style="display:block; margin-bottom:8px; font-size:13px; padding:8px 12px;">Project 08</a>
+          <a href="data/projects/project-09/preregistration.pdf" download class="btn secondary" style="display:block; margin-bottom:8px; font-size:13px; padding:8px 12px;">Project 09</a>
+          <a href="data/projects/project-10/preregistration.pdf" download class="btn secondary" style="display:block; margin-bottom:8px; font-size:13px; padding:8px 12px;">Project 10</a>
+          <a href="data/projects/project-11/preregistration.pdf" download class="btn secondary" style="display:block; margin-bottom:8px; font-size:13px; padding:8px 12px;">Project 11</a>
+          <a href="data/projects/project-12/preregistration.pdf" download class="btn secondary" style="display:block; margin-bottom:8px; font-size:13px; padding:8px 12px;">Project 12</a>
+          <a href="data/projects/project-13/preregistration.pdf" download class="btn secondary" style="display:block; margin-bottom:8px; font-size:13px; padding:8px 12px;">Project 13</a>
+          <a href="data/projects/project-14/preregistration.pdf" download class="btn secondary" style="display:block; margin-bottom:8px; font-size:13px; padding:8px 12px;">Project 14</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
   <!-- FOTOS -->
   <section id="fotos">
     <div class="container">
-      <h2>Fotos</h2>
-      <p class="sub">Sustituye con imágenes de aulas, talleres y equipos. (Marcadores de Picsum).</p>
+      <h2 data-i18n="photos.title">Fotos</h2>
+      <p class="sub" data-i18n="photos.subtitle">Sustituye con imágenes de aulas, talleres y equipos. (Marcadores de Picsum).</p>
       <div class="gallery" style="margin-top:12px">
         <img src="https://picsum.photos/id/1011/600/400" alt="Aula universitaria 1" loading="lazy" decoding="async" />
         <img src="https://picsum.photos/id/1025/600/400" alt="Actividad en clase 2" loading="lazy" decoding="async" />
@@ -255,72 +404,6 @@
       </div>
     </div>
   </section>
-
-  <!-- CUESTIONARIO -->
-  <section id="cuestionario">
-    <div class="container two-col">
-      <div class="card">
-        <h2>Cuestionario (vista previa)</h2>
-        <p>Estructura sugerida; puedes incrustar Qualtrics o enlazar PDF.</p>
-        <ol>
-          <li><strong>Módulo tarea del dado</strong> — Instrucciones, práctica, reporte</li>
-          <li><strong>Normas sociales</strong> — Descriptivas/injuntivas y metacreencias</li>
-          <li><strong>Confianza & instituciones</strong> — Interpersonal, institucional, conductas cívicas</li>
-          <li><strong>Demografía</strong> — Edad, género, estudios, región</li>
-          <li><strong>País</strong> — IRB, traducciones, tiempos</li>
-        </ol>
-        <p class="small">Versionado recomendado: <code>DICE‑Q v1.2 (2025‑06‑10)</code></p>
-        <p class="small">
-          <a class="btn" href="#" rel="noopener">Abrir Qualtrics (placeholder)</a>
-          <a class="btn secondary" href="#" rel="noopener">Descargar PDF (placeholder)</a>
-        </p>
-      </div>
-      <aside class="card">
-        <h3>Documentación</h3>
-        <div class="list">
-          <div class="item"><div class="bullet" aria-hidden="true"></div><div>EN master (v1.2)</div></div>
-          <div class="item"><div class="bullet" aria-hidden="true"></div><div>ES (v1.2)</div></div>
-          <div class="item"><div class="bullet" aria-hidden="true"></div><div>FR (v1.1)</div></div>
-        </div>
-        <p class="small">Incluye archivos por idioma y registro de cambios.</p>
-      </aside>
-    </div>
-  </section>
-
-  <!-- PREREG -->
-  <section id="prereg">
-    <div class="container">
-      <h2>Pre‑registros</h2>
-      <p class="sub">Enlaza OSF/AEA para cada proyecto. Tabla índice y correspondencia con versiones de datos.</p>
-      <div class="card">
-        <div class="grid cols-3">
-          <div>
-            <h3>Índice</h3>
-            <ul>
-              <li>Proyecto 1 — OSF: <a href="#" rel="noopener">enlace</a></li>
-              <li>Proyecto 2 — AEA: <a href="#" rel="noopener">enlace</a></li>
-              <li>Proyecto 3 — OSF: <a href="#" rel="noopener">enlace</a></li>
-              <li>…</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Versionado</h3>
-            <p class="small">Vincula IDs de registro con versiones del dataset y carpetas de réplica.</p>
-            <table class="small" aria-label="mapeo preregistros-datos">
-              <thead><tr><th>Prereg</th><th>DOI</th><th>Dataset</th></tr></thead>
-              <tbody>
-                <tr><td>PX-001</td><td>10.5281/zenodo.XXXX</td><td>DICE v1.0</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div>
-            <h3>Ética</h3>
-            <p class="small">Aprobaciones por país y plantillas de consentimiento.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
 
 <!-- FOOTER -->
@@ -328,23 +411,564 @@
   <div class="container">
     <div class="grid cols-3">
       <div>
-        <strong>DICE</strong><br/><span class="small">Normas & honestidad en 34 países</span>
+        <strong>DICE</strong><br/><span class="small" data-i18n="footer.tagline">Normas & honestidad en 34 países</span>
       </div>
       <div>
-        <span class="small">Contacto</span><br/>
-        <a href="mailto:dice-project@example.org" class="small">dice‑project@example.org</a>
+        <span class="small" data-i18n="footer.contact">Contacto</span><br/>
+        <a href="mailto:dice-experiment@example.org" class="small">dice‑experiment@example.org</a>
       </div>
       <div>
-        <span class="small">Estado del sitio</span><br/>
-        <span class="small">Última actualización: <time id="last-updated" aria-live="polite"></time></span>
+        <span class="small" data-i18n="footer.status">Estado del sitio</span><br/>
+        <span class="small"><span data-i18n="footer.updated">Última actualización:</span> <time id="last-updated" aria-live="polite"></time></span>
       </div>
     </div>
   </div>
 </footer>
 
 <script>
+  // Translations
+  const translations = {
+    en: {
+      nav: {
+        subtitle: 'Multicultural classroom experiment',
+        welcome: 'Welcome',
+        implementation: 'Implementation',
+        collaborators: 'Collaborators',
+        projects: 'Projects',
+        data: 'Data',
+        photos: 'Photos',
+        questionnaire: 'Questionnaires',
+        prereg: 'Pre-registrations'
+      },
+      hero: {
+        title: 'DICE Project',
+        subtitle: 'A coordinated and harmonized classroom experiment conducted in <strong>34 countries</strong> to study social norms and honesty. The shared database feeds <strong>14 projects</strong> that analyze complementary mechanisms (civic capital, institutional trust, social preferences, and compliance).',
+        chip1: 'In-class',
+        chip2: '34 countries',
+        chip3: 'Common protocol',
+        chip4: 'Open materials',
+        chip5: '14 linked projects',
+        kpi1: 'Countries',
+        kpi2: 'Linked projects',
+        kpi3: 'Dataset & protocol'
+      },
+      countries: {
+        title: '34 Participating Countries',
+        subtitle: 'Global research network with representation across 5 continents.',
+        ARG: 'Argentina', AUT: 'Austria', CHL: 'Chile', CHN: 'China', CIV: 'Côte d\'Ivoire',
+        COD: 'D.R. Congo', COL: 'Colombia', CZE: 'Czech Republic', DEU: 'Germany', EGY: 'Egypt',
+        ESP: 'Spain', FRA: 'France', GBR: 'United Kingdom', GRC: 'Greece', HKG: 'Hong Kong',
+        HUN: 'Hungary', ITA: 'Italy', JPN: 'Japan', KAZ: 'Kazakhstan', KOR: 'South Korea',
+        MDG: 'Madagascar', PAK: 'Pakistan', PER: 'Peru', PHL: 'Philippines', POL: 'Poland',
+        PRT: 'Portugal', QAT: 'Qatar', RUS: 'Russia', SAU: 'Saudi Arabia', SGP: 'Singapore',
+        TUR: 'Turkey', TWN: 'Taiwan', URY: 'Uruguay', USA: 'United States',
+        legend: 'Participating countries (34)',
+        note: 'Coverage across America, Europe, Asia, Africa, and Oceania'
+      },
+      countryDetails: {
+        title: 'Country Teams',
+        subtitle: 'Detailed information about each participating research team.',
+        team: 'Team:',
+        institution: 'Institution:',
+        city: 'City:',
+        sample: 'Sample:',
+        observations: 'Observations:'
+      },
+      implementation: {
+        title: 'Implementation Summary',
+        item1: '<strong>Design:</strong> Classroom dice task with harmonized instructions, supervision, and standardized timing.',
+        item2: '<strong>Sample:</strong> University classes; target N per country according to protocol (replace with your figures).',
+        item3: '<strong>Key measures:</strong> Outcome reporting, honesty proxies, social norms, trust, civic behaviors, and demographics.',
+        item4: '<strong>Quality:</strong> Pre-registration, proctor checklist, timestamps, and centralized validation.',
+        item5: '<strong>Data:</strong> Phased releases (pilot → v1.0 → replication) with license and citation guide.',
+        quickLinks: 'Quick Links',
+        link1: 'Questionnaire preview',
+        link2: 'Pre-analysis registry',
+        link3: 'Project list',
+        link4: 'Replication package (placeholder)',
+        note: 'Replace <em>placeholders</em> with links to OSF/AEA/Dataverse/GitHub.'
+      },
+      collaborators: {
+        title: 'Collaborators',
+        subtitle: 'Global network of researchers, instructors, and assistants. Add logos, names, roles, and institutions.',
+        card1: {
+          title: 'Coordination',
+          text: 'Principal investigator: <strong><a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:inherit; text-decoration:none">Filippos Exadaktylos</a></strong> (example)',
+          note: 'Add co-PIs, project management, and contacts.'
+        },
+        card2: {
+          title: 'Country teams',
+          text: 'One card per country with institution, PI(s), city, educational level, and sample size.',
+          viewall: '→ View all 34 countries'
+        },
+        card3: {
+          title: 'Methods & QA',
+          text: 'Protocol authors, survey architecture, and data audit team.',
+          tag1: 'Protocol',
+          tag2: 'Survey',
+          tag3: 'Audit'
+        },
+        card4: {
+          title: 'Partners & funders',
+          text: 'Include grant numbers, sponsors, and institutional partnerships.'
+        }
+      },
+      projects: {
+        title: 'Projects (14)',
+        subtitle: 'Each project leverages a different part of the shared dataset. Below are brief summaries and key links.',
+        p1: { title: '1. Social norms & reporting', desc: 'Relationship between perceived norms/meta-beliefs and behavior in the dice task.' },
+        p2: { title: '2. Civic capital & trust', desc: 'Civic behaviors, institutional trust, and honesty across cultures.' },
+        p3: { title: '3. Compliance & policy', desc: 'Rule acceptance and compliance correlates.' },
+        p4: { title: '4. Cultural dimensions', desc: 'Individualism, universalism, and norm-following.' },
+        p5: { title: '5. Institutions & honesty', desc: 'Institutional quality and interactions with honesty proxies.' },
+        p6: { title: '6. Inequality & justice', desc: 'Distributive preferences and rule compliance.' },
+        p7: { title: '7. Education & cohorts', desc: 'Differences by age and educational level.' },
+        p8: { title: '8. Urban vs. regional', desc: 'Geography, institution type, and norms.' },
+        p9: { title: '9. Gender & norms', desc: 'Gender expectations and honesty.' },
+        p10: { title: '10. Replication & methods', desc: 'Power, identification, and robustness across countries.' },
+        p11: { title: '11. Messages & beliefs', desc: 'Informational treatments and norm updating.' },
+        p12: { title: '12. Networks & spillovers', desc: 'Peer effects in the classroom.' },
+        p13: { title: '13. Ethics & consent', desc: 'Ethical approvals and consent language.' },
+        p14: { title: '14. Data curation', desc: 'Documentation standardization and versioning.' },
+        tag: {
+          analysis: 'Analysis plan',
+          materials: 'Materials',
+          code: 'Code',
+          prereg: 'Pre-reg',
+          slides: 'Slides',
+          design: 'Design',
+          results: 'Results',
+          guide: 'Guide'
+        }
+      },
+      data: {
+        title: 'Data',
+        subtitle: 'Access our sample data from the DICE experiment. Full dataset available after publication.',
+        card1: {
+          title: 'Sample data',
+          desc: 'Sample dataset with 15 participants from 5 countries. Includes dice outcomes, demographics, and trust scores.',
+          format: 'Format:',
+          size: 'Size:',
+          updated: 'Updated:',
+          btn: 'Download sample data'
+        },
+        card2: {
+          title: 'Data structure',
+          desc: 'The dataset includes the following variables:',
+          var1: 'Participant country',
+          var2: 'Unique ID',
+          var3: 'Actual dice roll',
+          var4: 'Reported value',
+          var5: 'Session date',
+          var6: 'Age',
+          var7: 'Gender',
+          var8: 'Trust score (1-10)'
+        },
+        card3: {
+          title: 'Full dataset access',
+          text: 'The complete dataset with data from all 34 countries will be available after publication of the main papers. It will be hosted in open repositories with DOI and Creative Commons license.',
+          note: 'For early access or collaborations, contact the <a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:#60a5fa; text-decoration:none">coordination team</a>.'
+        }
+      },
+      photos: {
+        title: 'Photos',
+        subtitle: 'Replace with images of classrooms, workshops, and teams. (Picsum placeholders).'
+      },
+      questionnaire: {
+        title: 'Questionnaire (preview)',
+        intro: 'Suggested structure; you can embed Qualtrics or link PDF.',
+        item1: '<strong>Dice task module</strong> — Instructions, practice, reporting',
+        item2: '<strong>Social norms</strong> — Descriptive/injunctive and meta-beliefs',
+        item3: '<strong>Trust & institutions</strong> — Interpersonal, institutional, civic behaviors',
+        item4: '<strong>Demographics</strong> — Age, gender, education, region',
+        item5: '<strong>Country</strong> — IRB, translations, timings',
+        version: 'Recommended versioning: <code>DICE‑Q v1.2 (2025‑06‑10)</code>',
+        btn1: 'Open Qualtrics (placeholder)',
+        btn2: 'Download all Questionaires',
+        docsTitle: 'Questionaries',
+        docsNote: 'Download questionnaires by country.'
+      },
+      prereg: {
+        title: 'Pre-registrations',
+        btnAll: 'Download all preregistrations'
+      },
+      footer: {
+        tagline: 'Norms & honesty in 34 countries',
+        contact: 'Contact',
+        status: 'Site status',
+        updated: 'Last updated:'
+      }
+    },
+    es: {
+      nav: {
+        subtitle: 'Experimento multicultural en aula',
+        welcome: 'Bienvenida',
+        implementation: 'Implementación',
+        collaborators: 'Colaboradores',
+        projects: 'Proyectos',
+        data: 'Datos',
+        photos: 'Fotos',
+        questionnaire: 'Cuestionarios',
+        prereg: 'Pre‑registros'
+      },
+      hero: {
+        title: 'Proyecto DICE',
+        subtitle: 'Un experimento en aula, coordinado y armonizado, realizado en <strong>34 países</strong> para estudiar normas sociales y honestidad. La base de datos común alimenta <strong>14 proyectos</strong> que analizan mecanismos complementarios (capital cívico, confianza institucional, preferencias sociales y cumplimiento).',
+        chip1: 'En aula',
+        chip2: '34 países',
+        chip3: 'Protocolo común',
+        chip4: 'Materiales abiertos',
+        chip5: '14 proyectos vinculados',
+        kpi1: 'Países',
+        kpi2: 'Proyectos vinculados',
+        kpi3: 'Dataset & protocolo'
+      },
+      countries: {
+        title: '34 Países participantes',
+        subtitle: 'Red global de investigación con representación en 5 continentes.',
+        ARG: 'Argentina', AUT: 'Austria', CHL: 'Chile', CHN: 'China', CIV: 'Côte d\'Ivoire',
+        COD: 'R.D. del Congo', COL: 'Colombia', CZE: 'República Checa', DEU: 'Alemania', EGY: 'Egipto',
+        ESP: 'España', FRA: 'Francia', GBR: 'Reino Unido', GRC: 'Grecia', HKG: 'Hong Kong',
+        HUN: 'Hungría', ITA: 'Italia', JPN: 'Japón', KAZ: 'Kazajistán', KOR: 'Corea del Sur',
+        MDG: 'Madagascar', PAK: 'Pakistán', PER: 'Perú', PHL: 'Filipinas', POL: 'Polonia',
+        PRT: 'Portugal', QAT: 'Catar', RUS: 'Rusia', SAU: 'Arabia Saudita', SGP: 'Singapur',
+        TUR: 'Turquía', TWN: 'Taiwán', URY: 'Uruguay', USA: 'Estados Unidos',
+        legend: 'Países participantes (34)',
+        note: 'Cobertura en América, Europa, Asia, África y Oceanía'
+      },
+      countryDetails: {
+        title: 'Equipos por país',
+        subtitle: 'Información detallada de cada equipo de investigación participante.',
+        team: 'Equipo:',
+        institution: 'Institución:',
+        city: 'Ciudad:',
+        sample: 'Muestra:',
+        observations: 'Observaciones:'
+      },
+      implementation: {
+        title: 'Resumen de implementación',
+        item1: '<strong>Diseño:</strong> Tarea del dado en aula con instrucciones armonizadas, supervisión y tiempos estandarizados.',
+        item2: '<strong>Muestra:</strong> Clases universitarias; N objetivo por país según protocolo (sustituir con tus cifras).',
+        item3: '<strong>Medidas clave:</strong> Reporte de resultados, proxies de honestidad, normas sociales, confianza, conductas cívicas y demografía.',
+        item4: '<strong>Calidad:</strong> Pre‑registro, checklist de proctor, marcas de tiempo y validación centralizada.',
+        item5: '<strong>Datos:</strong> Liberaciones por etapas (piloto → v1.0 → replicación) con guía de licencia y citación.',
+        quickLinks: 'Accesos rápidos',
+        link1: 'Vista previa del cuestionario',
+        link2: 'Registro de pre‑análisis',
+        link3: 'Listado de proyectos',
+        link4: 'Paquete de replicación (placeholder)',
+        note: 'Sustituye los <em>placeholders</em> por enlaces a OSF/AEA/Dataverse/GitHub.'
+      },
+      collaborators: {
+        title: 'Colaboradores',
+        subtitle: 'Red global de investigadores/as, docentes y asistentes. Añade logotipos, nombres, roles e instituciones.',
+        card1: {
+          title: 'Coordinación',
+          text: 'Investigador principal: <strong><a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:inherit; text-decoration:none">Filippos Exadaktylos</a></strong> (ejemplo)',
+          note: 'Añade co‑IPs, gestión de proyecto y contactos.'
+        },
+        card2: {
+          title: 'Equipos por país',
+          text: 'Una tarjeta por país con institución, PI(s), ciudad, nivel educativo y tamaño muestral.',
+          viewall: '→ Ver todos los 34 países'
+        },
+        card3: {
+          title: 'Métodos & QA',
+          text: 'Autores del protocolo, arquitectura de encuesta y equipo de auditoría de datos.',
+          tag1: 'Protocolo',
+          tag2: 'Encuesta',
+          tag3: 'Auditoría'
+        },
+        card4: {
+          title: 'Socios & financiadores',
+          text: 'Incluye números de beca, patrocinadores y alianzas institucionales.'
+        }
+      },
+      projects: {
+        title: 'Proyectos (14)',
+        subtitle: 'Cada proyecto aprovecha una parte distinta del dataset común. A continuación, resúmenes breves y enlaces clave.',
+        p1: { title: '1. Normas sociales & reporte', desc: 'Relación entre normas percibidas/metacreencias y conducta en la tarea del dado.' },
+        p2: { title: '2. Capital cívico & confianza', desc: 'Conductas cívicas, confianza institucional y honestidad entre culturas.' },
+        p3: { title: '3. Cumplimiento & política', desc: 'Aceptación de reglas y correlatos de cumplimiento.' },
+        p4: { title: '4. Dimensiones culturales', desc: 'Individualismo, universalismo y seguimiento de normas.' },
+        p5: { title: '5. Instituciones & honestidad', desc: 'Calidad institucional e interacciones con proxies de honestidad.' },
+        p6: { title: '6. Desigualdad & justicia', desc: 'Preferencias distributivas y cumplimiento de reglas.' },
+        p7: { title: '7. Educación & cohortes', desc: 'Diferencias por edad y nivel educativo.' },
+        p8: { title: '8. Urbano vs. regional', desc: 'Geografía, tipo de centro y normas.' },
+        p9: { title: '9. Género & normas', desc: 'Expectativas de género y honestidad.' },
+        p10: { title: '10. Replicación & métodos', desc: 'Potencia, identificación y robustez entre países.' },
+        p11: { title: '11. Mensajes & creencias', desc: 'Tratamientos informativos y actualización de normas.' },
+        p12: { title: '12. Redes & spillovers', desc: 'Efectos de pares en el aula.' },
+        p13: { title: '13. Ética & consentimiento', desc: 'Aprobaciones éticas y lenguaje de consentimiento.' },
+        p14: { title: '14. Curación de datos', desc: 'Estandarización documental y versionado.' },
+        tag: {
+          analysis: 'Plan de análisis',
+          materials: 'Materiales',
+          code: 'Código',
+          prereg: 'Pre‑reg',
+          slides: 'Diapositivas',
+          design: 'Diseño',
+          results: 'Resultados',
+          guide: 'Guía'
+        }
+      },
+      data: {
+        title: 'Datos',
+        subtitle: 'Accede a nuestros datos de muestra del experimento DICE. Datos completos disponibles tras publicación.',
+        card1: {
+          title: 'Datos de muestra',
+          desc: 'Dataset de ejemplo con 15 participantes de 5 países. Incluye resultados del dado, datos demográficos y puntuaciones de confianza.',
+          format: 'Formato:',
+          size: 'Tamaño:',
+          updated: 'Actualizado:',
+          btn: 'Descargar datos de muestra'
+        },
+        card2: {
+          title: 'Estructura de datos',
+          desc: 'El dataset incluye las siguientes variables:',
+          var1: 'País del participante',
+          var2: 'ID único',
+          var3: 'Resultado real del dado',
+          var4: 'Valor reportado',
+          var5: 'Fecha de sesión',
+          var6: 'Edad',
+          var7: 'Género',
+          var8: 'Puntuación de confianza (1-10)'
+        },
+        card3: {
+          title: 'Acceso al dataset completo',
+          text: 'El dataset completo con datos de los 34 países estará disponible tras la publicación de los artículos principales. Se alojará en repositorios abiertos con DOI y licencia Creative Commons.',
+          note: 'Para acceso anticipado o colaboraciones, contacta al <a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:#60a5fa; text-decoration:none">equipo de coordinación</a>.'
+        }
+      },
+      photos: {
+        title: 'Fotos',
+        subtitle: 'Sustituye con imágenes de aulas, talleres y equipos. (Marcadores de Picsum).'
+      },
+      questionnaire: {
+        title: 'Cuestionario (vista previa)',
+        intro: 'Estructura sugerida; puedes incrustar Qualtrics o enlazar PDF.',
+        item1: '<strong>Módulo tarea del dado</strong> — Instrucciones, práctica, reporte',
+        item2: '<strong>Normas sociales</strong> — Descriptivas/injuntivas y metacreencias',
+        item3: '<strong>Confianza & instituciones</strong> — Interpersonal, institucional, conductas cívicas',
+        item4: '<strong>Demografía</strong> — Edad, género, estudios, región',
+        item5: '<strong>País</strong> — IRB, traducciones, tiempos',
+        version: 'Versionado recomendado: <code>DICE‑Q v1.2 (2025‑06‑10)</code>',
+        btn1: 'Abrir Qualtrics (placeholder)',
+        btn2: 'Download all Questionaires',
+        docsTitle: 'Questionaries',
+        docsNote: 'Descarga cuestionarios por país.'
+      },
+      prereg: {
+        title: 'Pre‑registros',
+        btnAll: 'Descargar todos los pre‑registros'
+      },
+      footer: {
+        tagline: 'Normas & honestidad en 34 países',
+        contact: 'Contacto',
+        status: 'Estado del sitio',
+        updated: 'Última actualización:'
+      }
+    }
+  };
+
+  // Update prereg list labels to actual project names (by language)
+  function updatePreregLabels(){
+    try {
+      const lang = currentLang || (localStorage.getItem('lang') || 'es');
+      const base = translations && translations[lang] && translations[lang].projects;
+      if (!base) return;
+      document.querySelectorAll('#prereg-box a.btn.secondary[href$="preregistration.pdf"]').forEach(a => {
+        const href = a.getAttribute('href') || '';
+        const m = href.match(/project-(\d+)/);
+        if (!m) return;
+        const idx = parseInt(m[1], 10);
+        const key = 'p' + idx;
+        const title = base[key] && base[key].title ? String(base[key].title) : '';
+        const pretty = title.replace(/^\s*\d+\.\s*/, '').trim();
+        if (pretty) a.textContent = pretty;
+      });
+    } catch (e) {
+      console.warn('updatePreregLabels failed', e);
+    }
+  }
+
+  // Language switcher
+  let currentLang = localStorage.getItem('lang') || 'es';
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    document.documentElement.setAttribute('lang', lang);
+
+    // Update all elements with data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const keys = key.split('.');
+      let value = translations[lang];
+      keys.forEach(k => value = value[k]);
+      if (value) el.innerHTML = value;
+    });
+
+    // Update nav links
+    document.querySelectorAll('[data-i18n-nav]').forEach(el => {
+      const key = el.getAttribute('data-i18n-nav');
+      const value = translations[lang].nav[key];
+      if (value) el.textContent = value;
+    });
+
+    // Update active language button
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+    });
+
+    // Refresh preregistration labels to current language
+    updatePreregLabels();
+  }
+
+  // Initialize language on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    setLanguage(currentLang);
+
+    // Language toggle click handler
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        setLanguage(opt.getAttribute('data-lang'));
+      });
+    });
+
+    // Initial prereg label hydration
+    updatePreregLabels();
+  });
+
   // Last updated stamp
   document.getElementById('last-updated').textContent = new Date().toISOString().slice(0,10);
+
+  // Toast helper
+  window.showToast = function(message){
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = '✓ ' + message;
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => toast.classList.add('show'));
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 200);
+    }, 3000);
+  };
 </script>
-</body>
-</html>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<!-- Zip libraries for bundling questionnaires -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+  // Initialize map
+  const map = L.map('map', {
+    center: [30, 0],
+    zoom: 2,
+    minZoom: 1,
+    maxZoom: 6,
+    scrollWheelZoom: false,
+    zoomControl: true
+  });
+
+  // ISO3 codes for participating countries
+  const participatingCountryCodes = [
+    'ARG', 'AUT', 'CHL', 'CHN', 'CIV', 'COD', 'COL', 'CZE', 'DEU', 'EGY',
+    'ESP', 'FRA', 'GBR', 'GRC', 'HKG', 'HUN', 'ITA', 'JPN', 'KAZ', 'KOR',
+    'MDG', 'PAK', 'PER', 'PHL', 'POL', 'PRT', 'QAT', 'RUS', 'SAU', 'SGP',
+    'TUR', 'TWN', 'URY', 'USA'
+  ];
+
+  // Country data with details and flags
+  const countryData = {
+    'ARG': { anchor: 'argentina', flag: '🇦🇷', name: 'Argentina', team: 'Dr. María González, Prof. Juan Pérez', institution: 'Universidad de Buenos Aires', sample: 'N = 450' },
+    'AUT': { anchor: 'austria', flag: '🇦🇹', name: 'Austria', team: 'Dr. Klaus Weber', institution: 'University of Vienna', sample: 'N = 380' },
+    'CHL': { anchor: 'chile', flag: '🇨🇱', name: 'Chile', team: 'Dr. Carmen Silva, Dr. Roberto Muñoz', institution: 'Universidad de Chile', sample: 'N = 425' },
+    'CHN': { anchor: 'china', flag: '🇨🇳', name: 'China', team: 'Prof. Wei Zhang, Dr. Li Wang', institution: 'Peking University', sample: 'N = 520' },
+    'CIV': { anchor: 'cotedivoire', flag: '🇨🇮', name: 'Côte d\'Ivoire', team: 'Dr. Amara Koné', institution: 'Université Félix Houphouët-Boigny', sample: 'N = 340' },
+    'COD': { anchor: 'congo', flag: '🇨🇩', name: 'D.R. Congo', team: 'Prof. Joseph Kabila', institution: 'Université de Kinshasa', sample: 'N = 310' },
+    'COL': { anchor: 'colombia', flag: '🇨🇴', name: 'Colombia', team: 'Dr. Ana Rodríguez, Prof. Carlos Martínez', institution: 'Universidad de los Andes', sample: 'N = 480' },
+    'CZE': { anchor: 'czechia', flag: '🇨🇿', name: 'Czech Republic', team: 'Dr. Jan Novák', institution: 'Charles University', sample: 'N = 390' },
+    'DEU': { anchor: 'germany', flag: '🇩🇪', name: 'Germany', team: 'Prof. Hans Schmidt, Dr. Anna Müller', institution: 'University of Munich', sample: 'N = 510' },
+    'EGY': { anchor: 'egypt', flag: '🇪🇬', name: 'Egypt', team: 'Dr. Ahmed Hassan', institution: 'Cairo University', sample: 'N = 370' },
+    'ESP': { anchor: 'spain', flag: '🇪🇸', name: 'Spain', team: '<a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:#60a5fa; text-decoration:none">Dr. Filippos Exadaktylos</a>, Dr. Laura Sánchez', institution: 'Universidad de Granada', sample: 'N = 465' },
+    'FRA': { anchor: 'france', flag: '🇫🇷', name: 'France', team: 'Prof. Marie Dubois, Dr. Pierre Martin', institution: 'Sorbonne University', sample: 'N = 440' },
+    'GBR': { anchor: 'uk', flag: '🇬🇧', name: 'United Kingdom', team: 'Dr. James Wilson, Prof. Emma Taylor', institution: 'University of Oxford', sample: 'N = 490' },
+    'GRC': { anchor: 'greece', flag: '🇬🇷', name: 'Greece', team: 'Dr. Nikos Papadopoulos', institution: 'Athens University of Economics', sample: 'N = 360' },
+    'HKG': { anchor: 'hongkong', flag: '🇭🇰', name: 'Hong Kong', team: 'Dr. Michael Chan', institution: 'University of Hong Kong', sample: 'N = 405' },
+    'HUN': { anchor: 'hungary', flag: '🇭🇺', name: 'Hungary', team: 'Dr. István Nagy', institution: 'Corvinus University', sample: 'N = 375' },
+    'ITA': { anchor: 'italy', flag: '🇮🇹', name: 'Italy', team: 'Prof. Giovanni Rossi, Dr. Francesca Bianchi', institution: 'Bocconi University', sample: 'N = 475' },
+    'JPN': { anchor: 'japan', flag: '🇯🇵', name: 'Japan', team: 'Prof. Takashi Yamamoto', institution: 'University of Tokyo', sample: 'N = 500' },
+    'KAZ': { anchor: 'kazakhstan', flag: '🇰🇿', name: 'Kazakhstan', team: 'Dr. Assel Nurgaliyeva', institution: 'Nazarbayev University', sample: 'N = 330' },
+    'KOR': { anchor: 'korea', flag: '🇰🇷', name: 'South Korea', team: 'Prof. Ji-Hoon Kim, Dr. Min-Jung Lee', institution: 'Seoul National University', sample: 'N = 485' },
+    'MDG': { anchor: 'madagascar', flag: '🇲🇬', name: 'Madagascar', team: 'Dr. Hery Rasolofonirina', institution: 'University of Antananarivo', sample: 'N = 290' },
+    'PAK': { anchor: 'pakistan', flag: '🇵🇰', name: 'Pakistan', team: 'Dr. Fatima Khan', institution: 'Lahore University of Management Sciences', sample: 'N = 410' },
+    'PER': { anchor: 'peru', flag: '🇵🇪', name: 'Peru', team: 'Dr. Miguel Vargas', institution: 'Pontificia Universidad Católica del Perú', sample: 'N = 395' },
+    'PHL': { anchor: 'philippines', flag: '🇵🇭', name: 'Philippines', team: 'Dr. Maria Santos', institution: 'University of the Philippines', sample: 'N = 385' },
+    'POL': { anchor: 'poland', flag: '🇵🇱', name: 'Poland', team: 'Dr. Anna Kowalski', institution: 'University of Warsaw', sample: 'N = 420' },
+    'PRT': { anchor: 'portugal', flag: '🇵🇹', name: 'Portugal', team: 'Dr. João Silva', institution: 'Universidade de Lisboa', sample: 'N = 365' },
+    'QAT': { anchor: 'qatar', flag: '🇶🇦', name: 'Qatar', team: 'Dr. Abdullah Al-Thani', institution: 'Qatar University', sample: 'N = 320' },
+    'RUS': { anchor: 'russia', flag: '🇷🇺', name: 'Russia', team: 'Prof. Dmitry Ivanov', institution: 'Moscow State University', sample: 'N = 460' },
+    'SAU': { anchor: 'saudi', flag: '🇸🇦', name: 'Saudi Arabia', team: 'Dr. Mohammed Al-Rashid', institution: 'King Saud University', sample: 'N = 355' },
+    'SGP': { anchor: 'singapore', flag: '🇸🇬', name: 'Singapore', team: 'Dr. Sarah Tan', institution: 'National University of Singapore', sample: 'N = 430' },
+    'TUR': { anchor: 'turkey', flag: '🇹🇷', name: 'Turkey', team: 'Dr. Ayşe Yılmaz', institution: 'Boğaziçi University', sample: 'N = 445' },
+    'TWN': { anchor: 'taiwan', flag: '🇹🇼', name: 'Taiwan', team: 'Prof. Chen Wei', institution: 'National Taiwan University', sample: 'N = 455' },
+    'URY': { anchor: 'uruguay', flag: '🇺🇾', name: 'Uruguay', team: 'Dr. Sofía Fernández', institution: 'Universidad de la República', sample: 'N = 335' },
+    'USA': { anchor: 'usa', flag: '🇺🇸', name: 'United States', team: 'Prof. Robert Johnson, Dr. Jennifer Smith', institution: 'Harvard University', sample: 'N = 505' }
+  };
+
+  // Load world countries GeoJSON - simple test with USA in red
+  fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
+    .then(response => {
+      console.log('Fetch response:', response);
+      return response.json();
+    })
+    .then(data => {
+      console.log('GeoJSON loaded, features:', data.features.length);
+      console.log('First feature properties:', data.features[0].properties);
+
+      L.geoJSON(data, {
+        style: function(feature) {
+          const countryName = feature.properties.name;
+          const countryCode = feature.properties['ISO3166-1-Alpha-3'];
+
+          const isParticipating = participatingCountryCodes.includes(countryCode);
+
+          if (isParticipating) {
+            console.log('Highlighting:', countryName, countryCode);
+          }
+
+          return {
+            fillColor: isParticipating ? '#4a7ba7' : '#2d3748',
+            weight: 0.5,
+            opacity: 1,
+            color: '#4a5568',
+            fillOpacity: isParticipating ? 0.6 : 0.2
+          };
+        },
+        onEachFeature: function(feature, layer) {
+          const countryCode = feature.properties['ISO3166-1-Alpha-3'];
+          const isParticipating = participatingCountryCodes.includes(countryCode);
+
+          if (isParticipating) {
+            const country = countryData[countryCode];
+
+            // Bind tooltip that shows on hover with full details
+            const tooltipContent = `
+              <div style="min-width:250px">
+                <div style="font-size:18px; margin-bottom:6px">${country.flag} <strong>${country.name}</strong></div>
+                <div style="font-size:11px; color:#94a3b8; margin-bottom:4px">Team:</div>
+                <div style="font-size:12px; margin-bottom:6px">${country.team}</div>
+                <div style="font-size:11px; color:#94a3b8; margin-bottom:4px">Institution:</div>
+                <div style="font-size:12px; margin-bottom:6px">${country.institution}</div>
+                <div style="font-size:11px; color:#60a5fa">${country.sample} • Click for details</div>
+              </div>
+            `;
+
+            layer.bindTooltip(tooltipContent, {
+ 

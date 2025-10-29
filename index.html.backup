@@ -1,0 +1,1895 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DICE — Normas & honestidad en 34 países</title>
+  <meta name="description" content="DICE: experimento multicountry en aula sobre normas sociales, honestidad y cumplimiento; protocolo común, datos abiertos y pre‑registros." />
+  <link rel="canonical" href="https://dice-experiment.github.io/DICE-website/" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0b1225" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="DICE — Normas & honestidad en 34 países" />
+  <meta property="og:description" content="Experimento en aula coordinado en 34 países con protocolo común, preregistros y datos abiertos." />
+  <meta property="og:image" content="https://dice-experiment.github.io/DICE-website/og.png" />
+  <meta property="og:url" content="https://dice-experiment.github.io/DICE-website/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Project",
+    "name":"DICE — Normas y honestidad",
+    "url":"https://dice-experiment.github.io/DICE-website/",
+    "description":"Experimento en aula coordinado en 34 países para estudiar normas sociales y honestidad.",
+    "creator": {"@type":"Organization","name":"DICE Collaboration"}
+  }
+  </script>
+
+  <!-- Fonts (with preconnect and swap) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <style>
+    :root{
+      --bg:#0b1225; --surface:#0f172a; --card:#0e162d; --muted:#94a3b8; --text:#e5e7eb;
+      --line:#1f2937; --brand:#60a5fa; --accent:#34d399; --warn:#fbbf24; --chip:#111827;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; background:var(--bg); color:var(--text); font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+    a:focus-visible, button:focus-visible{outline:2px solid var(--brand); outline-offset:2px}
+    .skip{position:absolute; left:-9999px}
+    .skip:focus{left:12px; top:12px; background:#000; color:#fff; padding:8px 10px; border-radius:8px; z-index:50}
+    img{max-width:100%; height:auto}
+    .container{max-width:1200px; margin:0 auto; padding:0 20px}
+    .nav{position:sticky; top:0; z-index:20; background:rgba(10,15,30,.75); backdrop-filter: blur(8px); border-bottom:1px solid var(--line)}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800}
+    .logo{width:36px; height:36px; border-radius:10px; background:
+          radial-gradient(110px 70px at 30% 30%, var(--brand), transparent 60%),
+          radial-gradient(110px 70px at 75% 70%, var(--accent), transparent 60%),
+          radial-gradient(110px 70px at 50% 50%, var(--warn), transparent 60%); box-shadow:var(--shadow)}
+    .tabs{display:flex; gap:10px; flex-wrap:wrap}
+    .tabs a{padding:8px 12px; background:var(--chip); border:1px solid var(--line); border-radius:10px; font-size:14px}
+    .tabs a:hover{border-color:var(--brand); transform:translateY(-1px)}
+    .hero{padding:80px 0 40px; position:relative; overflow:hidden}
+    .glow{position:absolute; inset:-30% -10% auto -10%; height:420px;
+          background:radial-gradient(550px 300px at 20% 20%, rgba(96,165,250,.2), transparent 60%),
+                     radial-gradient(500px 260px at 80% 30%, rgba(251,191,36,.12), transparent 60%),
+                     radial-gradient(600px 300px at 50% 100%, rgba(52,211,153,.12), transparent 60%); filter:blur(40px); z-index:-1}
+    h1{font-size:42px; margin:10px 0 8px}
+    .sub{color:var(--muted); font-size:18px; max-width:900px}
+    .chips{display:flex; gap:12px; flex-wrap:wrap; margin-top:20px}
+    .chip{background:var(--chip); border:1px solid var(--line); padding:10px 16px; border-radius:999px; font-size:15px; font-weight:500; transition:all .2s}
+    a.chip{color:var(--text); text-decoration:none}
+    a.chip:hover{border-color:var(--brand); transform:translateY(-2px); box-shadow:0 4px 12px rgba(96,165,250,.3)}
+    section{padding:50px 0; border-top:1px solid var(--line)}
+    h2{font-size:28px; margin:0 0 16px}
+    h3{margin-top:0}
+    .two-col{display:grid; grid-template-columns:1.15fr .85fr; gap:22px}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px; box-shadow:var(--shadow)}
+    a.card-link{text-decoration:none; color:var(--text); display:block; transition:all .2s; cursor:pointer}
+    a.card-link:hover{transform:translateY(-2px); border-color:var(--brand); box-shadow:0 8px 24px rgba(96,165,250,.2)}
+    .list{display:grid; gap:10px}
+    .list .item{display:flex; gap:12px; align-items:flex-start; background:var(--surface); border:1px solid var(--line); padding:12px 14px; border-radius:12px}
+    .bullet{width:8px; height:8px; border-radius:50%; background:var(--brand); margin-top:8px}
+    .grid{display:grid; gap:16px}
+    .cols-2{grid-template-columns:repeat(2,1fr)}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+    .cols-4{grid-template-columns:repeat(4,1fr)}
+    @media (max-width:980px){ .two-col{grid-template-columns:1fr} .cols-3{grid-template-columns:repeat(2,1fr)} .cols-4{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:640px){ .cols-3,.cols-4{grid-template-columns:1fr} h1{font-size:34px} }
+    .proj{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:18px}
+    .proj h4{margin:0 0 6px}
+    .tag{display:inline-block; padding:6px 10px; background:var(--chip); border:1px solid var(--line); border-radius:999px; font-size:12px; margin-right:6px}
+    .gallery{display:grid; grid-template-columns:repeat(6,1fr); gap:8px}
+    .gallery img{width:100%; height:120px; object-fit:cover; border-radius:10px; border:1px solid var(--line)}
+    @media (max-width:980px){ .gallery{grid-template-columns:repeat(3,1fr)} }
+    @media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr)} }
+    footer{padding:40px 0; color:var(--muted)}
+    .small{font-size:12px; color:var(--muted)}
+    .btn{display:inline-block; padding:10px 14px; border-radius:10px; background:var(--brand); color:#04101f; font-weight:700; border:1px solid transparent}
+    .btn.secondary{background:transparent; border:1px solid var(--brand); color:var(--brand)}
+    .lang-btn{display:flex; gap:2px; padding:6px 8px; background:var(--chip); border:1px solid var(--line); border-radius:10px; cursor:pointer; font-size:13px; font-weight:600; transition:border-color .2s}
+    .lang-btn:hover{border-color:var(--brand)}
+    .lang-option{padding:4px 8px; border-radius:6px; color:var(--muted); transition:all .2s}
+    .lang-option.active{background:var(--brand); color:#04101f}
+    #map{width:100%; height:500px; border-radius:12px; overflow:hidden}
+    .map-legend{display:flex; justify-content:center; margin-top:20px; gap:20px}
+    .legend-item{display:flex; align-items:center; gap:8px}
+    .legend-dot{width:12px; height:12px; border-radius:50%; background:var(--brand); border:2px solid var(--accent)}
+    .leaflet-container{background:var(--surface); font-family:Inter,sans-serif}
+    .leaflet-container a.leaflet-popup-close-button{color:var(--text)}
+    .leaflet-popup-content-wrapper{background:var(--card); color:var(--text); border-radius:8px}
+    .leaflet-popup-tip{background:var(--card)}
+    .country-card{scroll-margin-top:80px}
+    .country-info{display:flex; flex-direction:column; gap:12px; margin-top:12px}
+    .info-row{display:flex; gap:8px; font-size:14px; line-height:1.5}
+    .info-row strong{min-width:110px; color:var(--muted)}
+    .info-row span{color:var(--text)}
+    #paises-detalles{display:none}
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){ .tabs a:hover, a.chip:hover{transform:none} }
+  </style>
+</head>
+<body>
+<a href="#main" class="skip">Saltar al contenido</a>
+
+<!-- NAV -->
+<div class="nav" role="navigation" aria-label="principal">
+  <div class="container nav-inner">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>DICE — <span class="small" data-i18n="nav.subtitle">Experimento multicultural en aula</span></div>
+    </div>
+    <nav class="tabs">
+      <a href="#implementacion" data-i18n-nav="implementation">Implementación</a>
+      <a href="#colaboradores" data-i18n-nav="collaborators">Colaboradores</a>
+      <a href="#proyectos" data-i18n-nav="projects">Proyectos</a>
+      <a href="#datos" data-i18n-nav="data">Datos</a>
+      <a href="#prereg" data-i18n-nav="prereg">Pre‑registros</a>
+      <a href="#fotos" data-i18n-nav="photos">Fotos</a>
+      <button id="lang-toggle" class="lang-btn" aria-label="Change language">
+        <span class="lang-option" data-lang="en">EN</span>
+        <span class="lang-option active" data-lang="es">ES</span>
+      </button>
+    </nav>
+  </div>
+</div>
+
+<!-- HERO -->
+<header id="bienvenida" class="hero">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="container">
+    <h1 data-i18n="hero.title">Proyecto DICE</h1>
+    <p class="sub" data-i18n="hero.subtitle">
+      Un experimento en aula, coordinado y armonizado, realizado en <strong>34 países</strong> para estudiar normas sociales y honestidad.
+      La base de datos común alimenta <strong>14 proyectos</strong> que analizan mecanismos complementarios (capital cívico, confianza institucional, preferencias sociales y cumplimiento).
+    </p>
+    <div class="chips" aria-label="características">
+      <a href="#paises" class="chip" data-i18n="hero.chip2">34 países</a>
+      <a href="#proyectos" class="chip" data-i18n="hero.chip5">14 proyectos vinculados</a>
+      <a href="#implementacion" class="chip" data-i18n="hero.chip3">Protocolo común</a>
+      <a href="#datos" class="chip" data-i18n="hero.chip4">Materiales abiertos</a>
+      <a href="#implementacion" class="chip" data-i18n="hero.chip1">En aula</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- PAÍSES -->
+  <section id="paises">
+    <div class="container">
+      <h2 data-i18n="countries.title">34 Países participantes</h2>
+      <p class="sub" data-i18n="countries.subtitle">Red global de investigación con representación en 5 continentes.</p>
+      <div class="card" style="margin-top:20px; background:var(--surface); padding:30px">
+        <div id="map"></div>
+        <div class="map-legend">
+          <div class="legend-item">
+            <span class="legend-dot"></span>
+            <span class="small" data-i18n="countries.legend">Países participantes (34)</span>
+          </div>
+        </div>
+        <p class="small" style="margin-top:16px; text-align:center" data-i18n="countries.note">
+          Cobertura en América, Europa, Asia, África y Oceanía
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPLEMENTACIÓN -->
+  <section id="implementacion">
+    <div class="container two-col">
+      <div class="card">
+        <h2 data-i18n="implementation.title">Resumen de implementación</h2>
+        <div id="paises-austria" class="country-card card">
+          <h3>🇦🇹 Austria</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Klaus Weber</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>University of Vienna</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Vienna</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 380</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>2 sesiones, estudiantes de economía</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chile -->
+        <div id="paises-chile" class="country-card card">
+          <h3>🇨🇱 Chile</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Carmen Silva, Dr. Roberto Muñoz</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Universidad de Chile</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Santiago</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 425</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>3 sesiones, diversas facultades</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- China -->
+        <div id="paises-china" class="country-card card">
+          <h3>🇨🇳 China</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Prof. Wei Zhang, Dr. Li Wang</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Peking University</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Beijing</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 520</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>4 sesiones, estudiantes de pregrado</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Côte d'Ivoire -->
+        <div id="paises-cotedivoire" class="country-card card">
+          <h3>🇨🇮 Côte d'Ivoire</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Amara Koné</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Université Félix Houphouët-Boigny</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Abidjan</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 340</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>2 sesiones, ciencias sociales</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- D.R. Congo -->
+        <div id="paises-congo" class="country-card card">
+          <h3>🇨🇩 D.R. Congo</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Prof. Joseph Kabila</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Université de Kinshasa</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Kinshasa</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 310</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>2 sesiones, estudiantes diversos</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Colombia -->
+        <div id="paises-colombia" class="country-card card">
+          <h3>🇨🇴 Colombia</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Ana Rodríguez, Prof. Carlos Martínez</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Universidad de los Andes</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Bogotá</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 480</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>3 sesiones, múltiples programas</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Czech Republic -->
+        <div id="paises-czechia" class="country-card card">
+          <h3>🇨🇿 Czech Republic</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Jan Novák</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Charles University</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Prague</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 390</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>2 sesiones, facultad de ciencias</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Germany -->
+        <div id="paises-germany" class="country-card card">
+          <h3>🇩🇪 Germany</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Prof. Hans Schmidt, Dr. Anna Müller</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>University of Munich</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Munich</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 510</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>4 sesiones, economía y psicología</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Egypt -->
+        <div id="paises-egypt" class="country-card card">
+          <h3>🇪🇬 Egypt</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Ahmed Hassan</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Cairo University</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Cairo</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 370</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>2 sesiones, estudiantes de negocios</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spain -->
+        <div id="paises-spain" class="country-card card">
+          <h3>🇪🇸 Spain</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Filippos Exadaktylos, Dr. Laura Sánchez</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Universidad de Granada</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Granada</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 465</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>3 sesiones, ADE y economía</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- France -->
+        <div id="paises-france" class="country-card card">
+          <h3>🇫🇷 France</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Prof. Marie Dubois, Dr. Pierre Martin</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Sorbonne University</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Paris</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 440</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>3 sesiones, ciencias sociales</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- United Kingdom -->
+        <div id="paises-uk" class="country-card card">
+          <h3>🇬🇧 United Kingdom</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. James Wilson, Prof. Emma Taylor</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>University of Oxford</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Oxford</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 490</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>3 sesiones, PPE students</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Greece -->
+        <div id="paises-greece" class="country-card card">
+          <h3>🇬🇷 Greece</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Nikos Papadopoulos</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Athens University of Economics</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Athens</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 360</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>2 sesiones, economía aplicada</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hong Kong -->
+        <div id="paises-hongkong" class="country-card card">
+          <h3>🇭🇰 Hong Kong</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Michael Chan</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>University of Hong Kong</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Hong Kong</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 405</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>3 sesiones, business students</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hungary -->
+        <div id="paises-hungary" class="country-card card">
+          <h3>🇭🇺 Hungary</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. István Nagy</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Corvinus University</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Budapest</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 375</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>2 sesiones, economía y gestión</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Italy -->
+        <div id="paises-italy" class="country-card card">
+          <h3>🇮🇹 Italy</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Prof. Giovanni Rossi, Dr. Francesca Bianchi</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Bocconi University</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Milan</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 475</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>3 sesiones, estudiantes de MBA</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Japan -->
+        <div id="paises-japan" class="country-card card">
+          <h3>🇯🇵 Japan</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Prof. Takashi Yamamoto</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>University of Tokyo</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Tokyo</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 500</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>4 sesiones, economía conductual</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kazakhstan -->
+        <div id="paises-kazakhstan" class="country-card card">
+          <h3>🇰🇿 Kazakhstan</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Assel Nurgaliyeva</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Nazarbayev University</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Astana</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 330</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>2 sesiones, estudiantes diversos</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- South Korea -->
+        <div id="paises-korea" class="country-card card">
+          <h3>🇰🇷 South Korea</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Prof. Ji-Hoon Kim, Dr. Min-Jung Lee</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Seoul National University</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Seoul</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 485</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>3 sesiones, ciencias sociales</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Madagascar -->
+        <div id="paises-madagascar" class="country-card card">
+          <h3>🇲🇬 Madagascar</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Hery Rasolofonirina</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>University of Antananarivo</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Antananarivo</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 290</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>2 sesiones, economía y gestión</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pakistan -->
+        <div id="paises-pakistan" class="country-card card">
+          <h3>🇵🇰 Pakistan</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Fatima Khan</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Lahore University of Management Sciences</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Lahore</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 410</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>3 sesiones, LUMS students</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Peru -->
+        <div id="paises-peru" class="country-card card">
+          <h3>🇵🇪 Peru</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Miguel Vargas</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Pontificia Universidad Católica del Perú</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Lima</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 395</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>3 sesiones, economía</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Philippines -->
+        <div id="paises-philippines" class="country-card card">
+          <h3>🇵🇭 Philippines</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Maria Santos</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>University of the Philippines</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Manila</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 385</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>2 sesiones, ciencias sociales</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Poland -->
+        <div id="paises-poland" class="country-card card">
+          <h3>🇵🇱 Poland</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Anna Kowalski</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>University of Warsaw</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Warsaw</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 420</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>3 sesiones, economía y psicología</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Portugal -->
+        <div id="paises-portugal" class="country-card card">
+          <h3>🇵🇹 Portugal</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. João Silva</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Universidade de Lisboa</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Lisbon</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 365</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>2 sesiones, gestión</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Qatar -->
+        <div id="paises-qatar" class="country-card card">
+          <h3>🇶🇦 Qatar</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Abdullah Al-Thani</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Qatar University</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Doha</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 320</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>2 sesiones, business school</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Russia -->
+        <div id="paises-russia" class="country-card card">
+          <h3>🇷🇺 Russia</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Prof. Dmitry Ivanov</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Moscow State University</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Moscow</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 460</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>3 sesiones, economía</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Saudi Arabia -->
+        <div id="paises-saudi" class="country-card card">
+          <h3>🇸🇦 Saudi Arabia</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Mohammed Al-Rashid</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>King Saud University</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Riyadh</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 355</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>2 sesiones, business students</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Singapore -->
+        <div id="paises-singapore" class="country-card card">
+          <h3>🇸🇬 Singapore</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Sarah Tan</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>National University of Singapore</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Singapore</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 430</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>3 sesiones, economía</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Turkey -->
+        <div id="paises-turkey" class="country-card card">
+          <h3>🇹🇷 Turkey</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Ayşe Yılmaz</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Boğaziçi University</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Istanbul</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 445</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>3 sesiones, economía y gestión</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Taiwan -->
+        <div id="paises-taiwan" class="country-card card">
+          <h3>🇹🇼 Taiwan</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Prof. Chen Wei</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>National Taiwan University</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Taipei</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 455</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>3 sesiones, business school</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Uruguay -->
+        <div id="paises-uruguay" class="country-card card">
+          <h3>🇺🇾 Uruguay</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Dr. Sofía Fernández</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Universidad de la República</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Montevideo</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 335</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>2 sesiones, economía</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- United States -->
+        <div id="paises-usa" class="country-card card">
+          <h3>🇺🇸 United States</h3>
+          <div class="country-info">
+            <div class="info-row">
+              <strong data-i18n="countryDetails.team">Equipo:</strong>
+              <span>Prof. Robert Johnson, Dr. Jennifer Smith</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.institution">Institución:</strong>
+              <span>Harvard University</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.city">Ciudad:</strong>
+              <span>Cambridge, MA</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.sample">Muestra:</strong>
+              <span>N = 505</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
+              <span>4 sesiones, undergraduate students</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPLEMENTACIÓN -->
+  <section id="implementacion">
+    <div class="container two-col">
+      <div class="card">
+        <h2 data-i18n="implementation.title">Resumen de implementación</h2>
+        <div class="list">
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div data-i18n="implementation.item1"><strong>Diseño:</strong> Tarea del dado en aula con instrucciones armonizadas, supervisión y tiempos estandarizados.</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div data-i18n="implementation.item2"><strong>Muestra:</strong> Clases universitarias; N objetivo por país según protocolo (sustituir con tus cifras).</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div data-i18n="implementation.item3"><strong>Medidas clave:</strong> Reporte de resultados, proxies de honestidad, normas sociales, confianza, conductas cívicas y demografía.</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div data-i18n="implementation.item4"><strong>Calidad:</strong> Pre‑registro, checklist de proctor, marcas de tiempo y validación centralizada.</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div data-i18n="implementation.item5"><strong>Datos:</strong> Liberaciones por etapas (piloto → v1.0 → replicación) con guía de licencia y citación.</div></div>
+        </div>
+      </div>
+      <aside class="card" aria-labelledby="accesos-rapidos">
+        <h3 id="accesos-rapidos" data-i18n="implementation.quickLinks">Accesos rápidos</h3>
+        <div class="list">
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#cuestionario" data-i18n="implementation.link1">Vista previa del cuestionario</a></div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#prereg" data-i18n="implementation.link2">Registro de pre‑análisis</a></div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#proyectos" data-i18n="implementation.link3">Listado de proyectos</a></div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#" data-i18n="implementation.link4">Paquete de replicación (placeholder)</a></div></div>
+        </div>
+        <p class="small" style="margin-top:8px" data-i18n="implementation.note">Sustituye los <em>placeholders</em> por enlaces a OSF/AEA/Dataverse/GitHub.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- COLABORADORES -->
+  <section id="colaboradores">
+    <div class="container">
+      <h2 data-i18n="collaborators.title">Colaboradores</h2>
+      <p class="sub" data-i18n="collaborators.subtitle">Red global de investigadores/as, docentes y asistentes. Añade logotipos, nombres, roles e instituciones.</p>
+      <div class="grid cols-4" style="margin-top:16px">
+        <div class="card">
+          <h3 data-i18n="collaborators.card1.title">Coordinación</h3>
+          <p data-i18n="collaborators.card1.text">Investigador principal: <strong>Filippos Exadaktylos</strong> (ejemplo)</p>
+          <p class="small" data-i18n="collaborators.card1.note">Añade co‑IPs, gestión de proyecto y contactos.</p>
+        </div>
+        <a href="countries.html" class="card card-link">
+          <h3 data-i18n="collaborators.card2.title">Equipos por país</h3>
+          <p data-i18n="collaborators.card2.text">Una tarjeta por país con institución, PI(s), ciudad, nivel educativo y tamaño muestral.</p>
+          <p class="small" style="margin-top:12px; color:var(--brand)" data-i18n="collaborators.card2.viewall">→ Ver todos los 34 países</p>
+        </a>
+        <div class="card">
+          <h3 data-i18n="collaborators.card3.title">Métodos & QA</h3>
+          <p data-i18n="collaborators.card3.text">Autores del protocolo, arquitectura de encuesta y equipo de auditoría de datos.</p>
+          <span class="tag" data-i18n="collaborators.card3.tag1">Protocolo</span>
+          <span class="tag" data-i18n="collaborators.card3.tag2">Encuesta</span>
+          <span class="tag" data-i18n="collaborators.card3.tag3">Auditoría</span>
+        </div>
+        <div class="card">
+          <h3 data-i18n="collaborators.card4.title">Socios & financiadores</h3>
+          <p data-i18n="collaborators.card4.text">Incluye números de beca, patrocinadores y alianzas institucionales.</p>
+          <span class="tag">Grant #</span>
+          <span class="tag">Partner</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="proyectos">
+    <div class="container">
+      <h2 data-i18n="projects.title">Proyectos (14)</h2>
+      <p class="sub" data-i18n="projects.subtitle">Cada proyecto aprovecha una parte distinta del dataset común. A continuación, resúmenes breves y enlaces clave.</p>
+      <div class="grid cols-3" style="margin-top:16px">
+        <div class="proj"><h4 data-i18n="projects.p1.title">1. Normas sociales & reporte</h4><p class="small" data-i18n="projects.p1.desc">Relación entre normas percibidas/metacreencias y conducta en la tarea del dado.</p><div><span class="tag" data-i18n="projects.tag.analysis">Plan de análisis</span><span class="tag" data-i18n="projects.tag.materials">Materiales</span><span class="tag" data-i18n="projects.tag.code">Código</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p2.title">2. Capital cívico & confianza</h4><p class="small" data-i18n="projects.p2.desc">Conductas cívicas, confianza institucional y honestidad entre culturas.</p><div><span class="tag" data-i18n="projects.tag.prereg">Pre‑reg</span><span class="tag" data-i18n="projects.tag.slides">Diapositivas</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p3.title">3. Cumplimiento & política</h4><p class="small" data-i18n="projects.p3.desc">Aceptación de reglas y correlatos de cumplimiento.</p><div><span class="tag" data-i18n="projects.tag.design">Diseño</span><span class="tag" data-i18n="projects.tag.results">Resultados</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p4.title">4. Dimensiones culturales</h4><p class="small" data-i18n="projects.p4.desc">Individualismo, universalismo y seguimiento de normas.</p><div><span class="tag" data-i18n="projects.tag.prereg">Pre‑reg</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p5.title">5. Instituciones & honestidad</h4><p class="small" data-i18n="projects.p5.desc">Calidad institucional e interacciones con proxies de honestidad.</p><div><span class="tag" data-i18n="projects.tag.code">Código</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p6.title">6. Desigualdad & justicia</h4><p class="small" data-i18n="projects.p6.desc">Preferencias distributivas y cumplimiento de reglas.</p><div><span class="tag" data-i18n="projects.tag.materials">Materiales</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p7.title">7. Educación & cohortes</h4><p class="small" data-i18n="projects.p7.desc">Diferencias por edad y nivel educativo.</p><div><span class="tag" data-i18n="projects.tag.slides">Diapositivas</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p8.title">8. Urbano vs. regional</h4><p class="small" data-i18n="projects.p8.desc">Geografía, tipo de centro y normas.</p><div><span class="tag" data-i18n="projects.tag.prereg">Pre‑reg</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p9.title">9. Género & normas</h4><p class="small" data-i18n="projects.p9.desc">Expectativas de género y honestidad.</p><div><span class="tag" data-i18n="projects.tag.results">Resultados</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p10.title">10. Replicación & métodos</h4><p class="small" data-i18n="projects.p10.desc">Potencia, identificación y robustez entre países.</p><div><span class="tag" data-i18n="projects.tag.code">Código</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p11.title">11. Mensajes & creencias</h4><p class="small" data-i18n="projects.p11.desc">Tratamientos informativos y actualización de normas.</p><div><span class="tag" data-i18n="projects.tag.prereg">Pre‑reg</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p12.title">12. Redes & spillovers</h4><p class="small" data-i18n="projects.p12.desc">Efectos de pares en el aula.</p><div><span class="tag" data-i18n="projects.tag.design">Diseño</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p13.title">13. Ética & consentimiento</h4><p class="small" data-i18n="projects.p13.desc">Aprobaciones éticas y lenguaje de consentimiento.</p><div><span class="tag" data-i18n="projects.tag.materials">Materiales</span></div></div>
+        <div class="proj"><h4 data-i18n="projects.p14.title">14. Curación de datos</h4><p class="small" data-i18n="projects.p14.desc">Estandarización documental y versionado.</p><div><span class="tag" data-i18n="projects.tag.guide">Guía</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DATOS -->
+  <section id="datos">
+    <div class="container">
+      <h2 data-i18n="data.title">Datos</h2>
+      <p class="sub" data-i18n="data.subtitle">Accede a nuestros datos de muestra del experimento DICE. Datos completos disponibles tras publicación.</p>
+      <div class="grid cols-2" style="margin-top:16px">
+        <div class="card">
+          <h3 data-i18n="data.card1.title">Datos de muestra</h3>
+          <p data-i18n="data.card1.desc">Dataset de ejemplo con 15 participantes de 5 países. Incluye resultados del dado, datos demográficos y puntuaciones de confianza.</p>
+          <p class="small" style="margin-top:12px">
+            <strong data-i18n="data.card1.format">Formato:</strong> CSV<br/>
+            <strong data-i18n="data.card1.size">Tamaño:</strong> ~1 KB<br/>
+            <strong data-i18n="data.card1.updated">Actualizado:</strong> 2024-03-25
+          </p>
+          <p style="margin-top:16px">
+            <a class="btn" href="sample-data.csv" download data-i18n="data.card1.btn">Descargar datos de muestra</a>
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="data.card2.title">Estructura de datos</h3>
+          <p data-i18n="data.card2.desc">El dataset incluye las siguientes variables:</p>
+          <ul style="margin-top:8px">
+            <li><code>country</code> — <span data-i18n="data.card2.var1">País del participante</span></li>
+            <li><code>participant_id</code> — <span data-i18n="data.card2.var2">ID único</span></li>
+            <li><code>dice_roll</code> — <span data-i18n="data.card2.var3">Resultado real del dado</span></li>
+            <li><code>reported_value</code> — <span data-i18n="data.card2.var4">Valor reportado</span></li>
+            <li><code>session_date</code> — <span data-i18n="data.card2.var5">Fecha de sesión</span></li>
+            <li><code>age</code> — <span data-i18n="data.card2.var6">Edad</span></li>
+            <li><code>gender</code> — <span data-i18n="data.card2.var7">Género</span></li>
+            <li><code>trust_score</code> — <span data-i18n="data.card2.var8">Puntuación de confianza (1-10)</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h3 data-i18n="data.card3.title">Acceso al dataset completo</h3>
+        <p data-i18n="data.card3.text">El dataset completo con datos de los 34 países estará disponible tras la publicación de los artículos principales. Se alojará en repositorios abiertos con DOI y licencia Creative Commons.</p>
+        <p class="small" style="margin-top:8px" data-i18n="data.card3.note">Para acceso anticipado o colaboraciones, contacta al equipo de coordinación.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUESTIONARIO -->
+  <section id="cuestionario">
+    <div class="container two-col">
+      <div class="card">
+        <h2 data-i18n="questionnaire.title">Cuestionario (vista previa)</h2>
+        <p data-i18n="questionnaire.intro">Estructura sugerida; puedes incrustar Qualtrics o enlazar PDF.</p>
+        <ol>
+          <li data-i18n="questionnaire.item1"><strong>Módulo tarea del dado</strong> — Instrucciones, práctica, reporte</li>
+          <li data-i18n="questionnaire.item2"><strong>Normas sociales</strong> — Descriptivas/injuntivas y metacreencias</li>
+          <li data-i18n="questionnaire.item3"><strong>Confianza & instituciones</strong> — Interpersonal, institucional, conductas cívicas</li>
+          <li data-i18n="questionnaire.item4"><strong>Demografía</strong> — Edad, género, estudios, región</li>
+          <li data-i18n="questionnaire.item5"><strong>País</strong> — IRB, traducciones, tiempos</li>
+        </ol>
+        <p class="small" data-i18n="questionnaire.version">Versionado recomendado: <code>DICE‑Q v1.2 (2025‑06‑10)</code></p>
+        <p class="small">
+          <a class="btn" href="#" rel="noopener" data-i18n="questionnaire.btn1">Abrir Qualtrics (placeholder)</a>
+          <a class="btn secondary" href="#" rel="noopener" data-i18n="questionnaire.btn2">Descargar PDF (placeholder)</a>
+        </p>
+      </div>
+      <aside class="card">
+        <h3 data-i18n="questionnaire.docsTitle">Documentación</h3>
+        <div class="list">
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div>EN master (v1.2)</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div>ES (v1.2)</div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div>FR (v1.1)</div></div>
+        </div>
+        <p class="small" data-i18n="questionnaire.docsNote">Incluye archivos por idioma y registro de cambios.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- PREREG -->
+  <section id="prereg">
+    <div class="container">
+      <h2 data-i18n="prereg.title">Pre‑registros</h2>
+      <p class="sub" data-i18n="prereg.subtitle">Enlaza OSF/AEA para cada proyecto. Tabla índice y correspondencia con versiones de datos.</p>
+      <div class="card">
+        <div class="grid cols-3">
+          <div>
+            <h3 data-i18n="prereg.card1.title">Índice</h3>
+            <ul>
+              <li data-i18n="prereg.card1.item1">Proyecto 1 — OSF: <a href="#" rel="noopener">enlace</a></li>
+              <li data-i18n="prereg.card1.item2">Proyecto 2 — AEA: <a href="#" rel="noopener">enlace</a></li>
+              <li data-i18n="prereg.card1.item3">Proyecto 3 — OSF: <a href="#" rel="noopener">enlace</a></li>
+              <li>…</li>
+            </ul>
+          </div>
+          <div>
+            <h3 data-i18n="prereg.card2.title">Versionado</h3>
+            <p class="small" data-i18n="prereg.card2.text">Vincula IDs de registro con versiones del dataset y carpetas de réplica.</p>
+            <table class="small" aria-label="mapeo preregistros-datos">
+              <thead><tr><th>Prereg</th><th>DOI</th><th>Dataset</th></tr></thead>
+              <tbody>
+                <tr><td>PX-001</td><td>10.5281/zenodo.XXXX</td><td>DICE v1.0</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <h3 data-i18n="prereg.card3.title">Ética</h3>
+            <p class="small" data-i18n="prereg.card3.text">Aprobaciones por país y plantillas de consentimiento.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOTOS -->
+  <section id="fotos">
+    <div class="container">
+      <h2 data-i18n="photos.title">Fotos</h2>
+      <p class="sub" data-i18n="photos.subtitle">Sustituye con imágenes de aulas, talleres y equipos. (Marcadores de Picsum).</p>
+      <div class="gallery" style="margin-top:12px">
+        <img src="https://picsum.photos/id/1011/600/400" alt="Aula universitaria 1" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1025/600/400" alt="Actividad en clase 2" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1035/600/400" alt="Vista de campus 3" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1044/600/400" alt="Estudiantes 4" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1050/600/400" alt="Taller 5" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1062/600/400" alt="Seminario 6" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1074/600/400" alt="Equipo de investigación 7" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1084/600/400" alt="Encuentro 8" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1080/600/400" alt="Participantes 9" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1015/600/400" alt="Aula universitaria 10" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1016/600/400" alt="Aula universitaria 11" loading="lazy" decoding="async" />
+        <img src="https://picsum.photos/id/1019/600/400" alt="Aula universitaria 12" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="grid cols-3">
+      <div>
+        <strong>DICE</strong><br/><span class="small" data-i18n="footer.tagline">Normas & honestidad en 34 países</span>
+      </div>
+      <div>
+        <span class="small" data-i18n="footer.contact">Contacto</span><br/>
+        <a href="mailto:dice-experiment@example.org" class="small">dice‑experiment@example.org</a>
+      </div>
+      <div>
+        <span class="small" data-i18n="footer.status">Estado del sitio</span><br/>
+        <span class="small"><span data-i18n="footer.updated">Última actualización:</span> <time id="last-updated" aria-live="polite"></time></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Translations
+  const translations = {
+    en: {
+      nav: {
+        subtitle: 'Multicultural classroom experiment',
+        welcome: 'Welcome',
+        implementation: 'Implementation',
+        collaborators: 'Collaborators',
+        projects: 'Projects',
+        data: 'Data',
+        photos: 'Photos',
+        questionnaire: 'Questionnaires',
+        prereg: 'Pre-registrations'
+      },
+      hero: {
+        title: 'DICE Project',
+        subtitle: 'A coordinated and harmonized classroom experiment conducted in <strong>34 countries</strong> to study social norms and honesty. The shared database feeds <strong>14 projects</strong> that analyze complementary mechanisms (civic capital, institutional trust, social preferences, and compliance).',
+        chip1: 'In-class',
+        chip2: '34 countries',
+        chip3: 'Common protocol',
+        chip4: 'Open materials',
+        chip5: '14 linked projects',
+        kpi1: 'Countries',
+        kpi2: 'Linked projects',
+        kpi3: 'Dataset & protocol'
+      },
+      countries: {
+        title: '34 Participating Countries',
+        subtitle: 'Global research network with representation across 5 continents.',
+        ARG: 'Argentina', AUT: 'Austria', CHL: 'Chile', CHN: 'China', CIV: 'Côte d\'Ivoire',
+        COD: 'D.R. Congo', COL: 'Colombia', CZE: 'Czech Republic', DEU: 'Germany', EGY: 'Egypt',
+        ESP: 'Spain', FRA: 'France', GBR: 'United Kingdom', GRC: 'Greece', HKG: 'Hong Kong',
+        HUN: 'Hungary', ITA: 'Italy', JPN: 'Japan', KAZ: 'Kazakhstan', KOR: 'South Korea',
+        MDG: 'Madagascar', PAK: 'Pakistan', PER: 'Peru', PHL: 'Philippines', POL: 'Poland',
+        PRT: 'Portugal', QAT: 'Qatar', RUS: 'Russia', SAU: 'Saudi Arabia', SGP: 'Singapore',
+        TUR: 'Turkey', TWN: 'Taiwan', URY: 'Uruguay', USA: 'United States',
+        legend: 'Participating countries (34)',
+        note: 'Coverage across America, Europe, Asia, Africa, and Oceania'
+      },
+      countryDetails: {
+        title: 'Country Teams',
+        subtitle: 'Detailed information about each participating research team.',
+        team: 'Team:',
+        institution: 'Institution:',
+        city: 'City:',
+        sample: 'Sample:',
+        observations: 'Observations:'
+      },
+      implementation: {
+        title: 'Implementation Summary',
+        item1: '<strong>Design:</strong> Classroom dice task with harmonized instructions, supervision, and standardized timing.',
+        item2: '<strong>Sample:</strong> University classes; target N per country according to protocol (replace with your figures).',
+        item3: '<strong>Key measures:</strong> Outcome reporting, honesty proxies, social norms, trust, civic behaviors, and demographics.',
+        item4: '<strong>Quality:</strong> Pre-registration, proctor checklist, timestamps, and centralized validation.',
+        item5: '<strong>Data:</strong> Phased releases (pilot → v1.0 → replication) with license and citation guide.',
+        quickLinks: 'Quick Links',
+        link1: 'Questionnaire preview',
+        link2: 'Pre-analysis registry',
+        link3: 'Project list',
+        link4: 'Replication package (placeholder)',
+        note: 'Replace <em>placeholders</em> with links to OSF/AEA/Dataverse/GitHub.'
+      },
+      collaborators: {
+        title: 'Collaborators',
+        subtitle: 'Global network of researchers, instructors, and assistants. Add logos, names, roles, and institutions.',
+        card1: {
+          title: 'Coordination',
+          text: 'Principal investigator: <strong>Filippos Exadaktylos</strong> (example)',
+          note: 'Add co-PIs, project management, and contacts.'
+        },
+        card2: {
+          title: 'Country teams',
+          text: 'One card per country with institution, PI(s), city, educational level, and sample size.',
+          viewall: '→ View all 34 countries'
+        },
+        card3: {
+          title: 'Methods & QA',
+          text: 'Protocol authors, survey architecture, and data audit team.',
+          tag1: 'Protocol',
+          tag2: 'Survey',
+          tag3: 'Audit'
+        },
+        card4: {
+          title: 'Partners & funders',
+          text: 'Include grant numbers, sponsors, and institutional partnerships.'
+        }
+      },
+      projects: {
+        title: 'Projects (14)',
+        subtitle: 'Each project leverages a different part of the shared dataset. Below are brief summaries and key links.',
+        p1: { title: '1. Social norms & reporting', desc: 'Relationship between perceived norms/meta-beliefs and behavior in the dice task.' },
+        p2: { title: '2. Civic capital & trust', desc: 'Civic behaviors, institutional trust, and honesty across cultures.' },
+        p3: { title: '3. Compliance & policy', desc: 'Rule acceptance and compliance correlates.' },
+        p4: { title: '4. Cultural dimensions', desc: 'Individualism, universalism, and norm-following.' },
+        p5: { title: '5. Institutions & honesty', desc: 'Institutional quality and interactions with honesty proxies.' },
+        p6: { title: '6. Inequality & justice', desc: 'Distributive preferences and rule compliance.' },
+        p7: { title: '7. Education & cohorts', desc: 'Differences by age and educational level.' },
+        p8: { title: '8. Urban vs. regional', desc: 'Geography, institution type, and norms.' },
+        p9: { title: '9. Gender & norms', desc: 'Gender expectations and honesty.' },
+        p10: { title: '10. Replication & methods', desc: 'Power, identification, and robustness across countries.' },
+        p11: { title: '11. Messages & beliefs', desc: 'Informational treatments and norm updating.' },
+        p12: { title: '12. Networks & spillovers', desc: 'Peer effects in the classroom.' },
+        p13: { title: '13. Ethics & consent', desc: 'Ethical approvals and consent language.' },
+        p14: { title: '14. Data curation', desc: 'Documentation standardization and versioning.' },
+        tag: {
+          analysis: 'Analysis plan',
+          materials: 'Materials',
+          code: 'Code',
+          prereg: 'Pre-reg',
+          slides: 'Slides',
+          design: 'Design',
+          results: 'Results',
+          guide: 'Guide'
+        }
+      },
+      data: {
+        title: 'Data',
+        subtitle: 'Access our sample data from the DICE experiment. Full dataset available after publication.',
+        card1: {
+          title: 'Sample data',
+          desc: 'Sample dataset with 15 participants from 5 countries. Includes dice outcomes, demographics, and trust scores.',
+          format: 'Format:',
+          size: 'Size:',
+          updated: 'Updated:',
+          btn: 'Download sample data'
+        },
+        card2: {
+          title: 'Data structure',
+          desc: 'The dataset includes the following variables:',
+          var1: 'Participant country',
+          var2: 'Unique ID',
+          var3: 'Actual dice roll',
+          var4: 'Reported value',
+          var5: 'Session date',
+          var6: 'Age',
+          var7: 'Gender',
+          var8: 'Trust score (1-10)'
+        },
+        card3: {
+          title: 'Full dataset access',
+          text: 'The complete dataset with data from all 34 countries will be available after publication of the main papers. It will be hosted in open repositories with DOI and Creative Commons license.',
+          note: 'For early access or collaborations, contact the coordination team.'
+        }
+      },
+      photos: {
+        title: 'Photos',
+        subtitle: 'Replace with images of classrooms, workshops, and teams. (Picsum placeholders).'
+      },
+      questionnaire: {
+        title: 'Questionnaire (preview)',
+        intro: 'Suggested structure; you can embed Qualtrics or link PDF.',
+        item1: '<strong>Dice task module</strong> — Instructions, practice, reporting',
+        item2: '<strong>Social norms</strong> — Descriptive/injunctive and meta-beliefs',
+        item3: '<strong>Trust & institutions</strong> — Interpersonal, institutional, civic behaviors',
+        item4: '<strong>Demographics</strong> — Age, gender, education, region',
+        item5: '<strong>Country</strong> — IRB, translations, timings',
+        version: 'Recommended versioning: <code>DICE‑Q v1.2 (2025‑06‑10)</code>',
+        btn1: 'Open Qualtrics (placeholder)',
+        btn2: 'Download PDF (placeholder)',
+        docsTitle: 'Documentation',
+        docsNote: 'Includes files by language and change log.'
+      },
+      prereg: {
+        title: 'Pre-registrations',
+        subtitle: 'Link OSF/AEA for each project. Index table and correspondence with data versions.',
+        card1: {
+          title: 'Index',
+          item1: 'Project 1 — OSF: <a href="#" rel="noopener">link</a>',
+          item2: 'Project 2 — AEA: <a href="#" rel="noopener">link</a>',
+          item3: 'Project 3 — OSF: <a href="#" rel="noopener">link</a>'
+        },
+        card2: {
+          title: 'Versioning',
+          text: 'Links registration IDs with dataset versions and replication folders.'
+        },
+        card3: {
+          title: 'Ethics',
+          text: 'Country approvals and consent templates.'
+        }
+      },
+      footer: {
+        tagline: 'Norms & honesty in 34 countries',
+        contact: 'Contact',
+        status: 'Site status',
+        updated: 'Last updated:'
+      }
+    },
+    es: {
+      nav: {
+        subtitle: 'Experimento multicultural en aula',
+        welcome: 'Bienvenida',
+        implementation: 'Implementación',
+        collaborators: 'Colaboradores',
+        projects: 'Proyectos',
+        data: 'Datos',
+        photos: 'Fotos',
+        questionnaire: 'Cuestionarios',
+        prereg: 'Pre‑registros'
+      },
+      hero: {
+        title: 'Proyecto DICE',
+        subtitle: 'Un experimento en aula, coordinado y armonizado, realizado en <strong>34 países</strong> para estudiar normas sociales y honestidad. La base de datos común alimenta <strong>14 proyectos</strong> que analizan mecanismos complementarios (capital cívico, confianza institucional, preferencias sociales y cumplimiento).',
+        chip1: 'En aula',
+        chip2: '34 países',
+        chip3: 'Protocolo común',
+        chip4: 'Materiales abiertos',
+        chip5: '14 proyectos vinculados',
+        kpi1: 'Países',
+        kpi2: 'Proyectos vinculados',
+        kpi3: 'Dataset & protocolo'
+      },
+      countries: {
+        title: '34 Países participantes',
+        subtitle: 'Red global de investigación con representación en 5 continentes.',
+        ARG: 'Argentina', AUT: 'Austria', CHL: 'Chile', CHN: 'China', CIV: 'Côte d\'Ivoire',
+        COD: 'R.D. del Congo', COL: 'Colombia', CZE: 'República Checa', DEU: 'Alemania', EGY: 'Egipto',
+        ESP: 'España', FRA: 'Francia', GBR: 'Reino Unido', GRC: 'Grecia', HKG: 'Hong Kong',
+        HUN: 'Hungría', ITA: 'Italia', JPN: 'Japón', KAZ: 'Kazajistán', KOR: 'Corea del Sur',
+        MDG: 'Madagascar', PAK: 'Pakistán', PER: 'Perú', PHL: 'Filipinas', POL: 'Polonia',
+        PRT: 'Portugal', QAT: 'Catar', RUS: 'Rusia', SAU: 'Arabia Saudita', SGP: 'Singapur',
+        TUR: 'Turquía', TWN: 'Taiwán', URY: 'Uruguay', USA: 'Estados Unidos',
+        legend: 'Países participantes (34)',
+        note: 'Cobertura en América, Europa, Asia, África y Oceanía'
+      },
+      countryDetails: {
+        title: 'Equipos por país',
+        subtitle: 'Información detallada de cada equipo de investigación participante.',
+        team: 'Equipo:',
+        institution: 'Institución:',
+        city: 'Ciudad:',
+        sample: 'Muestra:',
+        observations: 'Observaciones:'
+      },
+      implementation: {
+        title: 'Resumen de implementación',
+        item1: '<strong>Diseño:</strong> Tarea del dado en aula con instrucciones armonizadas, supervisión y tiempos estandarizados.',
+        item2: '<strong>Muestra:</strong> Clases universitarias; N objetivo por país según protocolo (sustituir con tus cifras).',
+        item3: '<strong>Medidas clave:</strong> Reporte de resultados, proxies de honestidad, normas sociales, confianza, conductas cívicas y demografía.',
+        item4: '<strong>Calidad:</strong> Pre‑registro, checklist de proctor, marcas de tiempo y validación centralizada.',
+        item5: '<strong>Datos:</strong> Liberaciones por etapas (piloto → v1.0 → replicación) con guía de licencia y citación.',
+        quickLinks: 'Accesos rápidos',
+        link1: 'Vista previa del cuestionario',
+        link2: 'Registro de pre‑análisis',
+        link3: 'Listado de proyectos',
+        link4: 'Paquete de replicación (placeholder)',
+        note: 'Sustituye los <em>placeholders</em> por enlaces a OSF/AEA/Dataverse/GitHub.'
+      },
+      collaborators: {
+        title: 'Colaboradores',
+        subtitle: 'Red global de investigadores/as, docentes y asistentes. Añade logotipos, nombres, roles e instituciones.',
+        card1: {
+          title: 'Coordinación',
+          text: 'Investigador principal: <strong>Filippos Exadaktylos</strong> (ejemplo)',
+          note: 'Añade co‑IPs, gestión de proyecto y contactos.'
+        },
+        card2: {
+          title: 'Equipos por país',
+          text: 'Una tarjeta por país con institución, PI(s), ciudad, nivel educativo y tamaño muestral.',
+          viewall: '→ Ver todos los 34 países'
+        },
+        card3: {
+          title: 'Métodos & QA',
+          text: 'Autores del protocolo, arquitectura de encuesta y equipo de auditoría de datos.',
+          tag1: 'Protocolo',
+          tag2: 'Encuesta',
+          tag3: 'Auditoría'
+        },
+        card4: {
+          title: 'Socios & financiadores',
+          text: 'Incluye números de beca, patrocinadores y alianzas institucionales.'
+        }
+      },
+      projects: {
+        title: 'Proyectos (14)',
+        subtitle: 'Cada proyecto aprovecha una parte distinta del dataset común. A continuación, resúmenes breves y enlaces clave.',
+        p1: { title: '1. Normas sociales & reporte', desc: 'Relación entre normas percibidas/metacreencias y conducta en la tarea del dado.' },
+        p2: { title: '2. Capital cívico & confianza', desc: 'Conductas cívicas, confianza institucional y honestidad entre culturas.' },
+        p3: { title: '3. Cumplimiento & política', desc: 'Aceptación de reglas y correlatos de cumplimiento.' },
+        p4: { title: '4. Dimensiones culturales', desc: 'Individualismo, universalismo y seguimiento de normas.' },
+        p5: { title: '5. Instituciones & honestidad', desc: 'Calidad institucional e interacciones con proxies de honestidad.' },
+        p6: { title: '6. Desigualdad & justicia', desc: 'Preferencias distributivas y cumplimiento de reglas.' },
+        p7: { title: '7. Educación & cohortes', desc: 'Diferencias por edad y nivel educativo.' },
+        p8: { title: '8. Urbano vs. regional', desc: 'Geografía, tipo de centro y normas.' },
+        p9: { title: '9. Género & normas', desc: 'Expectativas de género y honestidad.' },
+        p10: { title: '10. Replicación & métodos', desc: 'Potencia, identificación y robustez entre países.' },
+        p11: { title: '11. Mensajes & creencias', desc: 'Tratamientos informativos y actualización de normas.' },
+        p12: { title: '12. Redes & spillovers', desc: 'Efectos de pares en el aula.' },
+        p13: { title: '13. Ética & consentimiento', desc: 'Aprobaciones éticas y lenguaje de consentimiento.' },
+        p14: { title: '14. Curación de datos', desc: 'Estandarización documental y versionado.' },
+        tag: {
+          analysis: 'Plan de análisis',
+          materials: 'Materiales',
+          code: 'Código',
+          prereg: 'Pre‑reg',
+          slides: 'Diapositivas',
+          design: 'Diseño',
+          results: 'Resultados',
+          guide: 'Guía'
+        }
+      },
+      data: {
+        title: 'Datos',
+        subtitle: 'Accede a nuestros datos de muestra del experimento DICE. Datos completos disponibles tras publicación.',
+        card1: {
+          title: 'Datos de muestra',
+          desc: 'Dataset de ejemplo con 15 participantes de 5 países. Incluye resultados del dado, datos demográficos y puntuaciones de confianza.',
+          format: 'Formato:',
+          size: 'Tamaño:',
+          updated: 'Actualizado:',
+          btn: 'Descargar datos de muestra'
+        },
+        card2: {
+          title: 'Estructura de datos',
+          desc: 'El dataset incluye las siguientes variables:',
+          var1: 'País del participante',
+          var2: 'ID único',
+          var3: 'Resultado real del dado',
+          var4: 'Valor reportado',
+          var5: 'Fecha de sesión',
+          var6: 'Edad',
+          var7: 'Género',
+          var8: 'Puntuación de confianza (1-10)'
+        },
+        card3: {
+          title: 'Acceso al dataset completo',
+          text: 'El dataset completo con datos de los 34 países estará disponible tras la publicación de los artículos principales. Se alojará en repositorios abiertos con DOI y licencia Creative Commons.',
+          note: 'Para acceso anticipado o colaboraciones, contacta al equipo de coordinación.'
+        }
+      },
+      photos: {
+        title: 'Fotos',
+        subtitle: 'Sustituye con imágenes de aulas, talleres y equipos. (Marcadores de Picsum).'
+      },
+      questionnaire: {
+        title: 'Cuestionario (vista previa)',
+        intro: 'Estructura sugerida; puedes incrustar Qualtrics o enlazar PDF.',
+        item1: '<strong>Módulo tarea del dado</strong> — Instrucciones, práctica, reporte',
+        item2: '<strong>Normas sociales</strong> — Descriptivas/injuntivas y metacreencias',
+        item3: '<strong>Confianza & instituciones</strong> — Interpersonal, institucional, conductas cívicas',
+        item4: '<strong>Demografía</strong> — Edad, género, estudios, región',
+        item5: '<strong>País</strong> — IRB, traducciones, tiempos',
+        version: 'Versionado recomendado: <code>DICE‑Q v1.2 (2025‑06‑10)</code>',
+        btn1: 'Abrir Qualtrics (placeholder)',
+        btn2: 'Descargar PDF (placeholder)',
+        docsTitle: 'Documentación',
+        docsNote: 'Incluye archivos por idioma y registro de cambios.'
+      },
+      prereg: {
+        title: 'Pre‑registros',
+        subtitle: 'Enlaza OSF/AEA para cada proyecto. Tabla índice y correspondencia con versiones de datos.',
+        card1: {
+          title: 'Índice',
+          item1: 'Proyecto 1 — OSF: <a href="#" rel="noopener">enlace</a>',
+          item2: 'Proyecto 2 — AEA: <a href="#" rel="noopener">enlace</a>',
+          item3: 'Proyecto 3 — OSF: <a href="#" rel="noopener">enlace</a>'
+        },
+        card2: {
+          title: 'Versionado',
+          text: 'Vincula IDs de registro con versiones del dataset y carpetas de réplica.'
+        },
+        card3: {
+          title: 'Ética',
+          text: 'Aprobaciones por país y plantillas de consentimiento.'
+        }
+      },
+      footer: {
+        tagline: 'Normas & honestidad en 34 países',
+        contact: 'Contacto',
+        status: 'Estado del sitio',
+        updated: 'Última actualización:'
+      }
+    }
+  };
+
+  // Language switcher
+  let currentLang = localStorage.getItem('lang') || 'es';
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    document.documentElement.setAttribute('lang', lang);
+
+    // Update all elements with data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const keys = key.split('.');
+      let value = translations[lang];
+      keys.forEach(k => value = value[k]);
+      if (value) el.innerHTML = value;
+    });
+
+    // Update nav links
+    document.querySelectorAll('[data-i18n-nav]').forEach(el => {
+      const key = el.getAttribute('data-i18n-nav');
+      const value = translations[lang].nav[key];
+      if (value) el.textContent = value;
+    });
+
+    // Update active language button
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+    });
+  }
+
+  // Show country details section when navigating to a country
+  function handleCountryNavigation() {
+    const hash = window.location.hash;
+    const countrySection = document.getElementById('paises-detalles');
+
+    if (hash && (hash === '#paises-detalles' || hash.startsWith('#paises-'))) {
+      countrySection.style.display = 'block';
+    } else {
+      countrySection.style.display = 'none';
+    }
+  }
+
+  // Initialize language on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    setLanguage(currentLang);
+
+    // Language toggle click handler
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        setLanguage(opt.getAttribute('data-lang'));
+      });
+    });
+
+    // Handle initial hash on page load
+    handleCountryNavigation();
+  });
+
+  // Listen for hash changes
+  window.addEventListener('hashchange', handleCountryNavigation);
+
+  // Last updated stamp
+  document.getElementById('last-updated').textContent = new Date().toISOString().slice(0,10);
+</script>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script>
+  // Initialize map
+  const map = L.map('map', {
+    center: [30, 0],
+    zoom: 2,
+    minZoom: 1,
+    maxZoom: 6,
+    scrollWheelZoom: false,
+    zoomControl: true
+  });
+
+  // ISO3 codes for participating countries
+  const participatingCountryCodes = [
+    'ARG', 'AUT', 'CHL', 'CHN', 'CIV', 'COD', 'COL', 'CZE', 'DEU', 'EGY',
+    'ESP', 'FRA', 'GBR', 'GRC', 'HKG', 'HUN', 'ITA', 'JPN', 'KAZ', 'KOR',
+    'MDG', 'PAK', 'PER', 'PHL', 'POL', 'PRT', 'QAT', 'RUS', 'SAU', 'SGP',
+    'TUR', 'TWN', 'URY', 'USA'
+  ];
+
+  // Map ISO3 codes to anchor IDs on countries.html
+  const countryAnchors = {
+    'ARG': 'argentina',
+    'AUT': 'austria',
+    'CHL': 'chile',
+    'CHN': 'china',
+    'CIV': 'cotedivoire',
+    'COD': 'congo',
+    'COL': 'colombia',
+    'CZE': 'czechia',
+    'DEU': 'germany',
+    'EGY': 'egypt',
+    'ESP': 'spain',
+    'FRA': 'france',
+    'GBR': 'uk',
+    'GRC': 'greece',
+    'HKG': 'hongkong',
+    'HUN': 'hungary',
+    'ITA': 'italy',
+    'JPN': 'japan',
+    'KAZ': 'kazakhstan',
+    'KOR': 'korea',
+    'MDG': 'madagascar',
+    'PAK': 'pakistan',
+    'PER': 'peru',
+    'PHL': 'philippines',
+    'POL': 'poland',
+    'PRT': 'portugal',
+    'QAT': 'qatar',
+    'RUS': 'russia',
+    'SAU': 'saudi',
+    'SGP': 'singapore',
+    'TUR': 'turkey',
+    'TWN': 'taiwan',
+    'URY': 'uruguay',
+    'USA': 'usa'
+  };
+
+  // Load world countries GeoJSON - simple test with USA in red
+  fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
+    .then(response => {
+      console.log('Fetch response:', response);
+      return response.json();
+    })
+    .then(data => {
+      console.log('GeoJSON loaded, features:', data.features.length);
+      console.log('First feature properties:', data.features[0].properties);
+
+      L.geoJSON(data, {
+        style: function(feature) {
+          const countryName = feature.properties.name;
+          const countryCode = feature.properties['ISO3166-1-Alpha-3'];
+
+          const isParticipating = participatingCountryCodes.includes(countryCode);
+
+          if (isParticipating) {
+            console.log('Highlighting:', countryName, countryCode);
+          }
+
+          return {
+            fillColor: isParticipating ? '#4a7ba7' : '#2d3748',
+            weight: 0.5,
+            opacity: 1,
+            color: '#4a5568',
+            fillOpacity: isParticipating ? 0.6 : 0.2
+          };
+        },
+        onEachFeature: function(feature, layer) {
+          const countryCode = feature.properties['ISO3166-1-Alpha-3'];
+          const isParticipating = participatingCountryCodes.includes(countryCode);
+
+          if (isParticipating) {
+            const anchorId = countryAnchors[countryCode];
+            layer.bindPopup(`<strong>${feature.properties.name}</strong><br/><span style="font-size:12px; color:#60a5fa;">Click to view details</span>`);
+
+            // Add click handler to navigate to countries.html page
+            layer.on('click', function() {
+              if (anchorId) {
+                window.location.href = `countries.html#${anchorId}`;
+              }
+            });
+
+            // Add hover effect and cursor pointer
+            layer.on({
+              mouseover: function(e) {
+                const layer = e.target;
+                layer.setStyle({
+                  fillOpacity: 0.8,
+                  fillColor: '#5a8fc7',
+                  cursor: 'pointer'
+                });
+              },
+              mouseout: function(e) {
+                const layer = e.target;
+                layer.setStyle({
+                  fillOpacity: 0.6,
+                  fillColor: '#4a7ba7'
+                });
+              }
+            });
+          }
+        }
+      }).addTo(map);
+
+      console.log('Map loaded successfully');
+    })
+    .catch(error => {
+      console.error('Error loading countries:', error);
+      document.getElementById('map').innerHTML = '<div style="color:red; padding:20px;">Error loading map: ' + error.message + '</div>';
+    });
+</script>
+</body>
+</html>
