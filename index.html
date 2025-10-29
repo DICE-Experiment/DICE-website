@@ -931,8 +931,8 @@
     'USA': { anchor: 'usa', flag: '🇺🇸', name: 'United States', team: 'Prof. Robert Johnson, Dr. Jennifer Smith', institution: 'Harvard University', sample: 'N = 505' }
   };
 
-  // Load world countries GeoJSON - simple test with USA in red
-  fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
+  // Load world countries GeoJSON from a CDN with permissive CORS
+  fetch('https://unpkg.com/geojson-world@1.2.0/countries.geo.json')
     .then(response => {
       console.log('Fetch response:', response);
       return response.json();
