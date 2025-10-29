@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>DICE — Normas & honestidad en 34 países</title>
   <meta name="description" content="DICE: experimento multicountry en aula sobre normas sociales, honestidad y cumplimiento; protocolo común, datos abiertos y pre‑registros." />
   <link rel="canonical" href="https://dice-experiment.github.io/DICE-website/" />
@@ -33,7 +33,7 @@
   <!-- Fonts (with preconnect and swap) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=IBM+Plex+Serif:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
@@ -44,33 +44,40 @@
       --line:#1f2937; --brand:#60a5fa; --accent:#34d399; --warn:#fbbf24; --chip:#111827;
       --shadow: 0 12px 30px rgba(0,0,0,.35);
     }
-    *{box-sizing:border-box}
-    html,body{margin:0; padding:0; background:var(--bg); color:var(--text); font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    *{box-sizing:border-box; -webkit-tap-highlight-color:rgba(96,165,250,.2)}
+    html{scroll-behavior:smooth; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%}
+    html,body{margin:0; padding:0; background:var(--bg); color:var(--text); font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif; min-height:100vh; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
     a{color:var(--brand); text-decoration:none}
     a:hover{text-decoration:underline}
-    a:focus-visible, button:focus-visible{outline:2px solid var(--brand); outline-offset:2px}
+    a:focus-visible, button:focus-visible{outline:2px solid var(--brand); outline-offset:2px; border-radius:4px}
+    a:focus:not(:focus-visible){outline:none}
+    button{font-family:inherit; font-size:inherit}
+    input, select, textarea{font-family:inherit; font-size:inherit; line-height:inherit}
     .skip{position:absolute; left:-9999px}
     .skip:focus{left:12px; top:12px; background:#000; color:#fff; padding:8px 10px; border-radius:8px; z-index:50}
     img{max-width:100%; height:auto}
     .container{max-width:1200px; margin:0 auto; padding:0 20px}
-    .nav{position:sticky; top:0; z-index:1200; background:rgba(10,15,30,.75); backdrop-filter: blur(8px); border-bottom:1px solid var(--line)}
+    .nav{position:sticky; top:0; z-index:1200; background:rgba(10,15,30,.95); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-bottom:1px solid var(--line)}
     .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
     .brand{display:flex; align-items:center; gap:12px; font-weight:800}
     .logo{font-size:32px; line-height:1; display:flex; align-items:center; justify-content:center;}
     .tabs{display:flex; gap:10px; flex-wrap:wrap}
-    .tabs a{padding:8px 12px; background:var(--chip); border:1px solid var(--line); border-radius:10px; font-size:14px}
-    .tabs a:hover{border-color:var(--brand); transform:translateY(-1px)}
+    .tabs a{padding:8px 12px; background:var(--chip); border:1px solid var(--line); border-radius:10px; font-size:14px; transition:all .2s ease; text-decoration:none; min-height:40px; display:inline-flex; align-items:center; justify-content:center}
+    .tabs a:hover{border-color:var(--brand); transform:translateY(-1px); -webkit-transform:translateY(-1px); box-shadow:0 2px 8px rgba(96,165,250,.2); text-decoration:none}
+    .tabs a:active{transform:translateY(0); -webkit-transform:translateY(0)}
     .hero{padding:80px 0 40px; position:relative; overflow:hidden}
     .glow{position:absolute; inset:-30% -10% auto -10%; height:420px;
           background:radial-gradient(550px 300px at 20% 20%, rgba(96,165,250,.2), transparent 60%),
                      radial-gradient(500px 260px at 80% 30%, rgba(251,191,36,.12), transparent 60%),
                      radial-gradient(600px 300px at 50% 100%, rgba(52,211,153,.12), transparent 60%); filter:blur(40px); z-index:-1}
+    h1,h2,h3,h4,h5,h6{font-family:'IBM Plex Serif',serif; font-weight:700; letter-spacing:-0.02em}
     h1{font-size:42px; margin:10px 0 8px}
     .sub{color:var(--muted); font-size:18px; max-width:900px}
     .chips{display:flex; gap:12px; flex-wrap:wrap; margin-top:20px}
-    .chip{background:var(--chip); border:1px solid var(--line); padding:10px 16px; border-radius:999px; font-size:15px; font-weight:500; transition:all .2s}
+    .chip{background:var(--chip); border:1px solid var(--line); padding:10px 16px; border-radius:999px; font-size:15px; font-weight:500; transition:all .2s; min-height:40px; display:inline-flex; align-items:center; justify-content:center}
     a.chip{color:var(--text); text-decoration:none}
-    a.chip:hover{border-color:var(--brand); transform:translateY(-2px); box-shadow:0 4px 12px rgba(96,165,250,.3)}
+    a.chip:hover{border-color:var(--brand); transform:translateY(-2px); -webkit-transform:translateY(-2px); box-shadow:0 4px 12px rgba(96,165,250,.3)}
+    a.chip:active{transform:translateY(0); -webkit-transform:translateY(0)}
     section{padding:50px 0; border-top:1px solid var(--line)}
     h2{font-size:28px; margin:0 0 16px}
     h3{margin-top:0}
@@ -86,8 +93,45 @@
     .cols-2{grid-template-columns:repeat(2,1fr)}
     .cols-3{grid-template-columns:repeat(3,1fr)}
     .cols-4{grid-template-columns:repeat(4,1fr)}
-    @media (max-width:980px){ .two-col{grid-template-columns:1fr} .two-col.equal{grid-template-columns:1fr} .cols-3{grid-template-columns:repeat(2,1fr)} .cols-4{grid-template-columns:repeat(2,1fr)} }
-    @media (max-width:640px){ .cols-3,.cols-4{grid-template-columns:1fr} h1{font-size:34px} }
+    @media (max-width:980px){
+      .two-col{grid-template-columns:1fr}
+      .two-col.equal{grid-template-columns:1fr}
+      .cols-3{grid-template-columns:repeat(2,1fr)}
+      .cols-4{grid-template-columns:repeat(2,1fr)}
+      .nav-inner{padding:12px 0; flex-wrap:wrap; gap:10px}
+      .tabs{width:100%; order:3}
+      h1{font-size:36px}
+      h2{font-size:24px}
+    }
+    @media (max-width:640px){
+      .cols-3,.cols-4{grid-template-columns:1fr}
+      h1{font-size:28px; line-height:1.2}
+      h2{font-size:22px}
+      h3{font-size:18px}
+      .container{padding:0 16px}
+      .hero{padding:50px 0 30px}
+      section{padding:40px 0}
+      .card{padding:18px}
+      .btn{width:100%; text-align:center; padding:12px 16px; display:flex}
+      .btn + .btn{margin-top:8px}
+      .chip{font-size:13px; padding:8px 12px; min-height:36px}
+      #map{height:350px; border-radius:8px}
+      .tabs a{flex:1 1 auto; text-align:center; padding:10px 8px; min-height:44px}
+      .lang-btn{padding:8px 10px; min-height:40px}
+      .sub{font-size:16px}
+      .logo{font-size:28px}
+      .brand{font-size:16px}
+      /* Better scrollable area on mobile */
+      .card > div[style*="max-height"]{max-height:300px !important}
+    }
+
+    /* Extra small devices */
+    @media (max-width:360px){
+      h1{font-size:24px}
+      h2{font-size:20px}
+      .container{padding:0 12px}
+      .card{padding:14px}
+    }
     .proj{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:18px}
     .proj h4{margin:0 0 6px}
     .tag{display:inline-block; padding:6px 10px; background:var(--chip); border:1px solid var(--line); border-radius:999px; font-size:12px; margin-right:6px}
@@ -97,8 +141,11 @@
     @media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr)} }
     footer{padding:40px 0; color:var(--muted)}
     .small{font-size:12px; color:var(--muted)}
-    .btn{display:inline-block; padding:10px 14px; border-radius:10px; background:var(--brand); color:#04101f; font-weight:700; border:1px solid transparent}
+    .btn{display:inline-block; padding:10px 14px; border-radius:10px; background:var(--brand); color:#04101f; font-weight:700; border:1px solid transparent; transition:all .2s ease; cursor:pointer; text-decoration:none; min-height:44px; display:inline-flex; align-items:center; justify-content:center; -webkit-user-select:none; user-select:none}
+    .btn:hover{transform:translateY(-1px); -webkit-transform:translateY(-1px); box-shadow:0 4px 12px rgba(96,165,250,.4); text-decoration:none}
+    .btn:active{transform:translateY(0); -webkit-transform:translateY(0)}
     .btn.secondary{background:transparent; border:1px solid var(--brand); color:var(--brand)}
+    .btn.secondary:hover{background:rgba(96,165,250,.1); transform:translateY(-1px); -webkit-transform:translateY(-1px); box-shadow:0 4px 12px rgba(96,165,250,.2)}
     .lang-btn{display:flex; gap:2px; padding:6px 8px; background:var(--chip); border:1px solid var(--line); border-radius:10px; cursor:pointer; font-size:13px; font-weight:600; transition:border-color .2s}
     .lang-btn:hover{border-color:var(--brand)}
     .lang-option{padding:4px 8px; border-radius:6px; color:var(--muted); transition:all .2s}
@@ -120,8 +167,37 @@
     .leaflet-control-zoom a{background:#000 !important; color:#fff !important; border:1px solid #333 !important}
     .leaflet-control-zoom a:hover{background:#1a1a1a !important; border-color:#555 !important}
 
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce){ .tabs a:hover, a.chip:hover{transform:none} }
+    /* Custom scrollbar styling for webkit browsers */
+    ::-webkit-scrollbar{width:8px; height:8px}
+    ::-webkit-scrollbar-track{background:var(--surface); border-radius:4px}
+    ::-webkit-scrollbar-thumb{background:var(--line); border-radius:4px; border:1px solid var(--surface)}
+    ::-webkit-scrollbar-thumb:hover{background:var(--brand)}
+
+    /* Improve momentum scrolling on iOS */
+    .card > div[style*="overflow-y"]{-webkit-overflow-scrolling:touch; overflow-y:auto}
+
+    /* Improved card transitions */
+    .card{transition:all .3s ease}
+
+    /* Reduced motion - accessibility */
+    @media (prefers-reduced-motion: reduce){
+      *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important}
+      .tabs a:hover, a.chip:hover, .btn:hover{transform:none !important; -webkit-transform:none !important}
+    }
+
+    /* High contrast mode support */
+    @media (prefers-contrast: high){
+      .card{border-width:2px}
+      .btn{border-width:2px}
+    }
+
+    /* Print styles */
+    @media print{
+      .nav, .lang-btn, .btn, .chip{display:none}
+      body{background:#fff; color:#000}
+      .card{border:1px solid #000; box-shadow:none}
+      a{color:#000; text-decoration:underline}
+    }
 
     /* Toast notifications */
     .toast{position:fixed; top:50%; left:50%; background:#10b981; color:#04101f; padding:12px 16px; border-radius:12px; box-shadow:var(--shadow); font-weight:700; z-index:1000; opacity:0; transform:translate(-50%, -12px); transition:opacity .2s, transform .2s}
@@ -320,10 +396,9 @@
   <section id="cuestionario">
     <div class="container two-col equal">
       <aside id="questionaries-box" class="card">
-        <h3 data-i18n="questionnaire.docsTitle">Questionaries</h3>
-        <p class="small">
-          <a id="open-qualtrics-btn" class="btn" href="#" rel="noopener" data-i18n="questionnaire.btn1">Abrir Qualtrics (placeholder)</a>
-          <a id="download-all-questionnaires" class="btn secondary" href="#" rel="noopener" data-i18n="questionnaire.btn2">Descargar PDF (placeholder)</a>
+        <h3 data-i18n="questionnaire.docsTitle">Individual questionnaires</h3>
+        <p class="small" style="margin-bottom:12px">
+          <a id="download-all-questionnaires" class="btn" href="#" rel="noopener" data-i18n="questionnaire.btn2">Download all Questionnaires</a>
         </p>
         <div style="max-height: 400px; overflow-y: auto; margin: 16px 0; padding-right: 8px;">
           <a href="data/countries/argentina/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇦🇷 Argentina</a>
@@ -590,8 +665,8 @@
         item5: '<strong>Country</strong> — IRB, translations, timings',
         version: 'Recommended versioning: <code>DICE‑Q v1.2 (2025‑06‑10)</code>',
         btn1: 'Open Qualtrics (placeholder)',
-        btn2: 'Download all Questionaires',
-        docsTitle: 'Questionaries',
+        btn2: 'Download all Questionnaires',
+        docsTitle: 'Individual questionnaires',
         docsNote: 'Download questionnaires by country.'
       },
       prereg: {
@@ -761,8 +836,8 @@
         item5: '<strong>País</strong> — IRB, traducciones, tiempos',
         version: 'Versionado recomendado: <code>DICE‑Q v1.2 (2025‑06‑10)</code>',
         btn1: 'Abrir Qualtrics (placeholder)',
-        btn2: 'Download all Questionaires',
-        docsTitle: 'Questionaries',
+        btn2: 'Descargar todos los cuestionarios',
+        docsTitle: 'Cuestionarios individuales',
         docsNote: 'Descarga cuestionarios por país.'
       },
       prereg: {
