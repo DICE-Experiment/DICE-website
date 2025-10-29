@@ -876,6 +876,15 @@
     zoomControl: true
   });
 
+  // Add a base tile layer so the map is visible even if GeoJSON fails
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener" target="_blank">OpenStreetMap</a> contributors',
+    maxZoom: 19
+  }).addTo(map);
+
+  // Ensure proper sizing after load
+  window.addEventListener('load', () => setTimeout(() => map.invalidateSize(), 0));
+
   // ISO3 codes for participating countries
   const participatingCountryCodes = [
     'ARG', 'AUT', 'CHL', 'CHN', 'CIV', 'COD', 'COL', 'CZE', 'DEU', 'EGY',
@@ -934,8 +943,9 @@
 
       L.geoJSON(data, {
         style: function(feature) {
-          const countryName = feature.properties.name;
-          const countryCode = feature.properties['ISO3166-1-Alpha-3'];
+          const props = feature && feature.properties ? feature.properties : {};
+          const countryName = props.name || props.ADMIN || props.admin || '';
+          const countryCode = props['ISO3166-1-Alpha-3'] || props.ISO_A3 || props.iso_a3 || props.ADM0_A3 || feature.id;
 
           const isParticipating = participatingCountryCodes.includes(countryCode);
 
@@ -952,7 +962,8 @@
           };
         },
         onEachFeature: function(feature, layer) {
-          const countryCode = feature.properties['ISO3166-1-Alpha-3'];
+          const props = feature && feature.properties ? feature.properties : {};
+          const countryCode = props['ISO3166-1-Alpha-3'] || props.ISO_A3 || props.iso_a3 || props.ADM0_A3 || feature.id;
           const isParticipating = participatingCountryCodes.includes(countryCode);
 
           if (isParticipating) {
@@ -971,4 +982,276 @@
             `;
 
             layer.bindTooltip(tooltipContent, {
- 
+              permanent: false,
+              direction: 'top',
+              className: 'country-tooltip',
+              opacity: 0.95,
+              offset: [0, -10]
+            });
+
+            // Add click handler to navigate to countries.html page
+            layer.on('click', function(e) {
+              if (country.anchor) {
+                // Navigate immediately without adding highlight
+                window.location.href = `countries.html#${country.anchor}`;
+              }
+            });
+
+            // Add hover effect and cursor pointer
+            layer.on({
+              mouseover: function(e) {
+                const layer = e.target;
+                layer.setStyle({
+                  fillOpacity: 0.8,
+                  fillColor: '#5a8fc7',
+                  cursor: 'pointer'
+                });
+              },
+              mouseout: function(e) {
+                const layer = e.target;
+                layer.setStyle({
+                  fillOpacity: 0.6,
+                  fillColor: '#4a7ba7'
+                });
+              }
+            });
+          }
+        }
+      }).addTo(map);
+
+      console.log('Map loaded successfully');
+    })
+    .catch(error => {
+      console.error('Error loading countries:', error);
+      const el = document.getElementById('map');
+      if (el) {
+        const msg = document.createElement('div');
+        msg.style.cssText = 'position:absolute; top:10px; left:10px; background:rgba(0,0,0,.6); color:#fff; padding:8px 10px; border-radius:8px; font-size:12px; z-index:5;';
+        msg.textContent = 'Error loading country shapes';
+        el.appendChild(msg);
+      }
+    });
+</script>
+
+<script>
+  // Download all questionnaires as a zip
+  document.addEventListener('DOMContentLoaded', () => {
+    const downloadBtn = document.getElementById('download-all-questionnaires');
+    if (!downloadBtn) return;
+
+    downloadBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        if (typeof JSZip === 'undefined') {
+          alert('Zip library not loaded. Please try again.');
+          return;
+        }
+
+        const box = document.getElementById('questionaries-box');
+        const links = box ? Array.from(box.querySelectorAll('a.btn.secondary[href$="questionnaire.pdf"]')) : [];
+        if (links.length === 0) {
+          alert('No questionnaires found to download.');
+          return;
+        }
+
+        downloadBtn.textContent = 'Preparing zip…';
+        downloadBtn.setAttribute('aria-busy', 'true');
+        downloadBtn.disabled = true;
+
+        const zip = new JSZip();
+        const folder = zip.folder('questionnaires');
+
+        const toSafeName = (label) => (label || '')
+          .replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, '')
+          .replace(/[^\p{L}\p{N}]+/gu, ' ')
+          .trim();
+
+        const toFilename = (href) => {
+          try {
+            const url = new URL(href, window.location.href);
+            const parts = url.pathname.split('/').filter(Boolean);
+            const country = parts[parts.indexOf('countries') + 1] || 'country';
+            return country + '.pdf';
+          } catch {
+            return 'questionnaire.pdf';
+          }
+        };
+
+        for (const a of links) {
+          const href = a.getAttribute('href');
+          const label = toSafeName((a.textContent || '').trim());
+          const filename = (label ? label + ' - questionnaire.pdf' : toFilename(href));
+          try {
+            const resp = await fetch(href);
+            if (!resp.ok) throw new Error('HTTP ' + resp.status);
+            const blob = await resp.blob();
+            const arrayBuffer = await blob.arrayBuffer();
+            folder.file(filename, arrayBuffer);
+          } catch (err) {
+            console.warn('Skipping', href, err);
+          }
+        }
+
+        const content = await zip.generateAsync({ type: 'blob' });
+        if (typeof saveAs !== 'undefined') {
+          saveAs(content, 'DICE-questionnaires.zip');
+          if (typeof showToast === 'function') showToast('You successfully downloaded questionnaire for all countries');
+        } else {
+          // Fallback
+          const url = URL.createObjectURL(content);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'DICE-questionnaires.zip';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+          if (typeof showToast === 'function') showToast('You successfully downloaded questionnaire for all countries');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('There was an error creating the zip. Please try again.');
+      } finally {
+        downloadBtn.removeAttribute('aria-busy');
+        downloadBtn.disabled = false;
+        // Restore i18n label if available, else keep text
+        const lang = (window.localStorage && localStorage.getItem('lang')) || 'es';
+        const t = (window.translations && translations[lang] && translations[lang].questionnaire && translations[lang].questionnaire.btn2) || 'Download all Questionaires';
+        downloadBtn.textContent = t;
+      }
+    });
+  });
+</script>
+
+<script>
+  // Download all preregistrations as a zip
+  document.addEventListener('DOMContentLoaded', () => {
+    const downloadBtn = document.getElementById('download-all-prereg');
+    if (!downloadBtn) return;
+
+    downloadBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        if (typeof JSZip === 'undefined') {
+          alert('Zip library not loaded. Please try again.');
+          return;
+        }
+
+        const box = document.getElementById('prereg-box');
+        const links = box ? Array.from(box.querySelectorAll('a.btn.secondary[href$="preregistration.pdf"]')) : [];
+        if (links.length === 0) {
+          alert('No preregistration files found to download.');
+          return;
+        }
+
+        const originalText = downloadBtn.textContent;
+        downloadBtn.textContent = 'Preparing zip…';
+        downloadBtn.setAttribute('aria-busy', 'true');
+        downloadBtn.disabled = true;
+
+        const zip = new JSZip();
+        const folder = zip.folder('preregistrations');
+
+        const toSafeName = (label) => (label || '')
+          .replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, '')
+          .replace(/[^\p{L}\p{N}]+/gu, ' ')
+          .trim();
+
+        const toFilename = (href) => {
+          try {
+            const url = new URL(href, window.location.href);
+            const parts = url.pathname.split('/').filter(Boolean);
+            const proj = parts[parts.indexOf('projects') + 1] || 'project';
+            return proj + '.pdf';
+          } catch {
+            return 'preregistration.pdf';
+          }
+        };
+
+        for (const a of links) {
+          const href = a.getAttribute('href');
+          const label = toSafeName((a.textContent || '').trim());
+          const filename = (label ? label + ' - preregistration.pdf' : toFilename(href));
+          try {
+            const resp = await fetch(href);
+            if (!resp.ok) throw new Error('HTTP ' + resp.status);
+            const blob = await resp.blob();
+            const arrayBuffer = await blob.arrayBuffer();
+            folder.file(filename, arrayBuffer);
+          } catch (err) {
+            console.warn('Skipping', href, err);
+          }
+        }
+
+        const content = await zip.generateAsync({ type: 'blob' });
+        if (typeof saveAs !== 'undefined') {
+          saveAs(content, 'DICE-preregistrations.zip');
+          if (typeof showToast === 'function') showToast('You successfully downloaded preregistration for all projects');
+        } else {
+          const url = URL.createObjectURL(content);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'DICE-preregistrations.zip';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+          if (typeof showToast === 'function') showToast('You successfully downloaded preregistration for all projects');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('There was an error creating the zip. Please try again.');
+      } finally {
+        downloadBtn.removeAttribute('aria-busy');
+        downloadBtn.disabled = false;
+        const lang = (window.localStorage && localStorage.getItem('lang')) || 'es';
+        const fallback = 'Download all preregistrations';
+        const t = (window.translations && translations[lang] && translations[lang].prereg && translations[lang].prereg.btnAll) || fallback;
+        downloadBtn.textContent = t;
+      }
+    });
+  });
+</script>
+
+<script>
+  // Intercept individual downloads to show success toast after fetch+save
+  document.addEventListener('DOMContentLoaded', () => {
+    function handleDirectDownloads(selector, typeLabel){
+      document.querySelectorAll(selector).forEach(a => {
+        a.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const href = a.getAttribute('href');
+          const label = (a.textContent || '').trim();
+          try {
+            const resp = await fetch(href);
+            if (!resp.ok) throw new Error('HTTP ' + resp.status);
+            const blob = await resp.blob();
+            const rawLabel = (label || '').replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+            const filename = (rawLabel ? `${rawLabel} - ${typeLabel}.pdf` : (href.split('/').pop() || 'download.pdf'));
+            if (typeof saveAs !== 'undefined') {
+              saveAs(blob, filename);
+            } else {
+              const url = URL.createObjectURL(blob);
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = filename;
+              document.body.appendChild(link);
+              link.click();
+              link.remove();
+              URL.revokeObjectURL(url);
+            }
+            if (typeof showToast === 'function') showToast(`You successfully downloaded ${typeLabel} for ${label}`);
+          } catch (err) {
+            console.error('Download failed:', href, err);
+            alert('Failed to download. Please try again.');
+          }
+        });
+      });
+    }
+
+    handleDirectDownloads('#questionaries-box a.btn.secondary[href$="questionnaire.pdf"]', 'questionnaire');
+    handleDirectDownloads('#prereg-box a.btn.secondary[href$="preregistration.pdf"]', 'preregistration');
+  });
+</script>
+</body>
+</html>
