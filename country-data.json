@@ -1,0 +1,312 @@
+{
+  "participatingCountryCodes": [
+    "ARE",
+    "ARG",
+    "AUS",
+    "AUT",
+    "CHL",
+    "CHN",
+    "CIV",
+    "COL",
+    "CZE",
+    "DEU",
+    "EGY",
+    "ESP",
+    "FRA",
+    "GBR",
+    "GRC",
+    "HKG",
+    "HND",
+    "HUN",
+    "ITA",
+    "JPN",
+    "KAZ",
+    "KOR",
+    "MDG",
+    "PAK",
+    "PHL",
+    "POL",
+    "PRT",
+    "QAT",
+    "RUS",
+    "SGP",
+    "TUR",
+    "TWN",
+    "URY",
+    "USA"
+  ],
+  "countryData": {
+    "ESP": {
+      "anchor": "spain",
+      "flag": "🇪🇸",
+      "name": "Spain",
+      "team": "Tere Garcia, Antonio Espín",
+      "institution": "Universidad de Granada",
+      "sample": "N = 465"
+    },
+    "CZE": {
+      "anchor": "czechia",
+      "flag": "🇨🇿",
+      "name": "Czech Republic",
+      "team": "Rostislav Stanek, Ondřej Krčál",
+      "institution": "Masaryk University",
+      "sample": "N = 390"
+    },
+    "PHL": {
+      "anchor": "philippines",
+      "flag": "🇵🇭",
+      "name": "Philippines",
+      "team": "Enrico Osi, Eduardo Ezekiel Denzon",
+      "institution": "Ateneo de Manila University",
+      "sample": "N = 385"
+    },
+    "HND": {
+      "anchor": "honduras",
+      "flag": "🇭🇳",
+      "name": "Honduras",
+      "team": "Michela Accerenzi, Diego Jorrat",
+      "institution": "Fundación ETEA",
+      "sample": "N = 350"
+    },
+    "CIV": {
+      "anchor": "cotedivoire",
+      "flag": "🇨🇮",
+      "name": "Côte d'Ivoire",
+      "team": "María Ángeles Alaminos, Koutou N'Guessan Claude",
+      "institution": "Loyola University",
+      "sample": "N = 340"
+    },
+    "MDG": {
+      "anchor": "madagascar",
+      "flag": "🇲🇬",
+      "name": "Madagascar",
+      "team": "Rakotonjanahary Mamitiana Atrika, Francisco Olivero",
+      "institution": "Universite Magis",
+      "sample": "N = 290"
+    },
+    "ITA": {
+      "anchor": "italy",
+      "flag": "🇮🇹",
+      "name": "Italy",
+      "team": "Giulia Andrighetto, Gian Luca Pasin",
+      "institution": "Institute of Cognitive Sciences and Technologies, Italian National Council of Research",
+      "sample": "N = 475"
+    },
+    "GRC": {
+      "anchor": "greece",
+      "flag": "🇬🇷",
+      "name": "Greece",
+      "team": "Antonios Proestakis, Angel Sánchez",
+      "institution": "Technical University of Crete",
+      "sample": "N = 360"
+    },
+    "ARG": {
+      "anchor": "argentina",
+      "flag": "🇦🇷",
+      "name": "Argentina",
+      "team": "Andrés Gago, Joaquín Navajas",
+      "institution": "Universidad Torcuato Di Tella",
+      "sample": "N = 450"
+    },
+    "CHN": {
+      "anchor": "china",
+      "flag": "🇨🇳",
+      "name": "China",
+      "team": "Lijia Wei",
+      "institution": "Wuhan University",
+      "sample": "N = 520"
+    },
+    "QAT": {
+      "anchor": "qatar",
+      "flag": "🇶🇦",
+      "name": "Qatar",
+      "team": "Ramon Cobo Reyes-Cano, Ángela Sánchez González",
+      "institution": "Georgetown University Qatar",
+      "sample": "N = 320"
+    },
+    "KAZ": {
+      "anchor": "kazakhstan",
+      "flag": "🇰🇿",
+      "name": "Kazakhstan",
+      "team": "Alexis Belianin, Jaromir Kovarik",
+      "institution": "ICEF NRU HSE and IMEMO RAS",
+      "sample": "N = 330"
+    },
+    "RUS": {
+      "anchor": "russia",
+      "flag": "🇷🇺",
+      "name": "Russia",
+      "team": "Alexis Belianin",
+      "institution": "ICEF NRU HSE and IMEMO RAS",
+      "sample": "N = 460"
+    },
+    "SGP": {
+      "anchor": "singapore",
+      "flag": "🇸🇬",
+      "name": "Singapore",
+      "team": "Benjamin Prisse, Dinithi Nilanga Jayasekara",
+      "institution": "Singapore University of Technology and Design",
+      "sample": "N = 430"
+    },
+    "COL": {
+      "anchor": "colombia",
+      "flag": "🇨🇴",
+      "name": "Colombia",
+      "team": "Lina Moros",
+      "institution": "Universidad de los Andes",
+      "sample": "N = 480"
+    },
+    "CHL": {
+      "anchor": "chile",
+      "flag": "🇨🇱",
+      "name": "Chile",
+      "team": "Alejandra Alicia Vasquez Alvarado",
+      "institution": "Universidad de Santiago de Chile",
+      "sample": "N = 425"
+    },
+    "HUN": {
+      "anchor": "hungary",
+      "flag": "🇭🇺",
+      "name": "Hungary",
+      "team": "Hubert Janos Kiss, Béla Janky",
+      "institution": "HUN-REN KRTK & Corvinus University in Budapest",
+      "sample": "N = 375"
+    },
+    "URY": {
+      "anchor": "uruguay",
+      "flag": "🇺🇾",
+      "name": "Uruguay",
+      "team": "José Ignacio Rivero-Wildemauwe, Marcos Cardozo",
+      "institution": "Universidad Católica del Uruguay",
+      "sample": "N = 335"
+    },
+    "DEU": {
+      "anchor": "germany",
+      "flag": "🇩🇪",
+      "name": "Germany",
+      "team": "Hande Erkut, David Albrecht",
+      "institution": "WZB, Berlin",
+      "sample": "N = 510"
+    },
+    "FRA": {
+      "anchor": "france",
+      "flag": "🇫🇷",
+      "name": "France",
+      "team": "Nicolas Jacquemet, Aurélien Klopfenstein",
+      "institution": "Université Paris 1 Panthéon-Sorbonne and Paris School of Economics",
+      "sample": "N = 440"
+    },
+    "PRT": {
+      "anchor": "portugal",
+      "flag": "🇵🇹",
+      "name": "Portugal",
+      "team": "Helia Marreiros",
+      "institution": "Universidade do Minho",
+      "sample": "N = 365"
+    },
+    "GBR": {
+      "anchor": "uk",
+      "flag": "🇬🇧",
+      "name": "United Kingdom",
+      "team": "Brit Grosskopf",
+      "institution": "University of Exeter",
+      "sample": "N = 490"
+    },
+    "TUR": {
+      "anchor": "turkey",
+      "flag": "🇹🇷",
+      "name": "Turkey",
+      "team": "Ayça Ebru Giritligil, Fatih Mehmet Şenyurd",
+      "institution": "Istanbul Bilgi University",
+      "sample": "N = 445"
+    },
+    "POL": {
+      "anchor": "poland",
+      "flag": "🇵🇱",
+      "name": "Poland",
+      "team": "Bartlomiej Dessoulavy-Sliwinski, Rana Umair Ashraf",
+      "institution": "University of Warsaw",
+      "sample": "N = 420"
+    },
+    "AUT": {
+      "anchor": "austria",
+      "flag": "🇦🇹",
+      "name": "Austria",
+      "team": "Felix Holzmeister, König-Kersting Christian",
+      "institution": "University of Innsbruck",
+      "sample": "N = 380"
+    },
+    "JPN": {
+      "anchor": "japan",
+      "flag": "🇯🇵",
+      "name": "Japan",
+      "team": "Gwen-Jiro Clochard, Nobuyuki Hanaki",
+      "institution": "Osaka University",
+      "sample": "N = 500"
+    },
+    "KOR": {
+      "anchor": "korea",
+      "flag": "🇰🇷",
+      "name": "South Korea",
+      "team": "Syngjoo Choi, Duk Gyoo Kim",
+      "institution": "Seoul National University",
+      "sample": "N = 485"
+    },
+    "ARE": {
+      "anchor": "uae",
+      "flag": "🇦🇪",
+      "name": "United Arab Emirates",
+      "team": "Georgia Michailidou, Sophia Jeong",
+      "institution": "NYU Abu Dhabi",
+      "sample": "N = 340"
+    },
+    "USA": {
+      "anchor": "usa",
+      "flag": "🇺🇸",
+      "name": "United States",
+      "team": "Diego Aycinena, Adam Rangel",
+      "institution": "University of Pennsylvania",
+      "sample": "N = 505"
+    },
+    "HKG": {
+      "anchor": "hongkong",
+      "flag": "🇭🇰",
+      "name": "Hong Kong",
+      "team": "King King Li, Ying-yi Hong",
+      "institution": "The Hang Seng University of Hong Kong",
+      "sample": "N = 405"
+    },
+    "TWN": {
+      "anchor": "taiwan",
+      "flag": "🇹🇼",
+      "name": "Taiwan",
+      "team": "Joseph Tao-yi Wang, Willy Wang",
+      "institution": "National Taiwan University",
+      "sample": "N = 455"
+    },
+    "PAK": {
+      "anchor": "pakistan",
+      "flag": "🇵🇰",
+      "name": "Pakistan",
+      "team": "Muhammad Saeed Ashraf, Muhammad Usman",
+      "institution": "Jiangsu University",
+      "sample": "N = 410"
+    },
+    "EGY": {
+      "anchor": "egypt",
+      "flag": "🇪🇬",
+      "name": "Egypt",
+      "team": "Dina Rabie, Rania Miniesy",
+      "institution": "Northeastern University - London",
+      "sample": "N = 370"
+    },
+    "AUS": {
+      "anchor": "australia",
+      "flag": "🇦🇺",
+      "name": "Australia",
+      "team": "Lionel Page",
+      "institution": "University of Queensland",
+      "sample": "N = 450"
+    }
+  }
+}

@@ -1,0 +1,291 @@
+{
+  "projectCount": 12,
+  "projects": [
+    {
+      "id": 1,
+      "title": "Social Preferences using Mini Dictator Games across the countries",
+      "status": "ACTIVE",
+      "firstAuthor": "Diego Jorrat",
+      "coauthors": [
+        "Helia Marreiros",
+        "Anxo Sánchez",
+        "Kiss Hubert János",
+        "María Ángeles Alaminos",
+        "Alejandra Vásquez "
+      ],
+      "allAuthors": [
+        "Diego Jorrat",
+        "Helia Marreiros",
+        "Anxo Sánchez",
+        "Kiss Hubert János",
+        "María Ángeles Alaminos",
+        "Alejandra Vásquez "
+      ],
+      "authorCount": 6
+    },
+    {
+      "id": 2,
+      "title": "Accuracy in Social Norms Predicted by Empathy",
+      "status": "CLOSED",
+      "firstAuthor": "Adriana Gaviria",
+      "coauthors": [
+        "Anxo Sánchez",
+        "Nicolas Jacquemet",
+        "Antonio Alfonso",
+        "José Ignacio Rivero",
+        "Marcos Cardozo",
+        "Alejandra Vasquez ",
+        "Aurélien Klopfenstein",
+        "Enrico Osi",
+        "Hande Erkut"
+      ],
+      "allAuthors": [
+        "Adriana Gaviria",
+        "Anxo Sánchez",
+        "Nicolas Jacquemet",
+        "Antonio Alfonso",
+        "José Ignacio Rivero",
+        "Marcos Cardozo",
+        "Alejandra Vasquez ",
+        "Aurélien Klopfenstein",
+        "Enrico Osi",
+        "Hande Erkut"
+      ],
+      "authorCount": 10
+    },
+    {
+      "id": 3,
+      "title": "Response Times as Indicators of Honesty, Morality and Prosocial Behavior",
+      "status": "ACTIVE",
+      "firstAuthor": "Alexis Belianin",
+      "coauthors": [
+        "Duk Gyoo Kim",
+        "Ding-Wei Wang",
+        "Joseph Tao-yi Wang",
+        "Tamás Keller"
+      ],
+      "allAuthors": [
+        "Alexis Belianin",
+        "Duk Gyoo Kim",
+        "Ding-Wei Wang",
+        "Joseph Tao-yi Wang",
+        "Tamás Keller"
+      ],
+      "authorCount": 5
+    },
+    {
+      "id": 4,
+      "title": "Cultural Influences on Moral Decision Making in the Trolley Dilemma",
+      "status": "CLOSED",
+      "firstAuthor": "Pablo Brañas",
+      "coauthors": [
+        "Adriana Gaviria",
+        "Fernando Aguiar",
+        "Isabelle Brocas",
+        "Juan D. Carrillo",
+        "Filippos Exadaktylos",
+        "Brit Grosskopf",
+        "Iñigo Iturbe",
+        "Helia Marreiros",
+        "Malalatiana Rajaomason"
+      ],
+      "allAuthors": [
+        "Pablo Brañas",
+        "Adriana Gaviria",
+        "Fernando Aguiar",
+        "Isabelle Brocas",
+        "Juan D. Carrillo",
+        "Filippos Exadaktylos",
+        "Brit Grosskopf",
+        "Iñigo Iturbe",
+        "Helia Marreiros",
+        "Malalatiana Rajaomason"
+      ],
+      "authorCount": 10
+    },
+    {
+      "id": 5,
+      "title": "The Environmental Belief Paradox Across Countries",
+      "status": "ACTIVE",
+      "firstAuthor": "Juana Castro",
+      "coauthors": [
+        "Lina Moros",
+        "David Albrecht",
+        "Jaromir Kovarik",
+        "Bartlomiej Dessoulavy-Sliwinski",
+        "Abhijit Ramalingam"
+      ],
+      "allAuthors": [
+        "Juana Castro",
+        "Lina Moros",
+        "David Albrecht",
+        "Jaromir Kovarik",
+        "Bartlomiej Dessoulavy-Sliwinski",
+        "Abhijit Ramalingam"
+      ],
+      "authorCount": 6
+    },
+    {
+      "id": 6,
+      "title": "The relationship between happiness and pro-sociality across countries",
+      "status": "ACTIVE",
+      "firstAuthor": "Brit Grosskopf",
+      "coauthors": [
+        "Rana Umair Ashraf",
+        "Joaquin Navajas",
+        "Lijia Wei"
+      ],
+      "allAuthors": [
+        "Brit Grosskopf",
+        "Rana Umair Ashraf",
+        "Joaquin Navajas",
+        "Lijia Wei"
+      ],
+      "authorCount": 4
+    },
+    {
+      "id": 7,
+      "title": "Sample Biases in Cross Cultural Experimental Studies",
+      "status": "ACTIVE",
+      "firstAuthor": "Levent Neyse",
+      "coauthors": [
+        "Felix Holzmeister",
+        "Andrés Gago",
+        "Christian König-Kersting",
+        "Ying-yi Hong",
+        "Diego Aycinena",
+        "Alexis Belianin"
+      ],
+      "allAuthors": [
+        "Levent Neyse",
+        "Felix Holzmeister",
+        "Andrés Gago",
+        "Christian König-Kersting",
+        "Ying-yi Hong",
+        "Diego Aycinena",
+        "Alexis Belianin"
+      ],
+      "authorCount": 7
+    },
+    {
+      "id": 8,
+      "title": "Individual and Country-Level Determinants of Zero-Sum Thinking",
+      "status": "ACTIVE",
+      "firstAuthor": "Antonios Proestakis",
+      "coauthors": [
+        "Gian Luca Pasin",
+        "Adam Rangel",
+        "Eduardo Ezekiel Denzon",
+        "Giorgos Stamatopoulos",
+        "Ying-yi Hong"
+      ],
+      "allAuthors": [
+        "Antonios Proestakis",
+        "Gian Luca Pasin",
+        "Adam Rangel",
+        "Eduardo Ezekiel Denzon",
+        "Giorgos Stamatopoulos",
+        "Ying-yi Hong"
+      ],
+      "authorCount": 6
+    },
+    {
+      "id": 9,
+      "title": "Incentives, Cognitive Reflection, and Math Performance Across Countries",
+      "status": "ACTIVE",
+      "firstAuthor": "Antonio Alfonso",
+      "coauthors": [
+        "Francisco Olivero",
+        "Antonios Proestakis",
+        "Adriana Gaviria",
+        " "
+      ],
+      "allAuthors": [
+        "Antonio Alfonso",
+        "Francisco Olivero",
+        "Antonios Proestakis",
+        "Adriana Gaviria",
+        " "
+      ],
+      "authorCount": 5
+    },
+    {
+      "id": 10,
+      "title": "Gender Differences in Social Preferences, Morality, and Social Norms perceptions across Countries",
+      "status": "CLOSED",
+      "firstAuthor": "Tere García",
+      "coauthors": [
+        "Ramon Cobo-Reyes",
+        "Angela Sanchez",
+        "Michela Accerenzi",
+        "Gwen-Jiro Clochard",
+        "María Ángeles ",
+        "Diego Aycinena",
+        "Dina Rabie",
+        "Rania Miniesy",
+        "Francisco Galarza/Ricardo Huamán"
+      ],
+      "allAuthors": [
+        "Tere García",
+        "Ramon Cobo-Reyes",
+        "Angela Sanchez",
+        "Michela Accerenzi",
+        "Gwen-Jiro Clochard",
+        "María Ángeles ",
+        "Diego Aycinena",
+        "Dina Rabie",
+        "Rania Miniesy",
+        "Francisco Galarza/Ricardo Huamán"
+      ],
+      "authorCount": 10
+    },
+    {
+      "id": 11,
+      "title": "Gender Differences in Social Preferences: The Mediating Role of Cognitive Reflection Across Cultures",
+      "status": "CLOSED",
+      "firstAuthor": "Antonio Espín",
+      "coauthors": [
+        "Michael Schachner",
+        "Michael Minkov",
+        "Hester van Herk",
+        "Pablo Brañas",
+        "Filippos Exadaktylos",
+        "Roberto Hernann",
+        "Valerio Capraro",
+        "Praveen Kujal",
+        "Bris Corgnet"
+      ],
+      "allAuthors": [
+        "Antonio Espín",
+        "Michael Schachner",
+        "Michael Minkov",
+        "Hester van Herk",
+        "Pablo Brañas",
+        "Filippos Exadaktylos",
+        "Roberto Hernann",
+        "Valerio Capraro",
+        "Praveen Kujal",
+        "Bris Corgnet"
+      ],
+      "authorCount": 10
+    },
+    {
+      "id": 12,
+      "title": "Environmental Preferences and Social Orientation",
+      "status": "ACTIVE",
+      "firstAuthor": "Andrés Gago",
+      "coauthors": [
+        "Dinithi Jayasekara",
+        "Benjamin Prisse",
+        "King King Li"
+      ],
+      "allAuthors": [
+        "Andrés Gago",
+        "Dinithi Jayasekara",
+        "Benjamin Prisse",
+        "King King Li"
+      ],
+      "authorCount": 4
+    }
+  ]
+}

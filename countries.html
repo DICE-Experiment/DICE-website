@@ -18,8 +18,15 @@
   <style>
     :root{
       --bg:#0b1225; --surface:#0f172a; --card:#0e162d; --muted:#94a3b8; --text:#e5e7eb;
-      --line:#1f2937; --brand:#60a5fa; --accent:#34d399; --warn:#fbbf24; --chip:#111827;
+      --line:#1f2937; --brand:#D49D39; --accent:#193865; --warn:#fbbf24; --chip:#111827;
       --shadow: 0 12px 30px rgba(0,0,0,.35);
+      --brand-rgb:212,157,57; --accent-rgb:25,56,101;
+    }
+    [data-theme="light"]{
+      --bg:#f8fafc; --surface:#ffffff; --card:#f1f5f9; --muted:#64748b; --text:#0f172a;
+      --line:#e2e8f0; --brand:#D49D39; --accent:#193865; --warn:#d97706; --chip:#e2e8f0;
+      --shadow: 0 4px 12px rgba(0,0,0,.08);
+      --brand-rgb:212,157,57; --accent-rgb:25,56,101;
     }
     *{box-sizing:border-box}
     html,body{margin:0; padding:0; background:var(--bg); color:var(--text); font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
@@ -28,19 +35,31 @@
     a:focus-visible, button:focus-visible{outline:2px solid var(--brand); outline-offset:2px}
     .container{max-width:1200px; margin:0 auto; padding:0 20px}
     .nav{position:sticky; top:0; z-index:20; background:rgba(10,15,30,.75); backdrop-filter: blur(8px); border-bottom:1px solid var(--line)}
-    .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
-    .brand{display:flex; align-items:center; gap:12px; font-weight:800}
-    .logo{font-size:32px; line-height:1; display:flex; align-items:center; justify-content:center;}
-    .tabs{display:flex; gap:10px; flex-wrap:wrap}
-    .tabs a{padding:8px 12px; background:var(--chip); border:1px solid var(--line); border-radius:10px; font-size:14px}
+    [data-theme="light"] .nav{background:rgba(248,250,252,.95); color:var(--text)}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:12px 0; gap:12px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; white-space:nowrap; flex-shrink:0}
+    .brand .small, .brand span[style*="font-size:12px"]{font-size:10px !important; max-width:180px}
+    .logo{width:40px; height:40px; display:flex; align-items:center; justify-content:center;}
+    .logo img{width:100%; height:100%; object-fit:contain;}
+    .tabs{display:flex; gap:6px; flex-wrap:nowrap; flex-shrink:1}
+    .tabs a, .tabs button{padding:8px 10px; background:var(--chip); border:1px solid var(--line); border-radius:10px; font-size:13px; white-space:nowrap; min-height:36px; display:inline-flex; align-items:center; justify-content:center}
     .tabs a:hover{border-color:var(--brand); transform:translateY(-1px)}
     h1{font-size:42px; margin:10px 0 8px}
     h2{font-size:28px; margin:0 0 16px}
+    [data-theme="light"] h1, [data-theme="light"] h2{color:var(--accent)}
     .sub{color:var(--muted); font-size:18px; max-width:900px}
     .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px; box-shadow:var(--shadow)}
     .grid{display:grid; gap:16px}
     .cols-3{grid-template-columns:repeat(3,1fr)}
-    @media (max-width:980px){ .cols-3{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:1300px){
+      .tabs a, .tabs button{padding:8px 8px; font-size:12px}
+      .brand span[style*="font-size:12px"]{font-size:9px !important; max-width:160px}
+    }
+    @media (max-width:980px){
+      .cols-3{grid-template-columns:repeat(2,1fr)}
+      .brand span[style*="font-size:12px"]{font-size:9px !important}
+      .tabs{flex-wrap:wrap}
+    }
     @media (max-width:640px){ .cols-3{grid-template-columns:1fr} h1{font-size:34px} }
     .country-card{scroll-margin-top:80px; transition:all 0.3s ease; position:relative;}
     .country-info{display:flex; flex-direction:column; gap:12px; margin-top:12px}
@@ -48,10 +67,10 @@
     .info-row strong{min-width:110px; color:var(--muted)}
     .info-row span{color:var(--text)}
     section{padding:50px 0}
-    .lang-btn{display:flex; gap:2px; padding:6px 8px; background:var(--chip); border:1px solid var(--line); border-radius:10px; cursor:pointer; font-size:13px; font-weight:600; transition:border-color .2s}
+    .lang-btn{display:flex; gap:2px; padding:4px 6px; background:var(--chip); border:1px solid var(--line); border-radius:10px; cursor:pointer; font-size:12px; font-weight:600; transition:border-color .2s; min-height:36px; align-items:center}
     .lang-btn:hover{border-color:var(--brand)}
-    .lang-option{padding:4px 8px; border-radius:6px; color:var(--muted); transition:all .2s}
-    .lang-option.active{background:var(--brand); color:#04101f}
+    .lang-option{padding:4px 6px; border-radius:6px; color:var(--muted); transition:all .2s}
+    .lang-option.active{background:var(--brand); color:#fff; font-weight:600}
     .back-link{display:inline-flex; align-items:center; gap:8px; margin-bottom:20px; padding:8px 12px; background:var(--chip); border:1px solid var(--line); border-radius:10px; font-size:14px; transition:all .2s}
     .back-link:hover{border-color:var(--brand); transform:translateY(-1px); text-decoration:none}
   </style>
@@ -62,12 +81,17 @@
 <!-- NAV -->
 <div class="nav" role="navigation" aria-label="principal">
   <div class="container nav-inner">
-    <div class="brand">
-      <div class="logo" aria-hidden="true">🎲</div>
+    <a href="index.html" class="brand" style="text-decoration:none; color:inherit;">
+      <div class="logo" aria-hidden="true"><img src="logo.png" alt="DICE Logo"></div>
       <div>DICE — <span style="font-size:12px; color:var(--muted)" data-i18n="nav.subtitle">Experimento multicultural en aula</span></div>
-    </div>
+    </a>
     <nav class="tabs">
       <a href="index.html">← <span data-i18n="nav.back">Volver</span></a>
+      <button id="theme-toggle" class="lang-btn" aria-label="Change theme">
+        <span class="lang-option" data-theme-opt="dark">🌙</span>
+        <span class="lang-option" data-theme-opt="light">☀️</span>
+        <span class="lang-option active" data-theme-opt="auto">Auto</span>
+      </button>
       <button id="lang-toggle" class="lang-btn" aria-label="Change language">
         <span class="lang-option" data-lang="en">EN</span>
         <span class="lang-option active" data-lang="es">ES</span>
@@ -86,928 +110,28 @@
       <h2 data-i18n="countryDetails.title">Equipos por país</h2>
       <p class="sub" data-i18n="countryDetails.subtitle">Información detallada de cada equipo de investigación participante.</p>
 
-      <div class="grid cols-3" style="margin-top:24px">
-        <!-- Argentina -->
-        <div id="argentina" class="country-card card">
-          <h3>🇦🇷 Argentina</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. María González, Prof. Juan Pérez</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Universidad de Buenos Aires</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Buenos Aires</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 450</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>3 sesiones, población universitaria</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Austria -->
-        <div id="austria" class="country-card card">
-          <h3>🇦🇹 Austria</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Klaus Weber</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>University of Vienna</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Vienna</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 380</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>2 sesiones, estudiantes de economía</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Chile -->
-        <div id="chile" class="country-card card">
-          <h3>🇨🇱 Chile</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Carmen Silva, Dr. Roberto Muñoz</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Universidad de Chile</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Santiago</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 425</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>3 sesiones, diversas facultades</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- China -->
-        <div id="china" class="country-card card">
-          <h3>🇨🇳 China</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Prof. Wei Zhang, Dr. Li Wang</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Peking University</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Beijing</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 520</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>4 sesiones, estudiantes de pregrado</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Côte d'Ivoire -->
-        <div id="cotedivoire" class="country-card card">
-          <h3>🇨🇮 Côte d'Ivoire</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Amara Koné</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Université Félix Houphouët-Boigny</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Abidjan</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 340</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>2 sesiones, ciencias sociales</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- D.R. Congo -->
-        <div id="congo" class="country-card card">
-          <h3>🇨🇩 D.R. Congo</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Prof. Joseph Kabila</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Université de Kinshasa</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Kinshasa</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 310</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>2 sesiones, estudiantes diversos</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Colombia -->
-        <div id="colombia" class="country-card card">
-          <h3>🇨🇴 Colombia</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Ana Rodríguez, Prof. Carlos Martínez</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Universidad de los Andes</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Bogotá</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 480</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>3 sesiones, múltiples programas</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Czech Republic -->
-        <div id="czechia" class="country-card card">
-          <h3>🇨🇿 Czech Republic</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Jan Novák</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Charles University</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Prague</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 390</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>2 sesiones, facultad de ciencias</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Germany -->
-        <div id="germany" class="country-card card">
-          <h3>🇩🇪 Germany</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Prof. Hans Schmidt, Dr. Anna Müller</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>University of Munich</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Munich</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 510</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>4 sesiones, economía y psicología</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Egypt -->
-        <div id="egypt" class="country-card card">
-          <h3>🇪🇬 Egypt</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Ahmed Hassan</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Cairo University</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Cairo</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 370</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>2 sesiones, estudiantes de negocios</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Spain -->
-        <div id="spain" class="country-card card">
-          <h3>🇪🇸 Spain</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span><a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:#60a5fa; text-decoration:none">Dr. Filippos Exadaktylos</a>, Dr. Laura Sánchez</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Universidad de Granada</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Granada</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 465</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>3 sesiones, ADE y economía</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- France -->
-        <div id="france" class="country-card card">
-          <h3>🇫🇷 France</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Prof. Marie Dubois, Dr. Pierre Martin</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Sorbonne University</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Paris</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 440</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>3 sesiones, ciencias sociales</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- United Kingdom -->
-        <div id="uk" class="country-card card">
-          <h3>🇬🇧 United Kingdom</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. James Wilson, Prof. Emma Taylor</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>University of Oxford</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Oxford</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 490</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>3 sesiones, PPE students</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Greece -->
-        <div id="greece" class="country-card card">
-          <h3>🇬🇷 Greece</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Nikos Papadopoulos</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Athens University of Economics</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Athens</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 360</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>2 sesiones, economía aplicada</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hong Kong -->
-        <div id="hongkong" class="country-card card">
-          <h3>🇭🇰 Hong Kong</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Michael Chan</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>University of Hong Kong</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Hong Kong</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 405</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>3 sesiones, business students</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hungary -->
-        <div id="hungary" class="country-card card">
-          <h3>🇭🇺 Hungary</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. István Nagy</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Corvinus University</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Budapest</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 375</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>2 sesiones, economía y gestión</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Italy -->
-        <div id="italy" class="country-card card">
-          <h3>🇮🇹 Italy</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Prof. Giovanni Rossi, Dr. Francesca Bianchi</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Bocconi University</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Milan</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 475</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>3 sesiones, estudiantes de MBA</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Japan -->
-        <div id="japan" class="country-card card">
-          <h3>🇯🇵 Japan</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Prof. Takashi Yamamoto</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>University of Tokyo</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Tokyo</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 500</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>4 sesiones, economía conductual</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Kazakhstan -->
-        <div id="kazakhstan" class="country-card card">
-          <h3>🇰🇿 Kazakhstan</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Assel Nurgaliyeva</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Nazarbayev University</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Astana</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 330</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>2 sesiones, estudiantes diversos</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- South Korea -->
-        <div id="korea" class="country-card card">
-          <h3>🇰🇷 South Korea</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Prof. Ji-Hoon Kim, Dr. Min-Jung Lee</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Seoul National University</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Seoul</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 485</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>3 sesiones, ciencias sociales</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Madagascar -->
-        <div id="madagascar" class="country-card card">
-          <h3>🇲🇬 Madagascar</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Hery Rasolofonirina</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>University of Antananarivo</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Antananarivo</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 290</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>2 sesiones, economía y gestión</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Pakistan -->
-        <div id="pakistan" class="country-card card">
-          <h3>🇵🇰 Pakistan</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Fatima Khan</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Lahore University of Management Sciences</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Lahore</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 410</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>3 sesiones, LUMS students</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Peru -->
-        <div id="peru" class="country-card card">
-          <h3>🇵🇪 Peru</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Miguel Vargas</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Pontificia Universidad Católica del Perú</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Lima</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 395</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>3 sesiones, economía</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Philippines -->
-        <div id="philippines" class="country-card card">
-          <h3>🇵🇭 Philippines</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Maria Santos</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>University of the Philippines</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Manila</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 385</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>2 sesiones, ciencias sociales</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Poland -->
-        <div id="poland" class="country-card card">
-          <h3>🇵🇱 Poland</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Anna Kowalski</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>University of Warsaw</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Warsaw</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 420</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>3 sesiones, economía y psicología</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Portugal -->
-        <div id="portugal" class="country-card card">
-          <h3>🇵🇹 Portugal</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. João Silva</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Universidade de Lisboa</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Lisbon</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 365</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>2 sesiones, gestión</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Qatar -->
-        <div id="qatar" class="country-card card">
-          <h3>🇶🇦 Qatar</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Abdullah Al-Thani</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Qatar University</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Doha</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 320</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>2 sesiones, business school</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Russia -->
-        <div id="russia" class="country-card card">
-          <h3>🇷🇺 Russia</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Prof. Dmitry Ivanov</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Moscow State University</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Moscow</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 460</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>3 sesiones, economía</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Saudi Arabia -->
-        <div id="saudi" class="country-card card">
-          <h3>🇸🇦 Saudi Arabia</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Mohammed Al-Rashid</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>King Saud University</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Riyadh</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 355</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>2 sesiones, business students</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Singapore -->
-        <div id="singapore" class="country-card card">
-          <h3>🇸🇬 Singapore</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Sarah Tan</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>National University of Singapore</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Singapore</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 430</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>3 sesiones, economía</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Turkey -->
-        <div id="turkey" class="country-card card">
-          <h3>🇹🇷 Turkey</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Ayşe Yılmaz</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Boğaziçi University</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Istanbul</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 445</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>3 sesiones, economía y gestión</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Taiwan -->
-        <div id="taiwan" class="country-card card">
-          <h3>🇹🇼 Taiwan</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Prof. Chen Wei</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>National Taiwan University</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Taipei</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 455</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>3 sesiones, business school</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Uruguay -->
-        <div id="uruguay" class="country-card card">
-          <h3>🇺🇾 Uruguay</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Dr. Sofía Fernández</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Universidad de la República</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Montevideo</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 335</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>2 sesiones, economía</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- United States -->
-        <div id="usa" class="country-card card">
-          <h3>🇺🇸 United States</h3>
-          <div class="country-info">
-            <div class="info-row">
-              <strong data-i18n="countryDetails.team">Equipo:</strong>
-              <span>Prof. Robert Johnson, Dr. Jennifer Smith</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.institution">Institución:</strong>
-              <span>Harvard University</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.city">Ciudad:</strong>
-              <span>Cambridge, MA</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.sample">Muestra:</strong>
-              <span>N = 505</span>
-            </div>
-            <div class="info-row">
-              <strong data-i18n="countryDetails.observations">Observaciones:</strong>
-              <span>4 sesiones, undergraduate students</span>
-            </div>
-          </div>
+      <div id="countries-grid" class="grid cols-3" style="margin-top:24px">
+        <!-- Countries will be loaded dynamically from country-data.json -->
+        <div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #64748b;">
+          <div style="font-size: 16px; margin-bottom: 8px;">Loading countries...</div>
+          <div style="font-size: 13px; color: #475569;">Please wait while we load the country data</div>
         </div>
       </div>
-    </div>
   </section>
 </main>
+
+<footer style="padding:40px 0; color:#94a3b8; border-top:1px solid #1f2937; margin-top:40px;">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+      <div>
+        <span style="font-size:12px; color:#64748b;">DICE Project - Country Teams</span>
+      </div>
+      <div style="text-align:right;">
+        <span style="font-size:12px; color:#D49D39; font-weight:600;">Version: <span id="data-version">2025.11.11.v22</span></span>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <script>
   // Translations
@@ -1046,10 +170,44 @@
     }
   };
 
+  // Theme switcher
+  let currentTheme = localStorage.getItem('theme') || 'auto';
+
+  function applyTheme(theme) {
+    currentTheme = theme;
+    localStorage.setItem('theme', theme);
+
+    if (theme === 'auto') {
+      // Follow system preference
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+
+    // Update active theme button
+    document.querySelectorAll('[data-theme-opt]').forEach(opt => {
+      opt.classList.toggle('active', opt.getAttribute('data-theme-opt') === theme);
+    });
+  }
+
+  // Listen for system theme changes when in auto mode
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (currentTheme === 'auto') {
+      document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+    }
+  });
+
   // Language switcher
   let currentLang = localStorage.getItem('lang') || 'es';
 
   function setLanguage(lang) {
+    // Validate language exists in translations
+    if (!translations[lang]) {
+      console.warn(`Language '${lang}' not found, defaulting to 'es'`);
+      lang = 'es';
+    }
+
     currentLang = lang;
     localStorage.setItem('lang', lang);
     document.documentElement.setAttribute('lang', lang);
@@ -1059,22 +217,36 @@
       const key = el.getAttribute('data-i18n');
       const keys = key.split('.');
       let value = translations[lang];
-      keys.forEach(k => value = value[k]);
+      keys.forEach(k => {
+        if (value && typeof value === 'object') {
+          value = value[k];
+        }
+      });
       if (value) el.innerHTML = value;
     });
 
     // Update active language button
-    document.querySelectorAll('.lang-option').forEach(opt => {
+    document.querySelectorAll('[data-lang]').forEach(opt => {
       opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
     });
   }
 
-  // Initialize language on page load
+  // Initialize language and theme on page load
   document.addEventListener('DOMContentLoaded', () => {
+    // Apply theme first (before rendering)
+    applyTheme(currentTheme);
+
+    // Theme toggle click handler
+    document.querySelectorAll('[data-theme-opt]').forEach(opt => {
+      opt.addEventListener('click', () => {
+        applyTheme(opt.getAttribute('data-theme-opt'));
+      });
+    });
+
     setLanguage(currentLang);
 
     // Language toggle click handler
-    document.querySelectorAll('.lang-option').forEach(opt => {
+    document.querySelectorAll('[data-lang]').forEach(opt => {
       opt.addEventListener('click', () => {
         setLanguage(opt.getAttribute('data-lang'));
       });
@@ -1090,6 +262,94 @@
         }, 100);
       }
     }
+
+    // Load country data from JSON
+    fetch('country-data.json')
+      .then(response => response.json())
+      .then(data => {
+        const countryData = data.countryData;
+        const grid = document.getElementById('countries-grid');
+
+        if (!grid) return;
+
+        // Clear loading message
+        grid.innerHTML = '';
+
+        // Sort countries alphabetically by name
+        const sortedCountries = Object.entries(countryData).sort((a, b) =>
+          a[1].name.localeCompare(b[1].name)
+        );
+
+        // Generate country cards
+        sortedCountries.forEach(([iso3, country]) => {
+          const card = document.createElement('div');
+          card.id = country.anchor;
+          card.className = 'country-card card';
+
+          // Create card content
+          card.innerHTML = `
+            <h3>${country.flag} ${country.name}</h3>
+            <div class="country-info">
+              <div class="info-row">
+                <strong data-i18n="countryDetails.team">Team:</strong>
+                <span>${country.team}</span>
+              </div>
+              <div class="info-row">
+                <strong data-i18n="countryDetails.institution">Institution:</strong>
+                <span>${country.institution}</span>
+              </div>
+              <div class="info-row">
+                <strong data-i18n="countryDetails.sample">Sample:</strong>
+                <span>${country.sample}</span>
+              </div>
+            </div>
+          `;
+
+          grid.appendChild(card);
+        });
+
+        // Re-apply translations to the newly created elements
+        setLanguage(currentLang);
+
+        // Scroll to hash if exists (after cards are loaded) AND apply highlight animation
+        if (hash) {
+          const element = document.querySelector(hash);
+          if (element) {
+            setTimeout(() => {
+              element.scrollIntoView({ behavior: 'smooth' });
+
+              // Apply highlight effect
+              element.style.background = 'linear-gradient(135deg, rgba(96,165,250,0.3) 0%, rgba(96,165,250,0.15) 100%)';
+              element.style.border = '3px solid #60a5fa';
+              element.style.boxShadow = '0 0 0 6px rgba(96,165,250,0.5), 0 16px 40px rgba(96,165,250,0.4)';
+              element.style.transform = 'scale(1.05)';
+              element.style.transition = 'all 0.3s ease';
+
+              // Remove highlight after 2 seconds
+              setTimeout(() => {
+                element.style.background = '';
+                element.style.border = '';
+                element.style.boxShadow = '';
+                element.style.transform = '';
+              }, 2000);
+            }, 200);
+          }
+        }
+
+        console.log(`Loaded ${sortedCountries.length} countries successfully`);
+      })
+      .catch(error => {
+        console.error('Error loading country data:', error);
+        const grid = document.getElementById('countries-grid');
+        if (grid) {
+          grid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #dc2626;">
+              <div style="font-size: 16px; margin-bottom: 8px;">Error loading country data</div>
+              <div style="font-size: 13px; color: #ef4444;">Please ensure country-data.json exists and you are running a local server.</div>
+            </div>
+          `;
+        }
+      });
   });
 
   // Handle hash changes (if user navigates between countries while on page)
