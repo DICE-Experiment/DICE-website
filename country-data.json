@@ -1,8 +1,6 @@
 {
   "participatingCountryCodes": [
-    "ARE",
     "ARG",
-    "AUS",
     "AUT",
     "CHL",
     "CHN",
@@ -24,6 +22,7 @@
     "KOR",
     "MDG",
     "PAK",
+    "PER",
     "PHL",
     "POL",
     "PRT",
@@ -48,7 +47,7 @@
       "anchor": "czechia",
       "flag": "🇨🇿",
       "name": "Czech Republic",
-      "team": "Rostislav Stanek, Ondřej Krčál",
+      "team": "Rostislav Stanek, Ondřej Krčál, Jaromir Kovarik",
       "institution": "Masaryk University",
       "sample": "N = 390"
     },
@@ -65,7 +64,7 @@
       "flag": "🇭🇳",
       "name": "Honduras",
       "team": "Michela Accerenzi, Diego Jorrat",
-      "institution": "Fundación ETEA",
+      "institution": "Universidad Autonoma de Honduras",
       "sample": "N = 350"
     },
     "CIV": {
@@ -73,7 +72,7 @@
       "flag": "🇨🇮",
       "name": "Côte d'Ivoire",
       "team": "María Ángeles Alaminos, Koutou N'Guessan Claude",
-      "institution": "Loyola University",
+      "institution": "Université Félix Houphouët-Boigny",
       "sample": "N = 340"
     },
     "MDG": {
@@ -96,7 +95,7 @@
       "anchor": "greece",
       "flag": "🇬🇷",
       "name": "Greece",
-      "team": "Antonios Proestakis, Angel Sánchez",
+      "team": "Antonios Proestakis, Angel Sánchez, Georgios Stamatopoulos",
       "institution": "Technical University of Crete",
       "sample": "N = 360"
     },
@@ -104,7 +103,7 @@
       "anchor": "argentina",
       "flag": "🇦🇷",
       "name": "Argentina",
-      "team": "Andrés Gago, Joaquín Navajas",
+      "team": "Andrés Gago, Joaquín Navajas, Adam Rangel",
       "institution": "Universidad Torcuato Di Tella",
       "sample": "N = 450"
     },
@@ -128,7 +127,7 @@
       "anchor": "kazakhstan",
       "flag": "🇰🇿",
       "name": "Kazakhstan",
-      "team": "Alexis Belianin, Jaromir Kovarik",
+      "team": "Alexis Belianin",
       "institution": "ICEF NRU HSE and IMEMO RAS",
       "sample": "N = 330"
     },
@@ -252,19 +251,11 @@
       "institution": "Seoul National University",
       "sample": "N = 485"
     },
-    "ARE": {
-      "anchor": "uae",
-      "flag": "🇦🇪",
-      "name": "United Arab Emirates",
-      "team": "Georgia Michailidou, Sophia Jeong",
-      "institution": "NYU Abu Dhabi",
-      "sample": "N = 340"
-    },
     "USA": {
       "anchor": "usa",
       "flag": "🇺🇸",
       "name": "United States",
-      "team": "Diego Aycinena, Adam Rangel",
+      "team": "Diego Aycinena, Abhijit Ramalingam",
       "institution": "University of Pennsylvania",
       "sample": "N = 505"
     },
@@ -292,6 +283,14 @@
       "institution": "Jiangsu University",
       "sample": "N = 410"
     },
+    "PER": {
+      "anchor": "peru",
+      "flag": "🇵🇪",
+      "name": "Peru",
+      "team": "Ricardo Huaman Aguilar, Francisco Bruno Galarza Arellano",
+      "institution": "Pontificia Universidad Católica del Perú and Universidad del Pacífico",
+      "sample": "N = 400"
+    },
     "EGY": {
       "anchor": "egypt",
       "flag": "🇪🇬",
@@ -299,14 +298,6 @@
       "team": "Dina Rabie, Rania Miniesy",
       "institution": "Northeastern University - London",
       "sample": "N = 370"
-    },
-    "AUS": {
-      "anchor": "australia",
-      "flag": "🇦🇺",
-      "name": "Australia",
-      "team": "Lionel Page",
-      "institution": "University of Queensland",
-      "sample": "N = 450"
     }
   }
 }
