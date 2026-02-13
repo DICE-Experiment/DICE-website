@@ -275,7 +275,7 @@
   <section id="paises">
     <div class="container">
       <h2><span id="section-country-count">33</span> <span data-i18n="countries.titleSuffix">Países participantes</span></h2>
-      <p class="sub" data-i18n="countries.subtitle">Red global de investigación con representación en 5 continentes.</p>
+      <p class="sub" data-i18n="countries.subtitle">Red global de investigación con representación en 4 continentes.</p>
       <div class="card" style="margin-top:20px; background:var(--surface); padding:30px">
         <div id="map"></div>
         <div class="map-legend">
@@ -310,9 +310,7 @@
           <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#cuestionario" data-i18n="implementation.link1">Vista previa del cuestionario</a></div></div>
           <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#cuestionario" data-i18n="implementation.link2">Registro de pre‑análisis</a></div></div>
           <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#proyectos" data-i18n="implementation.link3">Listado de proyectos</a></div></div>
-          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#" data-i18n="implementation.link4">Paquete de replicación (placeholder)</a></div></div>
         </div>
-        <p class="small" style="margin-top:8px" data-i18n="implementation.note">Sustituye los <em>placeholders</em> por enlaces a OSF/AEA/Dataverse/GitHub.</p>
       </aside>
     </div>
   </section>
@@ -321,30 +319,24 @@
   <section id="colaboradores">
     <div class="container">
       <h2 data-i18n="collaborators.title">Colaboradores</h2>
-      <p class="sub" data-i18n="collaborators.subtitle">Red global de investigadores/as, docentes y asistentes. Añade logotipos, nombres, roles e instituciones.</p>
+      <p class="sub" data-i18n="collaborators.subtitle">Red global de investigadores</p>
       <div class="grid cols-4" style="margin-top:16px">
         <div class="card">
           <h3 data-i18n="collaborators.card1.title">Coordinación</h3>
-          <p data-i18n="collaborators.card1.text">Investigador principal: <strong><a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:inherit; text-decoration:none">Filippos Exadaktylos</a></strong> (ejemplo)</p>
-          <p class="small" data-i18n="collaborators.card1.note">Añade co‑IPs, gestión de proyecto y contactos.</p>
+          <p data-i18n="collaborators.card1.text">Investigador principal: <a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:inherit; text-decoration:none">Filippos Exadaktylos</a> (Universidad de Barcelona)<br><br>Co-IPs: Pablo Brañas Garza (Loyola University), Antonio Alfonso (Universidad de Sevilla), Adriana Gaviria (Loyola University)</p>
         </div>
         <a href="countries.html" class="card card-link">
           <h3 data-i18n="collaborators.card2.title">Equipos por país</h3>
-          <p data-i18n="collaborators.card2.text">Una tarjeta por país con institución, PI(s), ciudad, nivel educativo y tamaño muestral.</p>
+          <p data-i18n="collaborators.card2.text">Ver todos los colaboradores por país</p>
           <p class="small" style="margin-top:12px; color:var(--brand)" data-i18n="collaborators.card2.viewall">→ Ver todos los 33 países</p>
         </a>
         <div class="card">
-          <h3 data-i18n="collaborators.card3.title">Métodos & QA</h3>
-          <p data-i18n="collaborators.card3.text">Autores del protocolo, arquitectura de encuesta y equipo de auditoría de datos.</p>
-          <span class="tag" data-i18n="collaborators.card3.tag1">Protocolo</span>
-          <span class="tag" data-i18n="collaborators.card3.tag2">Encuesta</span>
-          <span class="tag" data-i18n="collaborators.card3.tag3">Auditoría</span>
+          <h3 data-i18n="collaborators.card3.title">LAB2</h3>
+          <p data-i18n="collaborators.card3.text">Data quality control.</p>
         </div>
         <div class="card">
-          <h3 data-i18n="collaborators.card4.title">Socios & financiadores</h3>
-          <p data-i18n="collaborators.card4.text">Incluye números de beca, patrocinadores y alianzas institucionales.</p>
-          <span class="tag">Grant #</span>
-          <span class="tag">Partner</span>
+          <h3 data-i18n="collaborators.card4.title">Grant and funders</h3>
+          <p data-i18n="collaborators.card4.text">click to view Funders by country</p>
         </div>
       </div>
     </div>
@@ -407,13 +399,14 @@
 
   <!-- CUESTIONARIO -->
   <section id="cuestionario">
-    <div class="container two-col equal">s
+    <div class="container two-col equal">
       <aside id="questionaries-box" class="card">
         <h3 data-i18n="questionnaire.docsTitle">Individual questionnaires</h3>
         <p class="small" style="margin-bottom:12px">
           <a id="download-all-questionnaires" class="btn" href="#" rel="noopener" data-i18n="questionnaire.btn2">Download all Questionnaires</a>
         </p>
         <div style="max-height: 400px; overflow-y: auto; margin: 16px 0; padding-right: 8px;">
+          <a href="data/countries/uk/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇬🇧 United Kingdom</a>
           <a href="data/countries/argentina/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇦🇷 Argentina</a>
           <a href="data/countries/austria/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇦🇹 Austria</a>
           <a href="data/countries/chile/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇨🇱 Chile</a>
@@ -426,7 +419,6 @@
           <a href="data/countries/egypt/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇪🇬 Egypt</a>
           <a href="data/countries/spain/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇪🇸 Spain</a>
           <a href="data/countries/france/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇫🇷 France</a>
-          <a href="data/countries/uk/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇬🇧 United Kingdom</a>
           <a href="data/countries/greece/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇬🇷 Greece</a>
           <a href="data/countries/hongkong/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇭🇰 Hong Kong</a>
           <a href="data/countries/hungary/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇭🇺 Hungary</a>
@@ -469,20 +461,20 @@
   <section id="fotos">
     <div class="container">
       <h2 data-i18n="photos.title">Fotos</h2>
-      <p class="sub" data-i18n="photos.subtitle">Sustituye con imágenes de aulas, talleres y equipos. (Marcadores de Picsum).</p>
+      <p class="sub" data-i18n="photos.subtitle">Classroom sessions from around the world.</p>
       <div class="gallery" style="margin-top:12px">
-        <img src="https://picsum.photos/id/1011/600/400" alt="Aula universitaria 1" loading="lazy" decoding="async" />
-        <img src="https://picsum.photos/id/1025/600/400" alt="Actividad en clase 2" loading="lazy" decoding="async" />
-        <img src="https://picsum.photos/id/1035/600/400" alt="Vista de campus 3" loading="lazy" decoding="async" />
-        <img src="https://picsum.photos/id/1044/600/400" alt="Estudiantes 4" loading="lazy" decoding="async" />
-        <img src="https://picsum.photos/id/1050/600/400" alt="Taller 5" loading="lazy" decoding="async" />
-        <img src="https://picsum.photos/id/1062/600/400" alt="Seminario 6" loading="lazy" decoding="async" />
-        <img src="https://picsum.photos/id/1074/600/400" alt="Equipo de investigación 7" loading="lazy" decoding="async" />
-        <img src="https://picsum.photos/id/1084/600/400" alt="Encuentro 8" loading="lazy" decoding="async" />
-        <img src="https://picsum.photos/id/1080/600/400" alt="Participantes 9" loading="lazy" decoding="async" />
-        <img src="https://picsum.photos/id/1015/600/400" alt="Aula universitaria 10" loading="lazy" decoding="async" />
-        <img src="https://picsum.photos/id/1016/600/400" alt="Aula universitaria 11" loading="lazy" decoding="async" />
-        <img src="https://picsum.photos/id/1019/600/400" alt="Aula universitaria 12" loading="lazy" decoding="async" />
+        <img src="Classroom fotos/Session Argentina.jpeg" alt="Session Argentina" loading="lazy" decoding="async" />
+        <img src="Classroom fotos/Session_Turkey.jpg" alt="Session Turkey" loading="lazy" decoding="async" />
+        <img src="Classroom fotos/Singapoure.jpeg" alt="Session Singapore" loading="lazy" decoding="async" />
+        <img src="Classroom fotos/Spain1.jpg" alt="Session Spain" loading="lazy" decoding="async" />
+        <img src="Classroom fotos/colombia1.jpg" alt="Session Colombia" loading="lazy" decoding="async" />
+        <img src="Classroom fotos/session_France_1.jpg" alt="Session France" loading="lazy" decoding="async" />
+        <img src="Classroom fotos/session_Hungary_1.jpg" alt="Session Hungary" loading="lazy" decoding="async" />
+        <img src="Classroom fotos/session_Russia_11.jpeg" alt="Session Russia" loading="lazy" decoding="async" />
+        <img src="Classroom fotos/session_Taiwan.jpg" alt="Session Taiwan" loading="lazy" decoding="async" />
+        <img src="Classroom fotos/session_USA_02.jpeg" alt="Session USA" loading="lazy" decoding="async" />
+        <img src="Classroom fotos/Uy_1.jpg" alt="Session Uruguay" loading="lazy" decoding="async" />
+        <img src="Classroom fotos/Hoduras1.JPG" alt="Session Honduras" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>
@@ -493,11 +485,11 @@
   <div class="container">
     <div class="grid cols-3">
       <div>
-        <strong>DICE</strong><br/><span class="small" data-i18n="footer.tagline">Normas & honestidad en 33 países</span>
+        <strong>DICE</strong><br/><span class="small" data-i18n="footer.tagline">Dialogues on Integrity, Culture, and Ethics.</span>
       </div>
       <div>
         <span class="small" data-i18n="footer.contact">Contacto</span><br/>
-        <a href="mailto:dice-experiment@example.org" class="small">dice‑experiment@example.org</a>
+        <a href="mailto:ph.exadaktylos@gmail.com" class="small">ph.exadaktylos@gmail.com</a>
       </div>
       <div>
         <span class="small" data-i18n="footer.status">Estado del sitio</span><br/>
@@ -538,7 +530,7 @@
       countries: {
         title: '33 Participating Countries',
         titleSuffix: 'Participating Countries',
-        subtitle: 'Global research network with representation across 5 continents.',
+        subtitle: 'Global research network with representation across 4 continents.',
         ARG: 'Argentina', AUT: 'Austria', CHL: 'Chile', CHN: 'China', CIV: 'Côte d\'Ivoire',
         COD: 'D.R. Congo', COL: 'Colombia', CZE: 'Czech Republic', DEU: 'Germany', EGY: 'Egypt',
         ESP: 'Spain', FRA: 'France', GBR: 'United Kingdom', GRC: 'Greece', HKG: 'Hong Kong',
@@ -568,38 +560,32 @@
         quickLinks: 'Quick Links',
         link1: 'Questionnaire preview',
         link2: 'Pre-analysis registry',
-        link3: 'Project list',
-        link4: 'Replication package (placeholder)',
-        note: 'Replace <em>placeholders</em> with links to OSF/AEA/Dataverse/GitHub.'
+        link3: 'Project list'
       },
       collaborators: {
         title: 'Collaborators',
-        subtitle: 'Global network of researchers, instructors, and assistants. Add logos, names, roles, and institutions.',
+        subtitle: 'Global network of researchers',
         card1: {
           title: 'Coordination',
-          text: 'Principal investigator: <strong><a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:inherit; text-decoration:none">Filippos Exadaktylos</a></strong> (example)',
-          note: 'Add co-PIs, project management, and contacts.'
+          text: 'Principal investigator: <a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:inherit; text-decoration:none">Filippos Exadaktylos</a> (University of Barcelona)<br><br>Co-PIs: Pablo Brañas Garza (Loyola University), Antonio Alfonso (University of Sevilla), Adriana Gaviria (Loyola University)'
         },
         card2: {
           title: 'Country teams',
-          text: 'One card per country with institution, PI(s), city, educational level, and sample size.',
+          text: 'View all collaborators per country',
           viewall: '→ View all 33 countries'
         },
         card3: {
-          title: 'Methods & QA',
-          text: 'Protocol authors, survey architecture, and data audit team.',
-          tag1: 'Protocol',
-          tag2: 'Survey',
-          tag3: 'Audit'
+          title: 'LAB2',
+          text: 'Data quality control.<br><br>Scientific responsible: Levent Neyse<br>Data & Web manager: Christian Kremer'
         },
         card4: {
-          title: 'Partners & funders',
-          text: 'Include grant numbers, sponsors, and institutional partnerships.'
+          title: 'Grant and funders',
+          text: 'click to view Funders by country'
         }
       },
       projects: {
         title: 'Projects (14)',
-        subtitle: 'Each project leverages a different part of the shared dataset. Below are brief summaries and key links.',
+        subtitle: 'Each project leverages a different part of the shared dataset.',
         p1: { title: '1. Social norms & reporting', desc: 'Relationship between perceived norms/meta-beliefs and behavior in the dice task.' },
         p2: { title: '2. Civic capital & trust', desc: 'Civic behaviors, institutional trust, and honesty across cultures.' },
         p3: { title: '3. Compliance & policy', desc: 'Rule acceptance and compliance correlates.' },
@@ -656,7 +642,7 @@
       },
       photos: {
         title: 'Photos',
-        subtitle: 'Replace with images of classrooms, workshops, and teams. (Picsum placeholders).'
+        subtitle: 'Classroom sessions from around the world.'
       },
       questionnaire: {
         title: 'Questionnaire (preview)',
@@ -677,7 +663,7 @@
         btnAll: 'Download all preregistrations'
       },
       footer: {
-        tagline: 'Norms & honesty in 33 countries',
+        tagline: 'Dialogues on Integrity, Culture, and Ethics.',
         contact: 'Contact',
         status: 'Site status',
         updated: 'Last updated:'
@@ -710,7 +696,7 @@
       countries: {
         title: '33 Países participantes',
         titleSuffix: 'Países participantes',
-        subtitle: 'Red global de investigación con representación en 5 continentes.',
+        subtitle: 'Red global de investigación con representación en 4 continentes.',
         ARG: 'Argentina', AUT: 'Austria', CHL: 'Chile', CHN: 'China', CIV: 'Côte d\'Ivoire',
         COD: 'R.D. del Congo', COL: 'Colombia', CZE: 'República Checa', DEU: 'Alemania', EGY: 'Egipto',
         ESP: 'España', FRA: 'Francia', GBR: 'Reino Unido', GRC: 'Grecia', HKG: 'Hong Kong',
@@ -740,38 +726,32 @@
         quickLinks: 'Accesos rápidos',
         link1: 'Vista previa del cuestionario',
         link2: 'Registro de pre‑análisis',
-        link3: 'Listado de proyectos',
-        link4: 'Paquete de replicación (placeholder)',
-        note: 'Sustituye los <em>placeholders</em> por enlaces a OSF/AEA/Dataverse/GitHub.'
+        link3: 'Listado de proyectos'
       },
       collaborators: {
         title: 'Colaboradores',
-        subtitle: 'Red global de investigadores/as, docentes y asistentes. Añade logotipos, nombres, roles e instituciones.',
+        subtitle: 'Red global de investigadores',
         card1: {
           title: 'Coordinación',
-          text: 'Investigador principal: <strong><a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:inherit; text-decoration:none">Filippos Exadaktylos</a></strong> (ejemplo)',
-          note: 'Añade co‑IPs, gestión de proyecto y contactos.'
+          text: 'Investigador principal: <a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:inherit; text-decoration:none">Filippos Exadaktylos</a> (Universidad de Barcelona)<br><br>Co-IPs: Pablo Brañas Garza (Loyola University), Antonio Alfonso (Universidad de Sevilla), Adriana Gaviria (Loyola University)'
         },
         card2: {
           title: 'Equipos por país',
-          text: 'Una tarjeta por país con institución, PI(s), ciudad, nivel educativo y tamaño muestral.',
+          text: 'Ver todos los colaboradores por país',
           viewall: '→ Ver todos los 33 países'
         },
         card3: {
-          title: 'Métodos & QA',
-          text: 'Autores del protocolo, arquitectura de encuesta y equipo de auditoría de datos.',
-          tag1: 'Protocolo',
-          tag2: 'Encuesta',
-          tag3: 'Auditoría'
+          title: 'LAB2',
+          text: 'Control de calidad de datos.<br><br>Responsable científico: Levent Neyse<br>Gestor de datos & web: Christian Kremer'
         },
         card4: {
-          title: 'Socios & financiadores',
-          text: 'Incluye números de beca, patrocinadores y alianzas institucionales.'
+          title: 'Grant and funders',
+          text: 'haz clic para ver financiadores por país'
         }
       },
       projects: {
         title: 'Proyectos (14)',
-        subtitle: 'Cada proyecto aprovecha una parte distinta del dataset común. A continuación, resúmenes breves y enlaces clave.',
+        subtitle: 'Cada proyecto aprovecha una parte distinta del dataset común.',
         p1: { title: '1. Normas sociales & reporte', desc: 'Relación entre normas percibidas/metacreencias y conducta en la tarea del dado.' },
         p2: { title: '2. Capital cívico & confianza', desc: 'Conductas cívicas, confianza institucional y honestidad entre culturas.' },
         p3: { title: '3. Cumplimiento & política', desc: 'Aceptación de reglas y correlatos de cumplimiento.' },
@@ -828,7 +808,7 @@
       },
       photos: {
         title: 'Fotos',
-        subtitle: 'Sustituye con imágenes de aulas, talleres y equipos. (Marcadores de Picsum).'
+        subtitle: 'Sesiones en aula desde todo el mundo.'
       },
       questionnaire: {
         title: 'Cuestionario (vista previa)',
@@ -849,7 +829,7 @@
         btnAll: 'Descargar todos los pre‑registros'
       },
       footer: {
-        tagline: 'Normas & honestidad en 33 países',
+        tagline: 'Dialogues on Integrity, Culture, and Ethics.',
         contact: 'Contacto',
         status: 'Estado del sitio',
         updated: 'Última actualización:'
@@ -1475,16 +1455,20 @@
 <script>
   // Load and display projects from JSON file
   document.addEventListener('DOMContentLoaded', () => {
-    fetch('projects-data.json')
+    fetch('projects-data.json?v=' + Date.now())
       .then(response => response.json())
       .then(data => {
         const projectCount = data.projectCount;
         const projects = data.projects;
 
-        // Update project count
+        // Sort projects by ID to ensure project 0 appears first
+        const sortedProjects = projects.sort((a, b) => a.id - b.id);
+        console.log('Projects to display:', sortedProjects.map(p => `${p.id}: ${p.title}`));
+
+        // Hard-code project count to 14
         const countEl = document.getElementById('project-count');
         if (countEl) {
-          countEl.textContent = projectCount;
+          countEl.textContent = 14;
         }
 
         // Get projects grid container
@@ -1494,17 +1478,15 @@
         // Clear loading message
         grid.innerHTML = '';
 
-        // Generate project cards
-        projects.forEach(project => {
+        // Generate project cards (show all projects)
+        sortedProjects.forEach(project => {
+
           const card = document.createElement('div');
           card.className = 'proj';
 
-          // Create title with status badge
+          // Create title (no status badge)
           const titleEl = document.createElement('h4');
-          const statusBadge = project.status === 'CLOSED'
-            ? '<span style="display:inline-block; margin-right:6px; padding:2px 6px; background:#dc2626; color:white; border-radius:4px; font-size:9px; font-weight:600; vertical-align:middle;">CLOSED</span>'
-            : '';
-          titleEl.innerHTML = `${project.id}. ${statusBadge}${project.title}`;
+          titleEl.innerHTML = `${project.id}. ${project.title}`;
           card.appendChild(titleEl);
 
           // Create authors list
@@ -1529,7 +1511,7 @@
           grid.appendChild(card);
         });
 
-        console.log(`Loaded ${projectCount} projects successfully`);
+        console.log(`Loaded ${sortedProjects.length} projects`);
       })
       .catch(error => {
         console.error('Error loading projects:', error);

@@ -1,6 +1,17 @@
 {
-  "projectCount": 12,
+  "projectCount": 14,
   "projects": [
+    {
+      "id": 0,
+      "title": "Social norms and honest behavior across countries",
+      "status": "ACTIVE",
+      "firstAuthor": "All collaborators",
+      "coauthors": [],
+      "allAuthors": [
+        "All collaborators"
+      ],
+      "authorCount": 1
+    },
     {
       "id": 1,
       "title": "Social Preferences using Mini Dictator Games across the countries",
