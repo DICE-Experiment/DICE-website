@@ -87,35 +87,59 @@
     {
       "id": 4,
       "title": "Cultural Influences on Moral Decision Making in the Trolley Dilemma",
-      "status": "CLOSED",
-      "firstAuthor": "Pablo Brañas",
+      "status": "ACTIVE",
+      "firstAuthor": "Ginevra DelMastio",
       "coauthors": [
         "Adriana Gaviria",
         "Fernando Aguiar",
-        "Isabelle Brocas",
-        "Juan D. Carrillo",
         "Filippos Exadaktylos",
-        "Brit Grosskopf",
-        "Iñigo Iturbe",
+        "Tamas Keller",
         "Helia Marreiros",
+        "Fatih Senyurd",
+        "Iñigo Iturbe",
         "Malalatiana Rajaomason"
       ],
       "allAuthors": [
-        "Pablo Brañas",
+        "Ginevra DelMastio",
         "Adriana Gaviria",
         "Fernando Aguiar",
-        "Isabelle Brocas",
-        "Juan D. Carrillo",
         "Filippos Exadaktylos",
-        "Brit Grosskopf",
-        "Iñigo Iturbe",
+        "Tamas Keller",
         "Helia Marreiros",
+        "Fatih Senyurd",
+        "Iñigo Iturbe",
         "Malalatiana Rajaomason"
       ],
-      "authorCount": 10
+      "authorCount": 9
     },
     {
       "id": 5,
+      "title": "Moral Judgment and Behavioral Alignment: Cross-Country Variations in the Trolley Problem",
+      "status": "ACTIVE",
+      "firstAuthor": "Pablo Brañas Garza",
+      "coauthors": [
+        "Isabelle Brocas",
+        "Juan Carrillo",
+        "Ginevra DelMastio",
+        "Adriana Gaviria",
+        "Brit Grosskopf",
+        "Malala Rajaomason",
+        "Filippos Exadaktylos"
+      ],
+      "allAuthors": [
+        "Pablo Brañas Garza",
+        "Isabelle Brocas",
+        "Juan Carrillo",
+        "Ginevra DelMastio",
+        "Adriana Gaviria",
+        "Brit Grosskopf",
+        "Malala Rajaomason",
+        "Filippos Exadaktylos"
+      ],
+      "authorCount": 8
+    },
+    {
+      "id": 6,
       "title": "The Environmental Belief Paradox Across Countries",
       "status": "ACTIVE",
       "firstAuthor": "Juana Castro",
@@ -137,7 +161,7 @@
       "authorCount": 6
     },
     {
-      "id": 6,
+      "id": 7,
       "title": "The relationship between happiness and pro-sociality across countries",
       "status": "ACTIVE",
       "firstAuthor": "Brit Grosskopf",
@@ -155,7 +179,7 @@
       "authorCount": 4
     },
     {
-      "id": 7,
+      "id": 8,
       "title": "Sample Biases in Cross Cultural Experimental Studies",
       "status": "ACTIVE",
       "firstAuthor": "Levent Neyse",
@@ -179,7 +203,7 @@
       "authorCount": 7
     },
     {
-      "id": 8,
+      "id": 9,
       "title": "Individual and Country-Level Determinants of Zero-Sum Thinking",
       "status": "ACTIVE",
       "firstAuthor": "Antonios Proestakis",
@@ -201,7 +225,7 @@
       "authorCount": 6
     },
     {
-      "id": 9,
+      "id": 10,
       "title": "Incentives, Cognitive Reflection, and Math Performance Across Countries",
       "status": "ACTIVE",
       "firstAuthor": "Antonio Alfonso",
@@ -221,7 +245,7 @@
       "authorCount": 5
     },
     {
-      "id": 10,
+      "id": 11,
       "title": "Gender Differences in Social Preferences, Morality, and Social Norms perceptions across Countries",
       "status": "CLOSED",
       "firstAuthor": "Tere García",
@@ -251,7 +275,7 @@
       "authorCount": 10
     },
     {
-      "id": 11,
+      "id": 12,
       "title": "Gender Differences in Social Preferences: The Mediating Role of Cognitive Reflection Across Cultures",
       "status": "CLOSED",
       "firstAuthor": "Antonio Espín",
@@ -281,7 +305,7 @@
       "authorCount": 10
     },
     {
-      "id": 12,
+      "id": 13,
       "title": "Environmental Preferences and Social Orientation",
       "status": "ACTIVE",
       "firstAuthor": "Andrés Gago",
