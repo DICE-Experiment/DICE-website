@@ -277,7 +277,7 @@
       La base de datos compartida respalda <strong>14 proyectos</strong>, permitiendo análisis jerárquicos robustos de efectos a nivel individual y nacional.
     </p>
     <div class="chips" aria-label="características">
-      <a href="#paises" class="chip"><span id="chip-country-count">33</span> países</a>
+      <a href="#paises" class="chip" data-i18n="hero.chip2"><span id="chip-country-count">33</span> countries</a>
       <a href="#proyectos" class="chip" data-i18n="hero.chip5">14 proyectos vinculados</a>
       <a href="#implementacion" class="chip" data-i18n="hero.chip3">Protocolo común</a>
       <a href="#datos" class="chip" data-i18n="hero.chip4">Materiales abiertos</a>
@@ -325,6 +325,7 @@
           <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#cuestionario" data-i18n="implementation.link1">Vista previa del cuestionario</a></div></div>
           <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#cuestionario" data-i18n="implementation.link2">Registro de pre‑análisis</a></div></div>
           <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="#proyectos" data-i18n="implementation.link3">Listado de proyectos</a></div></div>
+          <div class="item"><div class="bullet" aria-hidden="true"></div><div><a href="https://investigadoresloyola.eu.qualtrics.com/jfe/form/SV_b3mHBVkuioRMhng?Payoff=0?Q_Language=EN" target="_blank" rel="noopener" data-i18n="implementation.link4">Take the survey</a> <span class="small" style="color:var(--muted)" data-i18n="implementation.link4note">(use 'TEST' as password)</span></div></div>
         </div>
       </aside>
     </div>
@@ -338,7 +339,7 @@
       <div class="grid cols-4" style="margin-top:16px">
         <div class="card">
           <h3 data-i18n="collaborators.card1.title">Coordinación</h3>
-          <p data-i18n="collaborators.card1.text">Investigador principal: <a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:inherit; text-decoration:none">Filippos Exadaktylos</a> (Universidad de Barcelona)<br><br>Co-IPs: <a href="https://sites.google.com/site/pablobranasgarza/bienvenido" target="_blank" style="color:inherit; text-decoration:none">Pablo Brañas Garza</a> (Loyola University), <a href="https://www.antonioalfonso.org/" target="_blank" style="color:inherit; text-decoration:none">Antonio Alfonso</a> (Universidad de Sevilla), <a href="https://loyolabehlab.org/members/adriana-gaviria/" target="_blank" style="color:inherit; text-decoration:none">Adriana Gaviria</a> (Loyola University)</p>
+          <p data-i18n="collaborators.card1.text">Filippos Exadaktylos (University of Barcelona), Pablo Brañas, Adriana Gaviria (Loyola University) &amp; Antonio Alfonso (University of Sevilla)</p>
         </div>
         <a href="countries.html" class="card card-link">
           <h3 data-i18n="collaborators.card2.title">Equipos por país</h3>
@@ -380,14 +381,13 @@
       <div class="grid cols-2" style="margin-top:16px">
         <div class="card">
           <h3 data-i18n="data.card1.title">Datos de muestra</h3>
-          <p data-i18n="data.card1.desc">Dataset de ejemplo con 15 participantes de 5 países. Incluye resultados del dado, datos demográficos y puntuaciones de confianza.</p>
+          <p data-i18n="data.card1.desc">Dataset de muestra con 10 participantes de los 33 países. Incluye todas las variables.</p>
           <p class="small" style="margin-top:12px">
             <strong data-i18n="data.card1.format">Formato:</strong> CSV<br/>
-            <strong data-i18n="data.card1.size">Tamaño:</strong> ~1 KB<br/>
-            <strong data-i18n="data.card1.updated">Actualizado:</strong> 2024-03-25
+            <strong data-i18n="data.card1.size">Tamaño:</strong> 1.824 KB
           </p>
           <p style="margin-top:16px">
-            <a class="btn" href="data/general/sample-full-data.csv" download data-i18n="data.card1.btn">Descargar datos de muestra</a>
+            <a class="btn" href="Sample.csv" download data-i18n="data.card1.btn">Descargar datos de muestra</a>
           </p>
         </div>
         <div class="card">
@@ -401,7 +401,7 @@
             <li><code>age</code> — <span data-i18n="data.card2.var5">Edad</span></li>
             <li><code>trust_score</code> — <span data-i18n="data.card2.var6">Puntuación de confianza (1-10)</span></li>
           </ul>
-          <p style="margin-top:12px" data-i18n="data.card2.codebook">Para el conjunto completo de variables, descarga el <a href="Codebook.pdf" download style="color:#60a5fa; text-decoration:none">codebook aquí</a>.</p>
+          <p style="margin-top:12px" data-i18n="data.card2.codebook">Para el conjunto completo de variables, descarga el <a href="codebook.pdf" download style="color:#60a5fa; text-decoration:none">codebook aquí</a>.</p>
         </div>
       </div>
       <div class="card" style="margin-top:16px">
@@ -416,57 +416,18 @@
   <section id="cuestionario">
     <div class="container two-col equal">
       <aside id="questionaries-box" class="card">
-        <h3 data-i18n="questionnaire.docsTitle">Individual questionnaires</h3>
-        <p class="small" style="margin-bottom:12px">
-          <a id="download-all-questionnaires" class="btn" href="questionnaire.pdf" download rel="noopener" data-i18n="questionnaire.btn2">Download all Questionnaires</a>
-        </p>
-        <div style="max-height: 400px; overflow-y: auto; margin: 16px 0; padding-right: 8px;">
-          <a href="data/countries/uk/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇬🇧 United Kingdom</a>
-          <a href="data/countries/argentina/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇦🇷 Argentina</a>
-          <a href="data/countries/austria/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇦🇹 Austria</a>
-          <a href="data/countries/chile/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇨🇱 Chile</a>
-          <a href="data/countries/china/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇨🇳 China</a>
-          <a href="data/countries/cotedivoire/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇨🇮 Côte d'Ivoire</a>
-          <a href="data/countries/congo/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇨🇩 D.R. Congo</a>
-          <a href="data/countries/colombia/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇨🇴 Colombia</a>
-          <a href="data/countries/czechia/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇨🇿 Czech Republic</a>
-          <a href="data/countries/germany/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇩🇪 Germany</a>
-          <a href="data/countries/egypt/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇪🇬 Egypt</a>
-          <a href="data/countries/spain/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇪🇸 Spain</a>
-          <a href="data/countries/france/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇫🇷 France</a>
-          <a href="data/countries/greece/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇬🇷 Greece</a>
-          <a href="data/countries/hongkong/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇭🇰 Hong Kong</a>
-          <a href="data/countries/hungary/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇭🇺 Hungary</a>
-          <a href="data/countries/italy/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇮🇹 Italy</a>
-          <a href="data/countries/japan/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇯🇵 Japan</a>
-          <a href="data/countries/kazakhstan/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇰🇿 Kazakhstan</a>
-          <a href="data/countries/korea/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇰🇷 South Korea</a>
-          <a href="data/countries/madagascar/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇲🇬 Madagascar</a>
-          <a href="data/countries/pakistan/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇵🇰 Pakistan</a>
-          <a href="data/countries/peru/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇵🇪 Peru</a>
-          <a href="data/countries/philippines/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇵🇭 Philippines</a>
-          <a href="data/countries/poland/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇵🇱 Poland</a>
-          <a href="data/countries/portugal/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇵🇹 Portugal</a>
-          <a href="data/countries/qatar/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇶🇦 Qatar</a>
-          <a href="data/countries/russia/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇷🇺 Russia</a>
-          <a href="data/countries/saudi/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇸🇦 Saudi Arabia</a>
-          <a href="data/countries/singapore/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇸🇬 Singapore</a>
-          <a href="data/countries/turkey/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇹🇷 Turkey</a>
-          <a href="data/countries/taiwan/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇹🇼 Taiwan</a>
-          <a href="data/countries/uruguay/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇺🇾 Uruguay</a>
-          <a href="data/countries/usa/questionnaire.pdf" download class="btn secondary" style="display: block; margin-bottom: 8px; font-size: 13px; padding: 8px 12px;">🇺🇸 United States</a>
+        <h3 data-i18n="questionnaire.docsTitle">Experimental instructions</h3>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 12px;">
+          <a href="Experimental Instructions_English.pdf" download class="btn secondary" data-i18n="questionnaire.btnEnglish">English</a>
+          <a href="Experimental Instructions_All languages.pdf" download class="btn secondary" data-i18n="questionnaire.btnAllLangs">All languages</a>
+          <a href="Qualtrics.qsf" download class="btn secondary" data-i18n="questionnaire.btnQsf">Qualtrics Survey File (.qsf)</a>
         </div>
-        <p class="small" data-i18n="questionnaire.docsNote">Descarga cuestionarios por país.</p>
       </aside>
       <div id="prereg-box" class="card">
-        <h3 data-i18n="prereg.title">Pre‑registros</h3>
-        <p class="small" style="margin-bottom:12px">
-          <a id="download-all-prereg" class="btn" href="#" rel="noopener" data-i18n="prereg.btnAll">Download all preregistrations</a>
-        </p>
-        <div id="prereg-list" style="max-height: 400px; overflow-y: auto; margin: 16px 0; padding-right: 8px;">
-          <!-- Preregistration links will be loaded dynamically from projects-data.json -->
-          <div style="text-align: center; padding: 20px; color: var(--muted);">Loading preregistrations...</div>
-    </div>
+        <h3 data-i18n="prereg.title">Pre-analysis plan</h3>
+        <div style="margin-top: 12px;">
+          <a class="btn secondary" href="Pre-analysis registry.pdf" download rel="noopener" data-i18n="prereg.btnAll">Download pre-analysis plan</a>
+        </div>
       </div>
     </div>
   </section>
@@ -479,36 +440,8 @@
       <p class="sub" data-i18n="photos.subtitle">Classroom sessions from around the world.</p>
       <div class="gallery" style="margin-top:12px">
         <div class="photo-container">
-          <img src="Classroom fotos/Session Argentina.jpeg" alt="Session Argentina" loading="lazy" decoding="async" />
-          <div class="photo-label">Argentina</div>
-        </div>
-        <div class="photo-container">
-          <img src="Classroom fotos/Session_Turkey.jpg" alt="Session Turkey" loading="lazy" decoding="async" />
-          <div class="photo-label">Turkey</div>
-        </div>
-        <div class="photo-container">
-          <img src="Classroom fotos/Singapoure.jpeg" alt="Session Singapore" loading="lazy" decoding="async" />
-          <div class="photo-label">Singapore</div>
-        </div>
-        <div class="photo-container">
           <img src="Classroom fotos/Spain1.jpg" alt="Session Spain" loading="lazy" decoding="async" />
           <div class="photo-label">Spain</div>
-        </div>
-        <div class="photo-container">
-          <img src="Classroom fotos/colombia1.jpg" alt="Session Colombia" loading="lazy" decoding="async" />
-          <div class="photo-label">Colombia</div>
-        </div>
-        <div class="photo-container">
-          <img src="Classroom fotos/session_France_1.jpg" alt="Session France" loading="lazy" decoding="async" />
-          <div class="photo-label">France</div>
-        </div>
-        <div class="photo-container">
-          <img src="Classroom fotos/session_Hungary_1.jpg" alt="Session Hungary" loading="lazy" decoding="async" />
-          <div class="photo-label">Hungary</div>
-        </div>
-        <div class="photo-container">
-          <img src="Classroom fotos/session_Russia_11.jpeg" alt="Session Russia" loading="lazy" decoding="async" />
-          <div class="photo-label">Russia</div>
         </div>
         <div class="photo-container">
           <img src="Classroom fotos/session_Taiwan.jpg" alt="Session Taiwan" loading="lazy" decoding="async" />
@@ -519,20 +452,28 @@
           <div class="photo-label">USA</div>
         </div>
         <div class="photo-container">
-          <img src="Classroom fotos/Uy_1.jpg" alt="Session Uruguay" loading="lazy" decoding="async" />
+          <img src="Classroom fotos/session_France_1.jpg" alt="Session France" loading="lazy" decoding="async" />
+          <div class="photo-label">France</div>
+        </div>
+        <div class="photo-container">
+          <img src="Classroom fotos/Singapoure.jpeg" alt="Session Singapore" loading="lazy" decoding="async" />
+          <div class="photo-label">Singapore</div>
+        </div>
+        <div class="photo-container">
+          <img src="Classroom fotos/new photos/madagascar.JPG" alt="Session Madagascar" loading="lazy" decoding="async" />
+          <div class="photo-label">Madagascar</div>
+        </div>
+        <div class="photo-container">
+          <img src="Classroom fotos/new photos/Hungary.jpg" alt="Session Hungary" loading="lazy" decoding="async" />
+          <div class="photo-label">Hungary</div>
+        </div>
+        <div class="photo-container">
+          <img src="Classroom fotos/new photos/Uruguay.jpg" alt="Session Uruguay" loading="lazy" decoding="async" />
           <div class="photo-label">Uruguay</div>
         </div>
         <div class="photo-container">
-          <img src="Classroom fotos/Hoduras1.JPG" alt="Session Honduras" loading="lazy" decoding="async" />
-          <div class="photo-label">Honduras</div>
-        </div>
-        <div class="photo-container">
-          <img src="Classroom fotos/madagascar/004c6eb8-609e-4811-a86c-d73f311df6cc.JPG" alt="Session Madagascar" loading="lazy" decoding="async" />
-          <div class="photo-label">Madagascar</div>
-        </div>
-        <div class="photo-container">
-          <img src="Classroom fotos/madagascar/3543dfe4-c234-482b-ae61-669ac7a2ff58.JPG" alt="Session Madagascar" loading="lazy" decoding="async" />
-          <div class="photo-label">Madagascar</div>
+          <img src="Classroom fotos/new photos/Peru.jpg" alt="Session Peru" loading="lazy" decoding="async" />
+          <div class="photo-label">Peru</div>
         </div>
       </div>
     </div>
@@ -572,7 +513,7 @@
         data: 'Data',
         photos: 'Photos',
         questionnaire: 'Questionnaires',
-        prereg: 'Pre-registrations'
+        prereg: 'Pre-analysis plan'
       },
       hero: {
         title: 'DICE Project',
@@ -613,20 +554,22 @@
         title: 'Implementation Summary',
         item1: '<strong>Design:</strong> Incentivized interaction tasks using smartphone-based Qualtrics.',
         item2: '<strong>Treatments:</strong> Within-session randomization; participants were unaware.',
-        item3: '<strong>Sample:</strong> University students; ~320 per country; volunteer / pseudo-volunteer.',
+        item3: '<strong>Sample:</strong> University students; ~320 per country; volunteers/pseudovolunteers.',
         item4: '<strong>Key measures:</strong> honesty, social norms & preferences, empathy, math/CRT abilities, zero-sum thinking, happiness, environmental preferences',
         item5: '<strong>Quality:</strong> Pre-registration; centralized checks - collaboration with LAB², replication files and citation guide',
         quickLinks: 'Quick Links',
         link1: 'Questionnaire preview',
         link2: 'Pre-analysis registry',
-        link3: 'Project list'
+        link3: 'Project list',
+        link4: 'Take the survey',
+        link4note: "(use 'TEST' as password)"
       },
       collaborators: {
         title: 'Collaborators',
         subtitle: 'Global network of researchers',
         card1: {
           title: 'Coordination',
-          text: 'Principal investigator: <a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:inherit; text-decoration:none">Filippos Exadaktylos</a> (University of Barcelona)<br><br>Co-PIs: <a href="https://sites.google.com/site/pablobranasgarza/bienvenido" target="_blank" style="color:inherit; text-decoration:none">Pablo Brañas Garza</a> (Loyola University), <a href="https://www.antonioalfonso.org/" target="_blank" style="color:inherit; text-decoration:none">Antonio Alfonso</a> (University of Sevilla), <a href="https://loyolabehlab.org/members/adriana-gaviria/" target="_blank" style="color:inherit; text-decoration:none">Adriana Gaviria</a> (Loyola University)'
+          text: 'Filippos Exadaktylos (University of Barcelona), Pablo Brañas, Adriana Gaviria (Loyola University) &amp; Antonio Alfonso (University of Sevilla)'
         },
         card2: {
           title: 'Country teams',
@@ -676,10 +619,9 @@
         subtitle: 'Access our sample data from the DICE experiment. Full dataset available after publication.',
         card1: {
           title: 'Sample data',
-          desc: 'Sample dataset with 15 participants from 5 countries. Includes dice outcomes, demographics, and trust scores.',
+          desc: 'Sample dataset with 10 participants from all 33 countries. Includes all the variables.',
           format: 'Format:',
           size: 'Size:',
-          updated: 'Updated:',
           btn: 'Download sample data'
         },
         card2: {
@@ -691,7 +633,7 @@
           var4: 'Session date',
           var5: 'Age',
           var6: 'Trust score (1-10)',
-          codebook: 'For the full set of variables, please download the <a href="Codebook.pdf" download style="color:#60a5fa; text-decoration:none">codebook here</a>.'
+          codebook: 'For the full set of variables, please download the <a href="codebook.pdf" download style="color:#60a5fa; text-decoration:none">codebook here</a>.'
         },
         card3: {
           title: 'Full dataset access',
@@ -713,13 +655,14 @@
         item5: '<strong>Country</strong> — IRB, translations, timings',
         version: 'Recommended versioning: <code>DICE‑Q v1.2 (2025‑06‑10)</code>',
         btn1: 'Open Qualtrics (placeholder)',
-        btn2: 'Download all Questionnaires',
-        docsTitle: 'Individual questionnaires',
-        docsNote: 'Download questionnaires by country.'
+        docsTitle: 'Experimental instructions',
+        btnEnglish: 'English',
+        btnAllLangs: 'All languages',
+        btnQsf: 'Qualtrics Survey File (.qsf)'
       },
       prereg: {
-        title: 'Pre-registrations',
-        btnAll: 'Download all preregistrations'
+        title: 'Pre-analysis plan',
+        btnAll: 'Download pre-analysis plan'
       },
       footer: {
         tagline: 'Dialogues on Integrity, Culture, and Ethics.',
@@ -738,7 +681,7 @@
         data: 'Datos',
         photos: 'Fotos',
         questionnaire: 'Cuestionarios',
-        prereg: 'Pre‑registros'
+        prereg: 'Plan de pre-análisis'
       },
       hero: {
         title: 'Proyecto DICE',
@@ -785,14 +728,16 @@
         quickLinks: 'Accesos rápidos',
         link1: 'Vista previa del cuestionario',
         link2: 'Registro de pre‑análisis',
-        link3: 'Listado de proyectos'
+        link3: 'Listado de proyectos',
+        link4: 'Realizar la encuesta',
+        link4note: "(usar 'TEST' como contraseña)"
       },
       collaborators: {
         title: 'Colaboradores',
         subtitle: 'Red global de investigadores',
         card1: {
           title: 'Coordinación',
-          text: 'Investigador principal: <a href="https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/" target="_blank" style="color:inherit; text-decoration:none">Filippos Exadaktylos</a> (Universidad de Barcelona)<br><br>Co-IPs: <a href="https://sites.google.com/site/pablobranasgarza/bienvenido" target="_blank" style="color:inherit; text-decoration:none">Pablo Brañas Garza</a> (Loyola University), <a href="https://www.antonioalfonso.org/" target="_blank" style="color:inherit; text-decoration:none">Antonio Alfonso</a> (Universidad de Sevilla), <a href="https://loyolabehlab.org/members/adriana-gaviria/" target="_blank" style="color:inherit; text-decoration:none">Adriana Gaviria</a> (Loyola University)'
+          text: 'Filippos Exadaktylos (University of Barcelona), Pablo Brañas, Adriana Gaviria (Loyola University) &amp; Antonio Alfonso (University of Sevilla)'
         },
         card2: {
           title: 'Equipos por país',
@@ -842,10 +787,9 @@
         subtitle: 'Accede a nuestros datos de muestra del experimento DICE. Datos completos disponibles tras publicación.',
         card1: {
           title: 'Datos de muestra',
-          desc: 'Dataset de ejemplo con 15 participantes de 5 países. Incluye resultados del dado, datos demográficos y puntuaciones de confianza.',
+          desc: 'Dataset de muestra con 10 participantes de los 33 países. Incluye todas las variables.',
           format: 'Formato:',
           size: 'Tamaño:',
-          updated: 'Actualizado:',
           btn: 'Descargar datos de muestra'
         },
         card2: {
@@ -857,7 +801,7 @@
           var4: 'Fecha de sesión',
           var5: 'Edad',
           var6: 'Puntuación de confianza (1-10)',
-          codebook: 'Para el conjunto completo de variables, descarga el <a href="Codebook.pdf" download style="color:#60a5fa; text-decoration:none">codebook aquí</a>.'
+          codebook: 'Para el conjunto completo de variables, descarga el <a href="codebook.pdf" download style="color:#60a5fa; text-decoration:none">codebook aquí</a>.'
         },
         card3: {
           title: 'Acceso al dataset completo',
@@ -879,13 +823,14 @@
         item5: '<strong>País</strong> — IRB, traducciones, tiempos',
         version: 'Versionado recomendado: <code>DICE‑Q v1.2 (2025‑06‑10)</code>',
         btn1: 'Abrir Qualtrics (placeholder)',
-        btn2: 'Descargar todos los cuestionarios',
-        docsTitle: 'Cuestionarios individuales',
-        docsNote: 'Descarga cuestionarios por país.'
+        docsTitle: 'Instrucciones experimentales',
+        btnEnglish: 'English',
+        btnAllLangs: 'Todos los idiomas',
+        btnQsf: 'Qualtrics Survey File (.qsf)'
       },
       prereg: {
-        title: 'Pre‑registros',
-        btnAll: 'Descargar todos los pre‑registros'
+        title: 'Plan de pre-análisis',
+        btnAll: 'Descargar plan de pre-análisis'
       },
       footer: {
         tagline: 'Dialogues on Integrity, Culture, and Ethics.',
@@ -1548,7 +1493,7 @@
 
           // Create title (no status badge)
           const titleEl = document.createElement('h4');
-          titleEl.innerHTML = `${project.id}. ${project.title}`;
+          titleEl.innerHTML = `${project.id + 1}. ${project.title}`;
           card.appendChild(titleEl);
 
           // Create authors list
@@ -1557,11 +1502,10 @@
           authorsEl.style.color = '#64748b';
           authorsEl.style.marginBottom = '8px';
 
-          // Show first 3 authors, then "and X more"
-          const displayAuthors = project.allAuthors.slice(0, 3);
-          const remainingCount = project.authorCount - 3;
-          const authorsText = displayAuthors.join(', ') +
-            (remainingCount > 0 ? ` <em>and ${remainingCount} more</em>` : '');
+          // Show first author, then "et al." if more
+          const displayAuthors = project.allAuthors.slice(0, 1);
+          const authorsText = displayAuthors[0] +
+            (project.authorCount > 1 ? ' <em>et al.</em>' : '');
           authorsEl.innerHTML = '<strong>Authors:</strong> ' + authorsText;
           card.appendChild(authorsEl);
 

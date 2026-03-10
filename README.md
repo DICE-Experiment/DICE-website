@@ -1,7 +1,6 @@
 # DICE Website - Beginner's Guide
 
-Welcome! This guide will help you understand how to update and customize the DICE website, even if you're not a developer.
-
+Welcome! This guide will help you understand how to update and customize the DICE website.
 ## 🌐 Website URL
 The site is hosted at: **https://dice-experiment.github.io/DICE-website/**
 
@@ -189,32 +188,6 @@ To change the color scheme, update these values.
 
 ---
 
-## 📋 Common Tasks Checklist
-
-### Adding a New Country
-- [ ] Add country code to `country-data.json` → `participatingCountryCodes`
-- [ ] Add country details to `country-data.json` → `countryData`
-- [ ] Update country count in `index.html` (search "33")
-- [ ] Test on localhost
-
-### Adding a New Project
-- [ ] Add project to `projects-data.json`
-- [ ] Increment `projectCount`
-- [ ] Add cache-busting: `?v=YYYYMMDD` to fetch if needed
-- [ ] Test on localhost
-
-### Updating Main Text
-- [ ] Update Spanish HTML (default display)
-- [ ] Update English translation (`.en` section)
-- [ ] Update Spanish translation (`.es` section)
-- [ ] Test language switcher
-
-### Changing Photos
-- [ ] Add photos to `Classroom fotos/` folder
-- [ ] Update `<img src="...">` paths in gallery
-- [ ] Check that photos load correctly
-
----
 
 ## 🐛 Troubleshooting
 
@@ -238,12 +211,6 @@ To change the color scheme, update these values.
 - Check that translations are updated in all three places
 
 ---
-
-## 📞 Need Help?
-
-- Check browser console (F12) for error messages
-- Validate JSON files: https://jsonlint.com
-- HTML validator: https://validator.w3.org
 
 ## 🚀 Publishing Changes
 
@@ -275,4 +242,3 @@ DICE-website-1/
 
 **Remember:** Always test changes locally before publishing, and keep backups of your files!
 
-Good luck! 🎉
