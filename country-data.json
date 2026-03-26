@@ -39,7 +39,7 @@
       "anchor": "spain",
       "flag": "🇪🇸",
       "name": "Spain",
-      "team": "Tere Garcia, Antonio Espín",
+      "team": "<a href=\"https://www.ugr.es/~tgarciam/\" target=\"_blank\" rel=\"noopener\">Tere Garcia</a>, <a href=\"https://sites.google.com/view/antonioespin\" target=\"_blank\" rel=\"noopener\">Antonio Espín</a>, <a href=\"https://www.ub.edu/school-economics/researchers/exadaktylos-filippos/\" target=\"_blank\" rel=\"noopener\">Filippos Exadaktylos</a>, <a href=\"https://sites.google.com/site/pablobranasgarza/bienvenido\" target=\"_blank\" rel=\"noopener\">Pablo Brañas Garza</a>",
       "institution": "Universidad de Granada",
       "sample": "N = 465"
     },
@@ -47,7 +47,7 @@
       "anchor": "czechia",
       "flag": "🇨🇿",
       "name": "Czech Republic",
-      "team": "Rostislav Stanek, Ondřej Krčál, Jaromir Kovarik",
+      "team": "<a href=\"https://sites.google.com/view/rostislavstanek\" target=\"_blank\" rel=\"noopener\">Rostislav Stanek</a>, <a href=\"https://sites.google.com/view/ondrej-krcal/\" target=\"_blank\" rel=\"noopener\">Ondřej Krčál</a>, <a href=\"https://sites.google.com/site/webpagesjaromir/\" target=\"_blank\" rel=\"noopener\">Jaromir Kovarik</a>",
       "institution": "Masaryk University",
       "sample": "N = 390"
     },
@@ -55,7 +55,7 @@
       "anchor": "philippines",
       "flag": "🇵🇭",
       "name": "Philippines",
-      "team": "Enrico Osi, Eduardo Ezekiel Denzon",
+      "team": "<a href=\"https://research.ateneo.edu/en/persons/enrico-c-osi/\" target=\"_blank\" rel=\"noopener\">Enrico Osi</a>, <a href=\"https://www.ateneo.edu/jgsom/qmit/faculty-staff\" target=\"_blank\" rel=\"noopener\">Eduardo Ezekiel Denzon</a>",
       "institution": "Ateneo de Manila University",
       "sample": "N = 385"
     },
@@ -63,7 +63,7 @@
       "anchor": "honduras",
       "flag": "🇭🇳",
       "name": "Honduras",
-      "team": "Michela Accerenzi, Diego Jorrat",
+      "team": "<a href=\"https://loyolabehlab.org/members/michela-accerenzi/\" target=\"_blank\" rel=\"noopener\">Michela Accerenzi</a>, <a href=\"https://sites.google.com/view/diegojorrat/home\" target=\"_blank\" rel=\"noopener\">Diego Jorrat</a>",
       "institution": "Universidad Autonoma de Honduras",
       "sample": "N = 350"
     },
@@ -71,7 +71,7 @@
       "anchor": "cotedivoire",
       "flag": "🇨🇮",
       "name": "Côte d'Ivoire",
-      "team": "María Ángeles Alaminos, Koutou N'Guessan Claude",
+      "team": "<a href=\"https://www.uloyola.es/oferta-cientifica/personal-investigador/maria-angeles-alaminos-hervas\" target=\"_blank\" rel=\"noopener\">María Ángeles Alaminos</a>, <a href=\"https://loyolabehlab.org/members/claude-nguessan-koutou/\" target=\"_blank\" rel=\"noopener\">Koutou N'Guessan Claude</a>",
       "institution": "Université Félix Houphouët-Boigny",
       "sample": "N = 340"
     },
@@ -79,7 +79,7 @@
       "anchor": "madagascar",
       "flag": "🇲🇬",
       "name": "Madagascar",
-      "team": "Rakotonjanahary Mamitiana Atrika, Francisco Olivero",
+      "team": "<a href=\"https://loyolabehlab.org/members/rakotonjanahary-mamitiana-atrika/\" target=\"_blank\" rel=\"noopener\">Rakotonjanahary Mamitiana Atrika</a>, <a href=\"https://loyolabehlab.org/members/adriana-gaviria/\" target=\"_blank\" rel=\"noopener\">Adriana Gaviria</a>",
       "institution": "Universite Magis",
       "sample": "N = 290"
     },
@@ -87,7 +87,7 @@
       "anchor": "italy",
       "flag": "🇮🇹",
       "name": "Italy",
-      "team": "Giulia Andrighetto, Gian Luca Pasin",
+      "team": "<a href=\"https://www.giuliandrighetto.com/\" target=\"_blank\" rel=\"noopener\">Giulia Andrighetto</a>, <a href=\"https://sites.google.com/view/gianlucapasin/home\" target=\"_blank\" rel=\"noopener\">Gian Luca Pasin</a>",
       "institution": "Institute of Cognitive Sciences and Technologies, Italian National Council of Research",
       "sample": "N = 475"
     },
@@ -95,7 +95,7 @@
       "anchor": "greece",
       "flag": "🇬🇷",
       "name": "Greece",
-      "team": "Antonios Proestakis, Angel Sánchez, Georgios Stamatopoulos",
+      "team": "<a href=\"https://sites.google.com/view/antoniosproestakis\" target=\"_blank\" rel=\"noopener\">Antonios Proestakis</a>, <a href=\"https://cepr.org/about/people/angel-sanchez\" target=\"_blank\" rel=\"noopener\">Angel Sánchez</a>, <a href=\"https://sites.google.com/view/giorgos-stamatopoulos\" target=\"_blank\" rel=\"noopener\">Georgios Stamatopoulos</a>",
       "institution": "Technical University of Crete",
       "sample": "N = 360"
     },
@@ -103,7 +103,7 @@
       "anchor": "argentina",
       "flag": "🇦🇷",
       "name": "Argentina",
-      "team": "Andrés Gago, Joaquín Navajas, Adam Rangel, Francisco Oliveros",
+      "team": "<a href=\"https://sites.google.com/view/a-gago\" target=\"_blank\" rel=\"noopener\">Andrés Gago</a>, <a href=\"https://www.utdt.edu/ver_contenido.php?id_contenido=14890&amp;id_item_menu=25596\" target=\"_blank\" rel=\"noopener\">Joaquín Navajas</a>, <a href=\"https://www.linkedin.com/in/adamnrangel/\" target=\"_blank\" rel=\"noopener\">Adam Rangel</a>, Francisco Oliveros",
       "institution": "Universidad Torcuato Di Tella",
       "sample": "N = 450"
     },
@@ -111,7 +111,7 @@
       "anchor": "china",
       "flag": "🇨🇳",
       "name": "China",
-      "team": "Lijia Wei",
+      "team": "<a href=\"https://scholar.google.com/citations?user=54B8bHUAAAAJ&amp;hl=zh-CN\" target=\"_blank\" rel=\"noopener\">Lijia Wei</a>",
       "institution": "Wuhan University",
       "sample": "N = 520"
     },
@@ -119,7 +119,7 @@
       "anchor": "qatar",
       "flag": "🇶🇦",
       "name": "Qatar",
-      "team": "Ramon Cobo Reyes-Cano, Ángela Sánchez González",
+      "team": "<a href=\"https://www.qatar.georgetown.edu/faculty/ramon-cobo-reyes-cano/\" target=\"_blank\" rel=\"noopener\">Ramon Cobo Reyes-Cano</a>, <a href=\"https://www.iit.comillas.edu/personas/asanchezg\" target=\"_blank\" rel=\"noopener\">Ángela Sánchez González</a>",
       "institution": "Georgetown University Qatar",
       "sample": "N = 320"
     },
@@ -127,7 +127,7 @@
       "anchor": "kazakhstan",
       "flag": "🇰🇿",
       "name": "Kazakhstan",
-      "team": "Alexis Belianin",
+      "team": "<a href=\"https://scholar.google.com/citations?user=mlbuoJ0AAAAJ&amp;hl=en\" target=\"_blank\" rel=\"noopener\">Alexis Belianin</a>",
       "institution": "ICEF NRU HSE and IMEMO RAS",
       "sample": "N = 330"
     },
@@ -135,7 +135,7 @@
       "anchor": "russia",
       "flag": "🇷🇺",
       "name": "Russia",
-      "team": "Alexis Belianin",
+      "team": "<a href=\"https://scholar.google.com/citations?user=mlbuoJ0AAAAJ&amp;hl=en\" target=\"_blank\" rel=\"noopener\">Alexis Belianin</a>",
       "institution": "ICEF NRU HSE and IMEMO RAS",
       "sample": "N = 460"
     },
@@ -143,7 +143,7 @@
       "anchor": "singapore",
       "flag": "🇸🇬",
       "name": "Singapore",
-      "team": "Benjamin Prisse, Dinithi Nilanga Jayasekara",
+      "team": "<a href=\"https://www.sutd.edu.sg/profile/benjamin-prisse/\" target=\"_blank\" rel=\"noopener\">Benjamin Prisse</a>, <a href=\"https://lkycic.sutd.edu.sg/people/researchers/dinithi-jayasekara/\" target=\"_blank\" rel=\"noopener\">Dinithi Nilanga Jayasekara</a>",
       "institution": "Singapore University of Technology and Design",
       "sample": "N = 430"
     },
@@ -151,7 +151,7 @@
       "anchor": "colombia",
       "flag": "🇨🇴",
       "name": "Colombia",
-      "team": "Lina Moros",
+      "team": "<a href=\"https://administracion.uniandes.edu.co/profesor/lina-moros-canon/\" target=\"_blank\" rel=\"noopener\">Lina Moros</a>",
       "institution": "Universidad de los Andes",
       "sample": "N = 480"
     },
@@ -159,7 +159,7 @@
       "anchor": "chile",
       "flag": "🇨🇱",
       "name": "Chile",
-      "team": "Alejandra Alicia Vasquez Alvarado",
+      "team": "<a href=\"https://fae.usach.cl/fae/index.php/academicos-as?view=article&amp;id=704:vasquez-alvarado-alejandra&amp;catid=13\" target=\"_blank\" rel=\"noopener\">Alejandra Alicia Vasquez Alvarado</a>",
       "institution": "Universidad de Santiago de Chile",
       "sample": "N = 425"
     },
@@ -167,7 +167,7 @@
       "anchor": "hungary",
       "flag": "🇭🇺",
       "name": "Hungary",
-      "team": "Hubert Janos Kiss, Béla Janky",
+      "team": "<a href=\"https://kti.krtk.hu/en/researchers/kiss-hubert-janos/\" target=\"_blank\" rel=\"noopener\">Hubert Janos Kiss</a>, <a href=\"https://tk.elte.hu/en/researcher/janky-bela\" target=\"_blank\" rel=\"noopener\">Béla Janky</a>",
       "institution": "HUN-REN KRTK & Corvinus University in Budapest",
       "sample": "N = 375"
     },
@@ -175,7 +175,7 @@
       "anchor": "uruguay",
       "flag": "🇺🇾",
       "name": "Uruguay",
-      "team": "José Ignacio Rivero-Wildemauwe, Marcos Cardozo",
+      "team": "<a href=\"https://sites.google.com/view/jos-ignacio-rivero-wildemauwe/home\" target=\"_blank\" rel=\"noopener\">José Ignacio Rivero-Wildemauwe</a>, <a href=\"https://investigadores.ucu.edu.uy/es/persons/marcos-cardozo-salazar/\" target=\"_blank\" rel=\"noopener\">Marcos Cardozo</a>",
       "institution": "Universidad Católica del Uruguay",
       "sample": "N = 335"
     },
@@ -183,7 +183,7 @@
       "anchor": "germany",
       "flag": "🇩🇪",
       "name": "Germany",
-      "team": "Hande Erkut, David Albrecht",
+      "team": "<a href=\"https://sites.google.com/site/handeerkutacademic/\" target=\"_blank\" rel=\"noopener\">Hande Erkut</a>, <a href=\"https://sites.google.com/site/leventneyse\" target=\"_blank\" rel=\"noopener\">Levent Neyse</a>, <a href=\"https://da-lbrecht.github.io/\" target=\"_blank\" rel=\"noopener\">David Albrecht</a>",
       "institution": "WZB, Berlin",
       "sample": "N = 510"
     },
@@ -191,7 +191,7 @@
       "anchor": "france",
       "flag": "🇫🇷",
       "name": "France",
-      "team": "Nicolas Jacquemet, Aurélien Klopfenstein",
+      "team": "<a href=\"https://sites.google.com/view/nicolasjacquemet/\" target=\"_blank\" rel=\"noopener\">Nicolas Jacquemet</a>, <a href=\"https://www.parisschoolofeconomics.eu/en/persons/aurelien-klopfenstein/\" target=\"_blank\" rel=\"noopener\">Aurélien Klopfenstein</a>",
       "institution": "Université Paris 1 Panthéon-Sorbonne and Paris School of Economics",
       "sample": "N = 440"
     },
@@ -199,7 +199,7 @@
       "anchor": "portugal",
       "flag": "🇵🇹",
       "name": "Portugal",
-      "team": "Helia Marreiros",
+      "team": "<a href=\"https://nipe.eeg.uminho.pt/en/people/helia-marreiros/\" target=\"_blank\" rel=\"noopener\">Helia Marreiros</a>",
       "institution": "Universidade do Minho",
       "sample": "N = 365"
     },
@@ -207,7 +207,7 @@
       "anchor": "uk",
       "flag": "🇬🇧",
       "name": "United Kingdom",
-      "team": "Brit Grosskopf",
+      "team": "<a href=\"https://experts.exeter.ac.uk/23373-brit-grosskopf\" target=\"_blank\" rel=\"noopener\">Brit Grosskopf</a>",
       "institution": "University of Exeter",
       "sample": "N = 490"
     },
@@ -215,7 +215,7 @@
       "anchor": "turkey",
       "flag": "🇹🇷",
       "name": "Turkey",
-      "team": "Ayça Ebru Giritligil, Fatih Mehmet Şenyurd",
+      "team": "<a href=\"https://www.bilgi.edu.tr/tr/akademik/kadro/ayca-ebru-giritligil/\" target=\"_blank\" rel=\"noopener\">Ayça Ebru Giritligil</a>, <a href=\"https://www.researchgate.net/profile/Fatih-Senyurd\" target=\"_blank\" rel=\"noopener\">Fatih Mehmet Şenyurd</a>",
       "institution": "Istanbul Bilgi University",
       "sample": "N = 445"
     },
@@ -223,7 +223,7 @@
       "anchor": "poland",
       "flag": "🇵🇱",
       "name": "Poland",
-      "team": "Bartlomiej Dessoulavy-Sliwinski, Rana Umair Ashraf",
+      "team": "<a href=\"https://www.wne.uw.edu.pl/en/members/profile/view/10\" target=\"_blank\" rel=\"noopener\">Bartlomiej Dessoulavy-Sliwinski</a>, <a href=\"https://www.wne.uw.edu.pl/en/members/profile/view/412\" target=\"_blank\" rel=\"noopener\">Umair Ashraf Rana</a>",
       "institution": "University of Warsaw",
       "sample": "N = 420"
     },
@@ -231,7 +231,7 @@
       "anchor": "austria",
       "flag": "🇦🇹",
       "name": "Austria",
-      "team": "Felix Holzmeister, König-Kersting Christian",
+      "team": "<a href=\"https://www.felixholzmeister.com/\" target=\"_blank\" rel=\"noopener\">Felix Holzmeister</a>, <a href=\"https://ckgk.de/\" target=\"_blank\" rel=\"noopener\">König-Kersting Christian</a>",
       "institution": "University of Innsbruck",
       "sample": "N = 380"
     },
@@ -239,7 +239,7 @@
       "anchor": "japan",
       "flag": "🇯🇵",
       "name": "Japan",
-      "team": "Gwen-Jiro Clochard, Nobuyuki Hanaki",
+      "team": "<a href=\"https://sites.google.com/view/gwen-jiro-clochard/\" target=\"_blank\" rel=\"noopener\">Gwen-Jiro Clochard</a>, <a href=\"https://sites.google.com/view/nhanaki/home\" target=\"_blank\" rel=\"noopener\">Nobuyuki Hanaki</a>",
       "institution": "Osaka University",
       "sample": "N = 500"
     },
@@ -247,7 +247,7 @@
       "anchor": "korea",
       "flag": "🇰🇷",
       "name": "South Korea",
-      "team": "Syngjoo Choi, Duk Gyoo Kim",
+      "team": "<a href=\"https://sites.google.com/site/syngjoochoi/\" target=\"_blank\" rel=\"noopener\">Syngjoo Choi</a>, <a href=\"https://kimdukgyoo.github.io/\" target=\"_blank\" rel=\"noopener\">Duk Gyoo Kim</a>",
       "institution": "Seoul National University",
       "sample": "N = 485"
     },
@@ -255,7 +255,7 @@
       "anchor": "usa",
       "flag": "🇺🇸",
       "name": "United States",
-      "team": "Diego Aycinena, Abhijit Ramalingam",
+      "team": "<a href=\"https://www.diegoaycinena.com/\" target=\"_blank\" rel=\"noopener\">Diego Aycinena</a>, <a href=\"https://sites.google.com/site/abhijitramalingam/home\" target=\"_blank\" rel=\"noopener\">Abhijit Ramalingam</a>",
       "institution": "University of Pennsylvania",
       "sample": "N = 505"
     },
@@ -263,7 +263,7 @@
       "anchor": "hongkong",
       "flag": "🇭🇰",
       "name": "Hong Kong",
-      "team": "King King Li, Ying-yi Hong",
+      "team": "<a href=\"https://likingking.weebly.com/\" target=\"_blank\" rel=\"noopener\">King King Li</a>, <a href=\"https://www.yingyihong.org/hong-ying-yi\" target=\"_blank\" rel=\"noopener\">Ying-yi Hong</a>",
       "institution": "The Hang Seng University of Hong Kong",
       "sample": "N = 405"
     },
@@ -271,7 +271,7 @@
       "anchor": "taiwan",
       "flag": "🇹🇼",
       "name": "Taiwan",
-      "team": "Joseph Tao-yi Wang, Willy Wang",
+      "team": "<a href=\"https://homepage.ntu.edu.tw/~josephw/\" target=\"_blank\" rel=\"noopener\">Joseph Tao-yi Wang</a>, Willy Wang",
       "institution": "National Taiwan University",
       "sample": "N = 455"
     },
@@ -279,7 +279,7 @@
       "anchor": "pakistan",
       "flag": "🇵🇰",
       "name": "Pakistan",
-      "team": "Muhammad Saeed Ashraf, Muhammad Usman",
+      "team": "<a href=\"https://scholar.google.com/citations?user=KUQWXxIAAAAJ&amp;hl=en\" target=\"_blank\" rel=\"noopener\">Muhammad Saeed Ashraf</a>, Umair Ashraf Rana",
       "institution": "Jiangsu University",
       "sample": "N = 410"
     },
@@ -287,7 +287,7 @@
       "anchor": "peru",
       "flag": "🇵🇪",
       "name": "Peru",
-      "team": "Ricardo Huaman Aguilar, Francisco Bruno Galarza Arellano",
+      "team": "<a href=\"https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=95334\" target=\"_blank\" rel=\"noopener\">Ricardo Huaman Aguilar</a>, <a href=\"https://sites.google.com/view/francisco-b-galarza/\" target=\"_blank\" rel=\"noopener\">Francisco Bruno Galarza Arellano</a>",
       "institution": "Pontificia Universidad Católica del Perú and Universidad del Pacífico",
       "sample": "N = 400"
     },
@@ -295,8 +295,8 @@
       "anchor": "egypt",
       "flag": "🇪🇬",
       "name": "Egypt",
-      "team": "Dina Rabie, Rania Miniesy",
-      "institution": "Northeastern University - London",
+      "team": "<a href=\"https://www.nulondon.ac.uk/people/dina-rabie/\" target=\"_blank\" rel=\"noopener\">Dina Rabie</a>, <a href=\"https://sdgsuniversities.org/africa/rania-miniesy/\" target=\"_blank\" rel=\"noopener\">Rania Miniesy</a>",
+      "institution": "The British University in Egypt",
       "sample": "N = 370"
     }
   }
